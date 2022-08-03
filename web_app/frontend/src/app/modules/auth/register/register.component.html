@@ -1,0 +1,74 @@
+<div class="container">
+    <h1 class="greeting"> Welcome!</h1>
+    <h3 class="greeting"> To register please provide the following information:</h3>
+  
+    <div id="register-section">
+      <!-- <p>If you don't have an account, please register in order to access the website:</p> -->
+      <form [formGroup]="registerForm" id="register-form">
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Email</mat-label>
+        <input required matInput placeholder="Email" formControlName="email"> <!-- (focusout)="onFocusOut()" -->
+          <div *ngIf="email.touched || email.dirty" class="alert">
+            <div *ngIf="email.errors?.['required']">
+              An email is required!
+            </div>
+            <div *ngIf="email.errors?.['email']">
+              Please provide a valid email address.
+            </div>
+            <!-- <div *ngIf="emailExists">
+              An account for this email already exists.
+            </div> -->
+          </div>
+        </mat-form-field>
+      
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input required matInput type="password" placeholder="Password" formControlName="password">
+          <div *ngIf="password.dirty || password.touched" class="alert">
+            <div *ngIf="password.errors?.['required']">
+              A password is required!
+            </div>
+            <div *ngIf="password.errors?.['validPassword'] && !password.errors?.['required']">
+              The password is invalid!
+            </div>
+            <div *ngIf="password.errors?.['minlength']">
+              The password must be at least 6 characters long.
+            </div>
+            <div *ngIf="password.errors?.['maxlength']">
+              The password cannot have more than 25 characters.
+            </div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput type="username" placeholder="Username" formControlName="username">
+          <!-- <mat-error *ngIf="registerForm.get('username')?.hasError('usernameAlreadyExists')">
+            Username already <strong>exists</strong></mat-error> -->
+          <div *ngIf="username.dirty || username.touched" class="alert">
+            <div *ngIf="username.errors?.['required']">
+              A username is required!
+            </div>
+            <div *ngIf="username.errors?.['maxlength']">
+              The username cannot have more than 30 characters.
+            </div>
+            <div *ngIf="username.errors?.['forbiddenChar']">
+              The username can contain only letters, numbers, hyphens and underscores.
+            </div>
+            <!-- <div *ngIf="usernameExists">
+              This username already exists, please choose a different one.
+            </div> -->
+          </div>
+        </mat-form-field>
+      </form>
+      
+      <button mat-raised-button [disabled]="!registerForm.valid" (click)="register()">Sign up</button>
+
+      <!-- <div class="alert-warning" *ngIf="f.submitted && signUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+      <div class="alert-success" *ngIf="isSuccessful">
+        Your registration is successful!
+      </div> -->
+    </div>
+</div>

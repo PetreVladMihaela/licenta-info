@@ -1,0 +1,13 @@
+#user-info-card {
+    background-color: whitesmoke;
+    max-width: fit-content;
+
+    #card-header {
+        #user-icon {
+            background-image: url("/assets/user-icon.png");
+            background-size: cover;
+        }
+        
+        margin-bottom: 10px;
+    }
+}
