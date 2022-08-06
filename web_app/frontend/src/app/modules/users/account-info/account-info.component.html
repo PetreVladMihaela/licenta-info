@@ -2,11 +2,10 @@
   <mat-card id="user-info-card">
     <mat-card-header id="card-header">
       <div mat-card-avatar id="user-icon"></div>
-      <mat-card-title id="card-title"> User </mat-card-title>
-      <mat-card-subtitle id="card-subtitle"> Account Info </mat-card-subtitle>
-      <!-- <mat-card-subtitle id="card-subtitle"> Role: {{currentUser?.role}} </mat-card-subtitle> -->
-      <!-- <strong>Roles:</strong>
-      <ul> <li *ngFor="let role of currentUser.roles"> {{ role }} </li> </ul> -->
+      <mat-card-title id="card-title"> User Account Info </mat-card-title>
+      <mat-card-subtitle id="card-subtitle"> Roles: 
+        <span *ngFor="let role of currentUser?.userRoles"> {{role}}; </span> 
+      </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content id="account-info">
         <p class="details">

@@ -1,4 +1,4 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { UsersService } from './users.service';
@@ -30,10 +30,14 @@ export class AuthInterceptorService implements HttpInterceptor {
     req = req.clone( { withCredentials: true } );
     return next.handle(req).pipe(catchError(error => {
       console.log(error)
-      let message = error.name + " " + error.status;
-      if (error.error)
-        if (error.error.message)
-          message = error.error.message;
+
+      let message = "Unknown Error";
+      if (error instanceof HttpErrorResponse) {
+        message = "HTTP Error with Code " + error.status
+        if (error.error)
+          if (error.error.message)
+            message = error.error.message;
+      }
 
       // We don't want to refresh tokens for some requests like login or refresh token itself, so we verify the url and we throw an error if it's the case.
       if (req.url.includes("refresh-token") || req.url.includes("login") || req.url.includes("register")) {

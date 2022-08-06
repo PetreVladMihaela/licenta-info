@@ -6,12 +6,14 @@ namespace backend.Models
     {
         public string UserId { get; set; } = "";
 
-        [Required, StringLength(50, MinimumLength = 2)]
+        [Required]
         public string Username { get; set; } = null!;
 
         [Required, EmailAddress]
         public string Email { get; set; } = null!;
 
-        public string? Password { get; set; }
+        public string? HashedPassword { get; set; }
+
+        public IList<string>? UserRoles { get; set; }
     }
 }

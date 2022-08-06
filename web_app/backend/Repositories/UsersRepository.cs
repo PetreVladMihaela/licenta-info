@@ -1,4 +1,6 @@
 ﻿using backend.Entities;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace backend.Repositories
 {
@@ -13,15 +15,14 @@ namespace backend.Repositories
 
         public IQueryable<User> GetUsersIQueryable()
         {
-            return db.Users; 
+            return db.Users;
         }
 
-
-        public void Create(User user)
-        {
-            db.Users.Add(user);
-            db.SaveChanges();
-        }
+        //public void Create(User user)
+        //{
+        //    db.Users.Add(user);
+        //    db.SaveChanges();
+        //}
 
         public void Update(User user)
         {

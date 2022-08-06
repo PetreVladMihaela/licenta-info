@@ -3,41 +3,43 @@
   
     <div id="login-section">
       <form [formGroup]="loginForm" id="login-form">
-        <mat-form-field color="accent" appearance="outline">
+        <mat-form-field appearance="outline">
             <mat-label>Username</mat-label>
-            <input matInput type="username" placeholder="Username" formControlName="username">
-            <div *ngIf="username.dirty || username.touched" class="alert">
-              <div *ngIf="username.errors?.['required']">
-                The username is required!
-              </div>
-              <div *ngIf="username.errors?.['maxlength']">
-                The username cannot have more than 30 characters.
-              </div>
-              <div *ngIf="username.errors?.['forbiddenChar']">
-                The username can contain only letters, numbers, hyphens and underscores.
-              </div>
+            <input matInput type="username" maxlength="31" placeholder="Username" formControlName="username">
+            <div *ngIf="username.touched" class="alert">
+              <mat-error *ngIf="username.errors?.['required'] || username.errors?.['minlength']">
+                A username of at least 2 characters is required!
+              </mat-error>
+              <mat-error *ngIf="username.errors?.['maxlength']">
+                A username cannot have more than 30 characters.
+              </mat-error>
+              <mat-error *ngIf="username.errors?.['forbiddenChar']">
+                The username can only contain <strong>letters, numbers, hyphens and underscores.</strong>
+              </mat-error>
             </div>
-          </mat-form-field>
+        </mat-form-field>
      
-        <mat-form-field color="accent" appearance="outline">
+        <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input required matInput type="password" placeholder="Password" formControlName="password">
-          <div *ngIf="password.dirty || password.touched" class="alert">
-            <div *ngIf="password.errors?.['required']">
+          <input required matInput type="password" maxlength="26" placeholder="Password" formControlName="password">
+          <div *ngIf="password.touched" class="alert">
+            <mat-error *ngIf="password.errors?.['required']">
               The password is required!
-            </div>
-            <div *ngIf="password.errors?.['minlength']">
+            </mat-error>
+            <mat-error *ngIf="password.errors?.['minlength']">
               The password must be at least 6 characters long.
-            </div>
-            <div *ngIf="password.errors?.['maxlength']">
+            </mat-error>
+            <mat-error *ngIf="password.errors?.['maxlength']">
               The password cannot have more than 25 characters.
-            </div>
+            </mat-error>
           </div>
         </mat-form-field>
       </form>
       
-      <button mat-raised-button [disabled]="!loginForm.valid" (click)="login()">Sign in</button>
+      <button mat-raised-button [disabled]="!loginForm.valid" (click)="login()">Signin</button>
 
-      <!-- <div class="alert alert-success" *ngIf="isLoggedIn"> Logged in as {{ roles }}. </div> -->
+      <div class="warning" *ngIf="errorMessage">
+        Signin failed! <br/> <strong>{{ errorMessage }}</strong>
+      </div>
     </div>
 </div>

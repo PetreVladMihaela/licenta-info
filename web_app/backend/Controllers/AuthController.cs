@@ -3,6 +3,7 @@ using backend.Managers;
 using backend.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace backend.Controllers
@@ -24,7 +25,7 @@ namespace backend.Controllers
             this.tokensManager = tokensManager;
         }
 
-
+        //[Authorize("MinAge")]
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserModel signupModel)
@@ -81,15 +82,13 @@ namespace backend.Controllers
                 {
                     var token = await tokensManager.GenerateToken(user);
 
-                    Console.WriteLine("\n" + token.AccessTokenExpiryDate.ToString("s") + "\n");
-
                     //Response.Headers["Access-Control-Allow-Credentials"] = "true";
                     Response.Cookies.Append("User_Access_Token", token.AccessToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.None, Secure = true } );
                     Response.Cookies.Append("Token_Expiry_Date", token.AccessTokenExpiryDate.ToUniversalTime().ToString("s"), new CookieOptions() { HttpOnly = false, SameSite = SameSiteMode.None, Secure = true } );//Sortable date/time
                     Response.Cookies.Append("User_Refresh_Token", token.RefreshToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.None, Secure = true, Expires = user.RefreshTokenExpiryDate } );
 
-                    //return Ok(token);
-                    return Ok();
+                    return Ok(token);
+                    //return Ok();
                 }
                 else if (check.IsLockedOut)
                 {
@@ -105,7 +104,7 @@ namespace backend.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("logout")]
         public IActionResult Logout()
         {

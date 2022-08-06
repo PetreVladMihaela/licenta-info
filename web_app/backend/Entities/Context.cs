@@ -21,8 +21,6 @@ namespace backend.Entities
     {
         //public DbSet<User> Users { get; set; };
 
-        //public virtual DbSet<UserRefreshTokens> UserRefreshToken { get; set; }
-
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

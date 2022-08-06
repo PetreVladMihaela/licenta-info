@@ -1,4 +1,8 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/operators';
+import { UsersService } from './services/users.service';
+
 
 export class CustomValidators {
 
@@ -13,7 +17,15 @@ export class CustomValidators {
     const regex = /(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+)(?=.*[^a-zA-Z0-9]+)/
     return (control: AbstractControl): ValidationErrors | null => {
       const valid = regex.test(control.value);
-      return valid ? null : {validPassword: {value: control.value}};
+      return valid ? null : {invalidPassword: {value: control.value}};
+    };
+  }
+
+  static uniqueUsernameValidator(usersService: UsersService): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null>  => {
+      return usersService.checkIfUsernameExists(control.value).pipe(map(response => {
+        return response.usernameExists ? { usernameAlreadyExists: { value: control.value } } : null;
+      }));
     };
   }
 

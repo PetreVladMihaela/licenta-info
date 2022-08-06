@@ -1,5 +1,24 @@
-#login-form {
-    mat-form-field {
-        margin-right: 10px;
-    }
-}
+.container {
+   
+    #login-form {
+         mat-form-field {
+             margin-right: 10px;
+         }
+ 
+         mat-form-field {
+             width: 250px;
+ 
+             .alert {
+                 mat-error {
+                     margin-top: 10px
+                 }
+             }
+         }
+     }
+ 
+     .warning {
+         margin-top: 20px;
+         color: red;
+     }
+ 
+ }

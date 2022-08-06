@@ -25,10 +25,9 @@ namespace backend.Entities
         //[Required, StringLength(250)]
         //public string EncryptedPassword { get; set; } = null!;
 
-        //[Required, StringLength(30)]
-        //public string Role { get; set; } = "BasicUser";
-
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpiryDate { get; set; }
+
+        //public virtual ICollection<UserRole>? UserRoles { get; set; }
     }
 }

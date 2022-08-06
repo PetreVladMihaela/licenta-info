@@ -1,7 +1,7 @@
 export interface User {
     userId: string
     email: string
-    password: string
+    hashedPassword: string
     username: string
-    role: string
+    userRoles: string[]
 }

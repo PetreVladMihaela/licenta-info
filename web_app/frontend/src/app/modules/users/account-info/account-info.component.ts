@@ -32,13 +32,9 @@ export class AccountInfoComponent implements OnInit, OnDestroy {
             this.loggedIn = this.usersService.isLoggedIn();
             window.location.reload();
           }
-          //this.roles = user.roles;
         },
         error: err => { console.log(err)
-          // if (err.error) 
-          //   this.errorMessage = JSON.parse(err.error).message;
-          // else 
-          //   this.errorMessage = "Error with status: " + err.status;
+          //this.errorMessage = "Error with status: " + err.status;
         }
       });
     });

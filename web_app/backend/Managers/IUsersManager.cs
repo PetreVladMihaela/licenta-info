@@ -6,11 +6,11 @@ namespace backend.Managers
     public interface IUsersManager
     {
         List<User> GetAllUsers();
-        User GetUserById(string id);
-        UserModel? GetUserByUsername(string username);
+        //User GetUserById(string id);
+        Task<UserModel?> GetUserByUsernameAsync(string username);
 
-        void Create(UserModel model);
-        void Update(UserModel model);
+        //void Create(UserModel model);
+        User? Update(UserModel model);
         void Delete(string id);
     }
 }

@@ -82,12 +82,12 @@ namespace backend
 
             services.AddIdentity<User, IdentityRole>(options => 
             {
-                // Default Lockout settings.
+                // Default Lockout settings
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
 
-                // Default Password settings.
+                // Default Password settings
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = true;
@@ -95,7 +95,7 @@ namespace backend
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
 
-                // Default SignIn settings.
+                // Default SignIn settings
                 options.SignIn.RequireConfirmedEmail = false;
                 options.SignIn.RequireConfirmedPhoneNumber = false;
 
@@ -164,6 +164,15 @@ namespace backend
             //    opt.AddPolicy("User", policy => policy.RequireRole("User").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
             //    opt.AddPolicy("Admin", policy => policy.RequireRole("Admin").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
             //});
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("MinAge", policy =>
+            //    {
+            //        policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+            //        policy.RequireAuthenticatedUser();
+            //        policy.Requirements.Add(new MinimumAgeRequirement(18));
+            //    });
+            //});
 
 
             /*
@@ -172,13 +181,11 @@ namespace backend
               services.AddSingleton - one single instance in the entire app
             */
 
-            //services.AddSingleton<IJWTManagerRepository, JWTManagerRepository>();
-            //services.AddScoped<IUserServiceRepository, UserServiceRepository>();
-
             services.AddTransient<IUsersRepository, UsersRepository>();
             services.AddTransient<IUsersManager, UsersManager>();
-
             services.AddTransient<ITokensManager, TokensManager>();
+
+            //services.AddSingleton<IAuthorizationHandler, AccountAuthorizationHandler>();
         }
 
 
@@ -209,4 +216,34 @@ namespace backend
             });
         }
     }
+
+
+    //public class MinimumAgeRequirement : IAuthorizationRequirement
+    //{
+    //    public int MinimumAge { get; }
+
+    //    public MinimumAgeRequirement(int minimumAge) =>
+    //        MinimumAge = minimumAge;
+    //}
+
+    //public class AccountAuthorizationHandler : AuthorizationHandler<MinimumAgeRequirement>
+    //{
+    //    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MinimumAgeRequirement requirement)
+    //    {
+    //        if (context.User.HasClaim(c => c.Type == ClaimTypes.DateOfBirth) is false)
+    //            return Task.CompletedTask;
+
+    //        var dateOfBirthClaim = context.User.Claims.First(c => c.Type == ClaimTypes.DateOfBirth);
+    //        var dateOfBirth = Convert.ToDateTime(dateOfBirthClaim.Value);
+
+    //        int userAge = DateTime.Today.Year - dateOfBirth.Year;
+    //        if (dateOfBirth > DateTime.Today.AddYears(-userAge))
+    //            userAge--;
+
+    //        if (userAge >= requirement.MinimumAge)
+    //            context.Succeed(requirement);
+
+    //        return Task.CompletedTask;
+    //    }
+    //}
 }

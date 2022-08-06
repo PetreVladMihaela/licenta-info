@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
-import { map } from 'rxjs/operators';
 import { User } from 'src/app/interfaces/user';
 import { AccessToken } from '../interfaces/access-token';
+import { RegisterUser } from '../interfaces/register_user';
 
 
 @Injectable({
@@ -22,7 +22,7 @@ export class UsersService {
     private router: Router
   ) { }
 
-  public createUser(user: User){
+  public createUser(user: RegisterUser){
     return this.http.post(this.authUrl+'/register', user);
   }
 
@@ -31,7 +31,7 @@ export class UsersService {
   }
 
   public logout() {
-    this.http.post(this.authUrl+'/logout', null).subscribe(() => {
+    this.http.get(this.authUrl+'/logout').subscribe(() => {
       localStorage.removeItem("User");
       this.router.navigate(['/auth/login'])
     });
@@ -52,7 +52,7 @@ export class UsersService {
       const currentDate = formatDate(new Date(now.getTime() + now.getTimezoneOffset() * 60000), 'MMM d, y, h:mm:ss a','en');
       const expiryDate = formatDate(dateFromCookie.replace(/%3A/g,":"),'MMM d, y, h:mm:ss a','en');
       //console.log(currentDate < expiryDate)
-      console.log(currentDate, " - ", expiryDate)
+      //console.log(currentDate, "-", expiryDate)
       return currentDate < expiryDate;
     }
     else return false
@@ -72,19 +72,8 @@ export class UsersService {
     return this.http.put(this.url, user);
   }
 
-
-
-
-  public checkIfUsernameExists(value: string): Observable<boolean>{
-    return this.getAllUsers().pipe(
-      map((users) => users.some((user) => user.username === value))
-    )
-  }
-
-  public checkIfEmailExists(value: string): Observable<boolean> {
-    return this.getAllUsers().pipe(
-      map((users) => users.some((user) => user.email === value))
-    )
+  public checkIfUsernameExists(username: string): Observable<{usernameExists:boolean}>{
+    return this.http.get<{usernameExists:boolean}>(`${this.url+"/checkUsername"}/${username}`);
   }
 
 }

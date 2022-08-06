@@ -11,6 +11,8 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class LoginComponent implements OnInit {
 
+  public errorMessage = "";
+
   constructor(
     private usersService: UsersService
   ) { }
@@ -20,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup = new FormGroup({
     password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(25)]),
-    username: new FormControl('', [Validators.required,  Validators.maxLength(30), 
+    username: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(30), 
         CustomValidators.forbiddenCharValidator(/[^-\w]/)])
   });
 
@@ -38,11 +40,10 @@ export class LoginComponent implements OnInit {
       next: () => {
         localStorage.setItem("User", formData.username);
         window.location.href='/users/info/'+formData.username
-        //this.isLoginFailed = false;
       },
       error: err => {
-        console.log(err)
-        //this.loginFailed = true;
+        this.errorMessage = err.message;
+        //console.log(err); //Error: message
       }
     });
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/custom-validators';
-import { User } from 'src/app/interfaces/user';
+import { RegisterUser } from 'src/app/interfaces/register_user';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -11,6 +11,8 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+
+  public errorMessage = "";
 
   constructor(
     private usersService: UsersService,
@@ -24,8 +26,8 @@ export class RegisterComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(25),
       CustomValidators.passwordValidator()]),
-    username: new FormControl('', [Validators.required,  Validators.maxLength(30), 
-      CustomValidators.forbiddenCharValidator(/[^-\w]/)])
+    username: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(30), 
+      CustomValidators.forbiddenCharValidator(/[^-\w]/)], [CustomValidators.uniqueUsernameValidator(this.usersService)])
   });
 
   get email(): AbstractControl {
@@ -39,15 +41,12 @@ export class RegisterComponent implements OnInit {
   }
 
   public register(): void {
-
-    const newUser: User = {
-      userId: "",
+    const newUser: RegisterUser = {
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
       username: this.registerForm.value.username,
       role: "BasicUser"
     };
-    
   //   this.usersService.createUser(newUser).subscribe((result) => {
   //     console.log(result)
   //     this.usersService.login(newUser.username, newUser.password).subscribe((token:AccessToken) => {
@@ -56,7 +55,6 @@ export class RegisterComponent implements OnInit {
   //       this.router.navigate(['/users/info', newUser.username]);
   //     });
   //   });
-
     this.usersService.createUser(newUser).subscribe({
       next: () => {
         this.usersService.login(newUser.username, newUser.password).subscribe(() => {
@@ -68,8 +66,8 @@ export class RegisterComponent implements OnInit {
         });
       },
       error: err => {
-        //this.errorMessage = err.message;
-        console.log(err);
+        this.errorMessage = err.message;
+        //console.log(err); //Error: message
       }
     });
   }
