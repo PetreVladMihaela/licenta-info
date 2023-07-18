@@ -1,45 +1,72 @@
-<div class="container">
-    <h1 class="greeting"> Welcome! Please Login:</h1>
-  
-    <div id="login-section">
-      <form [formGroup]="loginForm" id="login-form">
-        <mat-form-field appearance="outline">
-            <mat-label>Username</mat-label>
-            <input matInput type="username" maxlength="31" placeholder="Username" formControlName="username">
-            <div *ngIf="username.touched" class="alert">
-              <mat-error *ngIf="username.errors?.['required'] || username.errors?.['minlength']">
-                A username of at least 2 characters is required!
-              </mat-error>
-              <mat-error *ngIf="username.errors?.['maxlength']">
-                A username cannot have more than 30 characters.
-              </mat-error>
-              <mat-error *ngIf="username.errors?.['forbiddenChar']">
-                The username can only contain <strong>letters, numbers, hyphens and underscores.</strong>
-              </mat-error>
-            </div>
-        </mat-form-field>
-     
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <input required matInput type="password" maxlength="26" placeholder="Password" formControlName="password">
-          <div *ngIf="password.touched" class="alert">
-            <mat-error *ngIf="password.errors?.['required']">
-              The password is required!
-            </mat-error>
-            <mat-error *ngIf="password.errors?.['minlength']">
-              The password must be at least 6 characters long.
-            </mat-error>
-            <mat-error *ngIf="password.errors?.['maxlength']">
-              The password cannot have more than 25 characters.
-            </mat-error>
-          </div>
-        </mat-form-field>
-      </form>
-      
-      <button mat-raised-button [disabled]="!loginForm.valid" (click)="login()">Signin</button>
+<div id="container">
+  <h1 id="greeting" *ngIf="!newUser"> Welcome guest! </h1>
 
-      <div class="warning" *ngIf="errorMessage">
-        Signin failed! <br/> <strong>{{ errorMessage }}</strong>
+  <div id="login-section">
+    <h3 id="login-message" *ngIf="!newUser">
+      If you have an account, please log in to access all the website's features: 
+    </h3>
+    <h3 *ngIf="newUser"> You must log in to continue to the website: </h3>
+
+    <form [formGroup]="loginForm" id="login-form">
+      <div id="username-warning" *ngIf="username.errors?.['hasForbiddenChar']">
+        <div> The username can only contain <strong>letters, numbers, hyphens and underscores.</strong> </div>
       </div>
+      <mat-form-field appearance="outline" #formField="matFormField">
+        <mat-label> Username </mat-label>
+        <div class="form-input">
+          <input required matInput type="text" maxlength="31" placeholder="Username" formControlName="username">
+          <mat-icon matSuffix> account_box </mat-icon>
+        </div>  
+        <mat-error *ngIf="username.touched" class="alert">
+          <div *ngIf="username.errors?.['required'] || username.errors?.['minlength']">
+            A username of at least 2 characters is required!
+          </div>
+          <div *ngIf="username.errors?.['maxlength']">
+            A username cannot have more than 30 characters.
+          </div>
+          <div *ngIf="username.errors?.['usernameNotFound'] && !errorMessage">
+            This username does not exist.
+          </div>
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline" #formField="matFormField">
+        <mat-label> Password </mat-label>
+        <div class="form-input">
+          <input required matInput [type]="showPassword?'text':'password'" maxlength="26" placeholder="Password" 
+            formControlName="password" autocomplete="off">
+          <mat-icon id="eye-icon" matSuffix (click)="showPassword=!showPassword">
+            {{showPassword ? 'visibility' : 'visibility_off'}} 
+          </mat-icon>
+        </div>
+        <mat-error *ngIf="password.touched" class="alert">
+          <div *ngIf="password.errors?.['required']">
+            The password is required!
+          </div>
+          <div *ngIf="password.errors?.['minlength']">
+            The password must be at least 6 characters long.
+          </div>
+          <div *ngIf="password.errors?.['maxlength']">
+            The password cannot have more than 25 characters.
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <button id="login-button" mat-raised-button [disabled]="!loginForm.valid" (click)="logIn()" appWaitCursor>
+        Log in 
+      </button>
+    </form>
+
+    <div id="login-error" *ngIf="errorMessage">
+      <div id="underline-text"><strong>Login failed!</strong></div> <strong>{{errorMessage}}</strong>
     </div>
+  </div>
+
+  <div id="signup-redirect" *ngIf="!newUser">
+    <p id="redirect-message">
+      <strong>If you haven't signed up yet, click here to create your account:</strong>
+    </p>
+    <button changeBorderOnClick defaultBorderStyle="outset" mousedownBorderStyle="inset" id="redirect-button" 
+      mat-flat-button routerLink="/auth/register">Sign up</button>
+  </div>
 </div>

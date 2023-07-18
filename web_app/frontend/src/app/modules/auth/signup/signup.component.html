@@ -1,0 +1,120 @@
+<div *ngIf="registeredUser" id="success"> 
+  <h2> Hello {{registeredUser}}! </h2>
+  <div><span>Your account was created successfully. Thank you for signing up.</span></div> 
+  <div id="loginRedirect"> 
+    <span>Click here to log in and begin using the website:</span> 
+    <button mat-flat-button routerLink="/auth/login"
+      changeBorderOnClick defaultBorderStyle="outset" mousedownBorderStyle="inset"> Log in 
+    </button> 
+  </div>
+  <div id="registerRedirect"> <span>Click here to go back to the registration page:</span> 
+    <button mat-flat-button changeBorderOnClick defaultBorderStyle="outset" mousedownBorderStyle="inset" 
+      (click)="goBackToSignup()"> Register 
+    </button> 
+  </div>
+  <div> Have a great day! </div> 
+</div>
+
+
+<div id="container" [style]="{ 'display': registeredUser==null ? 'block' : 'none' }">
+  <h1 id="greeting"> Welcome user! </h1>
+  
+  <div id="register-section">
+    <h3 id="request"> In order to create your new account please fill in the following registration form: </h3>
+    <form [formGroup]="registerForm" id="register-form">
+      <mat-form-field appearance="outline" #formField="matFormField">
+        <mat-label> Email </mat-label>
+        <div class="form-input">
+          <input required matInput type="email" placeholder="Email" formControlName="email">
+          <mat-icon matSuffix> email </mat-icon>          
+        </div>
+        <mat-error *ngIf="email.touched" class="alert">
+          <div *ngIf="email.errors?.['required']">
+            An email is required!
+          </div>
+          <div *ngIf="email.errors?.['email']">
+            Please provide a valid email address.
+          </div>
+          <div *ngIf="email.errors?.['emailInUse'] && !errorMessage">
+            <strong>An account with this email already exists.</strong>
+          </div>
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline" id="password-field" #formField="matFormField">
+        <mat-label> Password </mat-label>
+        <div class="form-input">
+          <input required matInput [type]="showPassword?'text':'password'" maxlength="26" placeholder="Password" 
+            formControlName="password" autocomplete="off">
+          <mat-icon class="eye-icon" matSuffix (click)="showPassword=!showPassword">
+            {{showPassword ? 'visibility' : 'visibility_off'}} 
+          </mat-icon>
+        </div>
+        <mat-error *ngIf="password.touched" class="alert">
+          <div *ngIf="password.errors?.['minlength'] || password.errors?.['required']">
+            The password must be at least 6 characters long.
+          </div>
+          <div *ngIf="password.errors?.['maxlength']">
+            The password cannot have more than 25 characters.
+          </div>
+        </mat-error>
+      </mat-form-field>
+      <div id="password-warning" class="warning" style="display:none">
+        The password must contain a <strong>lowercase</strong> and an <strong>uppercase</strong> letter,
+        a <strong>digit</strong> and a <strong>non&#x2011;alphanumeric</strong> character.
+      </div>
+
+      <mat-form-field appearance="outline" #formField="matFormField">
+        <mat-label> Confirm Password </mat-label>
+        <div class="form-input">
+          <input required matInput [type]="showConfirmPassword?'text':'password'" maxlength="26" 
+            placeholder="Confirm Password" formControlName="confirmPassword" autocomplete="off">
+          <mat-icon class="eye-icon" matSuffix (click)="showConfirmPassword=!showConfirmPassword">
+            {{showConfirmPassword ? 'visibility' : 'visibility_off'}} 
+          </mat-icon>          
+        </div>
+        <mat-error *ngIf="confirmPassword.touched" class="alert">
+          <!-- <div *ngIf="confirmPassword.errors?.['required']"> You must confirm your password. </div> -->
+          <div *ngIf="confirmPassword.errors?.['mismatchedValues']">
+            Passwords do not match.
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" id="username-field" #formField="matFormField">
+        <mat-label> Username </mat-label>
+        <div class="form-input">
+          <input required matInput type="text" maxlength="31" placeholder="Username" formControlName="username">
+          <mat-icon matSuffix> account_box </mat-icon>
+        </div>
+        <mat-error *ngIf="username.touched" class="alert">
+          <div id="username-too-short" *ngIf="username.errors?.['required'] || username.errors?.['minlength']">
+            A username of at least 2 characters is required!
+          </div>
+          <div *ngIf="username.errors?.['maxlength']">
+            The username cannot have more than 30 characters.
+          </div>
+        </mat-error>
+      </mat-form-field>
+      <div id="invalid-username"  class="warning" style="display:none">
+        The username can only contain <strong>letters, numbers, hyphens and underscores.</strong>
+      </div>
+      <div class="warning" *ngIf="username.errors?.['usernameAlreadyExists']">
+        <div *ngIf="username.errors?.['usernameAlreadyExists'].username">
+          This username already exists, please choose a different one.
+        </div>
+        <div *ngIf="username.errors?.['usernameAlreadyExists'].error">
+          Username validation failed. {{username.errors?.['usernameAlreadyExists'].error.message}}
+        </div>
+      </div> 
+
+      <div id="signup-error" *ngIf="errorMessage">
+        <mat-icon id="warning-icon">warning</mat-icon>
+        <strong>The signup could not be completed.</strong> <span>{{errorMessage}}</span>
+      </div>
+
+      <button mat-raised-button id="signup-button" appWaitCursor [disabled]="!registerForm.valid" 
+        (click)="register()"> Sign Up </button>
+    </form>
+  </div> 
+</div>

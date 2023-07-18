@@ -1,0 +1,10 @@
+<div id="dialog">
+  <h2 id="title" mat-dialog-title *ngIf="title">{{ title }}</h2>
+
+  <div id="message" mat-dialog-content *ngIf="message">{{ message }}</div>
+
+  <div mat-dialog-actions>
+    <button id="acceptButton" mat-stroked-button (click)="onAccept()">{{ acceptButton }}</button>
+    <button id="cancelButton" mat-stroked-button (click)="onCancel()">{{ cancelButton }}</button>
+  </div>
+</div>

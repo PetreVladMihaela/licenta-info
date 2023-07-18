@@ -1,6 +1,4 @@
 ﻿using backend.Entities;
-using Microsoft.EntityFrameworkCore;
-
 
 namespace backend.Repositories
 {
@@ -24,17 +22,10 @@ namespace backend.Repositories
         //    db.SaveChanges();
         //}
 
-        public void Update(User user)
-        {
-            db.Users.Update(user);
-            db.SaveChanges();
-        }
-
-        public void Delete(User user)
-        {
-            db.Users.Remove(user);
-            db.SaveChanges();
-        }
-
+        //public void Delete(User user)
+        //{
+        //    db.Users.Remove(user);
+        //    db.SaveChanges();
+        //}
     }
 }

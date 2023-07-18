@@ -21,26 +21,29 @@ namespace backend.Managers
             this.configuration = configuration;
         }
 
+
         public async Task<TokenModel> GenerateToken(User user)
         {
+            List<Claim> authClaims = new()
+            {   
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),//JWT ID
+            };
+
             var userRoles = await userManager.GetRolesAsync(user);
-
-            var authClaims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),//JWT ID
-                };
-
             foreach (var userRole in userRoles)
             {
                 authClaims.Add(new Claim(ClaimTypes.Role, userRole));
             }
+                
+            TokenModel token = CreateNewToken(authClaims);
 
-            var token = CreateNewToken(authClaims);
+            bool parseResult = int.TryParse(configuration["JWT:RefreshTokenValidityInDays"], out int validityInDays);
+            if (parseResult is false)
+                validityInDays = 2;
 
-            //_ = int.TryParse(configuration["JWT:RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
             user.RefreshToken = token.RefreshToken;
-            user.RefreshTokenExpiryDate = DateTime.Now.AddDays(2);
+            user.RefreshTokenExpiryDate = DateTime.Now.AddDays(validityInDays).ToUniversalTime();
             await userManager.UpdateAsync(user);
 
             return token;
@@ -53,30 +56,34 @@ namespace backend.Managers
             //var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:SecretKey"]));
             var authCredentials = new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256);//HmacSha256Signature
+            
+            var parseResult = int.TryParse(configuration["JWT:AccessTokenValidityInMinutes"], out int validityInMinutes);
+            if (parseResult is false)
+                validityInMinutes = 15;
+
+            JwtSecurityTokenHandler tokenHandler = new();
 
             //var tokenDescriptor = new SecurityTokenDescriptor
             //{
             //    Subject = new ClaimsIdentity(authClaims),
-            //    Expires = DateTime.Now.AddDays(1), //Expires = DateTime.UtcNow.AddMinutes(10),
+            //    Expires = DateTime.UtcNow.AddMinutes(validityInMinutes),
             //    SigningCredentials = authCredentials
             //};
-            //var tokenHandler = new JwtSecurityTokenHandler();
             //var token = tokenHandler.CreateToken(tokenDescriptor);
-            //return new TokenModel { token = tokenHandler.WriteToken(token) };
 
-            var token = new JwtSecurityToken(
+            JwtSecurityToken token = new(
                 issuer: configuration["JWT:ValidIssuer"],
                 audience: configuration["JWT:ValidAudience"],
-                expires: DateTime.Now.AddMinutes(1),
+                expires: DateTime.Now.AddMinutes(validityInMinutes).ToUniversalTime(),
                 claims: authClaims,
                 signingCredentials: authCredentials
                 );
 
-            var refreshToken = GenerateRefreshToken();
+            string refreshToken = GenerateRefreshToken();
 
             TokenModel newToken = new()
             {
-                AccessToken = new JwtSecurityTokenHandler().WriteToken(token),
+                AccessToken = tokenHandler.WriteToken(token),
                 AccessTokenExpiryDate = token.ValidTo,
                 RefreshToken = refreshToken,
             };
@@ -85,19 +92,19 @@ namespace backend.Managers
         }
 
 
-        public string GenerateRefreshToken()
+        private static string GenerateRefreshToken()
         {
-            var randomNumber = new byte[64];
-            using var rng = RandomNumberGenerator.Create();
+            byte[] randomNumber = new byte[64];
+            using RandomNumberGenerator rng = RandomNumberGenerator.Create();
             rng.GetBytes(randomNumber);
             return Convert.ToBase64String(randomNumber);
         }
 
 
-        public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
+        public ClaimsPrincipal? GetPrincipalFromToken(string token)
         {
-            var secretKey = Encoding.UTF8.GetBytes(configuration["JWT:SecretKey"]);
-            var tokenValidationParameters = new TokenValidationParameters
+            byte[] secretKey = Encoding.UTF8.GetBytes(configuration["JWT:SecretKey"]);
+            TokenValidationParameters validationParameters = new()
             {
                 ValidateIssuer = true,
                 ValidateAudience = true,
@@ -109,13 +116,22 @@ namespace backend.Managers
                 ClockSkew = TimeSpan.Zero
             };
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var claimsPrincipal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
-            if (securityToken is not JwtSecurityToken jwtSecurityToken || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+            JwtSecurityTokenHandler tokenHandler = new();
+            try
             {
-                throw new SecurityTokenException("Invalid Token");
-            }
-            return claimsPrincipal;
+                var claimsPrincipal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken securityToken);
+
+                if (securityToken is not JwtSecurityToken jwtSecurityToken ||
+                    jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.Ordinal) is false)
+
+                    throw new SecurityTokenException("Invalid Security Token");
+
+                return claimsPrincipal;
+            } 
+            catch (SecurityTokenException)
+            {
+                return null;
+            }              
         }
 
     }

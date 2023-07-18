@@ -74,20 +74,17 @@ namespace backend
             });
 
 
-            //Edit here Connection String after creating a new local Database. This Connection String will not work on your PCs.
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=backend;Integrated Security=True;Connect Timeout=30;ApplicationIntent=ReadWrite;"));
-            //services.AddDbContext<backendContext>(options => options.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=backend;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
-            //services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServerDbConnection")));
+            //services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServerDbConnection")));
 
 
             services.AddIdentity<User, IdentityRole>(options => 
             {
-                // Default Lockout settings
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                options.Lockout.MaxFailedAccessAttempts = 5;
-                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+                options.Lockout.MaxFailedAccessAttempts = 5; //default
+                options.Lockout.AllowedForNewUsers = true; //default
 
-                // Default Password settings
+                // Default Password Settings
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = true;
@@ -95,7 +92,7 @@ namespace backend
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
 
-                // Default SignIn settings
+                // Default SignIn Settings
                 options.SignIn.RequireConfirmedEmail = false;
                 options.SignIn.RequireConfirmedPhoneNumber = false;
 
@@ -112,7 +109,7 @@ namespace backend
             // To carry out an authentication flow, you need at least one authentication handler that implements the IAuthenticationService interface.
             // The handlers are used by the authentication middleware. The registered authentication handlers and their configuration options are called "schemes".
 
-            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) // registers schemes them and their config settings
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) // registers schemes and their config settings
             //    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => Configuration.Bind("JwtSettings", options))
             //    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => Configuration.Bind("CookieSettings", options));
             services.AddAuthentication(options =>
@@ -126,7 +123,6 @@ namespace backend
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = true;
 
-                //var key = Configuration.GetSection("Jwt").GetSection("SecretKey").Get<string>();
                 var key = Configuration["JWT:SecretKey"];
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -180,12 +176,10 @@ namespace backend
               services.AddScoped - same instance of the service for the entire duration of the request
               services.AddSingleton - one single instance in the entire app
             */
-
             services.AddTransient<IUsersRepository, UsersRepository>();
             services.AddTransient<IUsersManager, UsersManager>();
-            services.AddTransient<ITokensManager, TokensManager>();
-
-            //services.AddSingleton<IAuthorizationHandler, AccountAuthorizationHandler>();
+            services.AddScoped<ITokensManager, TokensManager>();
+            //services.AddSingleton<ITokensManager, TokensManager>(); -> doesn't work
         }
 
 
@@ -209,6 +203,12 @@ namespace backend
             app.UseAuthentication(); // authentication middleware
 
             app.UseAuthorization();
+
+            //app.Use(async (context, next) =>
+            //{
+            //    Console.WriteLine("\n" + context.Request.Cookies["Token_Expiry_Date"] + "\n");
+            //    await next();
+            //});
 
             app.UseEndpoints(endpoints =>
             {

@@ -19,8 +19,8 @@ namespace backend.Entities
         [Required, EmailAddress]
         override public string Email { get; set; } = null!; //must be unique
 
-        [Required]
-        override public string PasswordHash { get; set; } = null!;
+        //[Required]
+        //override public string PasswordHash { get; set; } = null!;
 
         //[Required, StringLength(250)]
         //public string EncryptedPassword { get; set; } = null!;

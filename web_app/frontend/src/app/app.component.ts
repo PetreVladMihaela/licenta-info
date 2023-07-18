@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { UsersService } from './services/users.service';
+import { AuthService } from './services/auth-service/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  ConfirmationDialogComponent,
+  ConfirmationDialogModel
+} from './modules/material/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -7,28 +12,61 @@ import { UsersService } from './services/users.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  username = '';
-  isLoggedIn = false;
+  username: string | null = null;
+  userIsLoggedIn = false;
 
-  constructor(
-    private usersService: UsersService
-  ) { }
+  constructor(private authService: AuthService, private dialog: MatDialog) {}
 
-  ngOnInit(): void {
-    const currentUser = localStorage.getItem("User");
-    if (currentUser)
-      this.username = currentUser;
-      
-    this.isLoggedIn = this.usersService.isLoggedIn();
-    //if (this.isLoggedIn) {
-      // const user = this.usersService.getUser();
-      // this.roles = user.roles;
-      // this.showAdminBoard = this.roles.includes('ADMIN');
-    //}
+  private onUnload = () => {
+    this.authService.nameSubscriber.subscribe(username => {
+      if (username != localStorage.getItem('User'))
+        localStorage.setItem("User", username);
+    });
   }
 
-  logout() {
-    this.usersService.logout();
+  ngOnInit(): void {
+    this.userIsLoggedIn = this.authService.checkUserIsLoggedIn();
+    const currentUser = localStorage.getItem('User');
+    if (currentUser && this.userIsLoggedIn) {
+      this.authService.emitUsername(currentUser);
+      this.username = currentUser;
+
+      window.addEventListener('beforeunload', this.onUnload);
+
+      // this.usersService.getUserByName(currentUser).subscribe(user => {
+      //   this.showAdminBoard = user.userRoles.includes('Admin');
+      // });
+    }
+
+    this.authService.loggedIn.subscribe(value => {
+      if (value) { 
+        this.userIsLoggedIn = value;
+        this.username = currentUser;
+      }
+    });
+  }
+
+  logOut() {
+    const dialogData = new ConfirmationDialogModel('',
+      'Are you sure you want to log out of your account?',
+      'Log out',
+      'Cancel'
+    );
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      maxWidth: '90vw',
+      minWidth: '260px',
+      position: { top: '30px' },
+      disableClose: true,
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe((answer) => {
+      if (answer) {
+        window.removeEventListener('beforeunload', this.onUnload);
+        this.authService.logOutUser();
+      }
+    });
   }
 
 }

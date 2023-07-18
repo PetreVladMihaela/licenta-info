@@ -1,7 +1,53 @@
-#app {
-    margin: 20px;
+::ng-deep .mat-tooltip { font-size: 12px; }
 
-    #navbar {
-        margin-bottom: 35px;
+#app { display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    height: 100%;
+    min-width: 280px;
+
+    #navbar { flex-shrink: 0; //no shrinking
+        background-color: powderblue;
+        position: sticky; top: 0;
+        z-index: 10;
+        
+        ul { list-style-type: none;
+            margin: 0px;
+            padding: 0px;
+            
+            li { float: left;
+                
+                .nav-link { display: block;   
+                    padding: 10px 15px;
+                    text-decoration: none; // no underline
+                }
+                .nav-link:hover {
+                    background-color: paleturquoise;
+                }
+                
+                .active-link {
+                    background-color: skyblue;
+                }
+            }
+        }
+
+        .navbar-right {
+            float: right;
+        }
+    }
+
+    #webpage { flex-grow: 1; //takes all available space
+        padding: 20px 20px 10px;
+    }
+
+
+    @media screen and (max-width: 350px) {
+
+        #navbar { font-size: 14px;
+
+            ul>li>.nav-link { padding: 8px 12px; }
+        }
+
+        #webpage { padding: 15px 15px 5px;}
     }
 }

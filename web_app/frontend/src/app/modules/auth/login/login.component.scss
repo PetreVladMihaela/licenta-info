@@ -1,24 +1,292 @@
-.container {
+#container {
+    #greeting, #login-message { //margin: 15px;
+        margin-top: 20px;
+        margin-bottom: 15px; 
+    }
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .login-prompt { padding-bottom: 20px;
+        margin-top: auto; margin-bottom: auto; //center vertically
+
+        h3 { text-align: justify; 
+            margin: 0px 0px 15px;
+            min-width: 311.2px;
+        }
+    }
+
+    #login-section { display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        #login-message { text-align: justify; }
+
+        #login-form { display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            background-color: lightcyan;
+            border: 4px ridge lightblue;
+            border-radius: 5px;
+            padding: 30px;
+
+            #username-warning { width: 370px;
+                margin-bottom: 5px;
+
+                div { padding: 10px;
+                    border: 2px solid red; 
+                    border-radius: 5px;
+                    text-align: justify;
+                    font-size: 16px; color: red;
+                }
+            }
+
+            mat-form-field { width: 370px;
+                margin-bottom: 10px;
+
+                .form-input { display: grid;
+                    grid-template-columns: auto 24px;
+                    grid-template-rows: 24px;
+                    margin-top: -7px;
+
+                    input { //height: 24px;
+                        margin-top: auto; 
+                        margin-bottom: auto;
+                    }
+                }
+
+                #eye-icon { cursor: pointer; }
+
+                .alert { //color: red;
+                    font-size: 14px;
+                }
+            }
+            
+            #login-button { margin-top: 4px;
+                background-color: lightblue;
+                padding: 0px;
+            }
+            #login-button:disabled {
+                background-color: lightgray;
+                cursor: not-allowed;
+            }
+        }
+     
+        #login-error { margin-top: 20px; padding: 5px;
+            background-color: rgb(241, 224, 224);
+            border: 2.5px solid red; 
+            border-radius: 10px;
+
+            #underline-text { margin-bottom: 3px;
+                font-size: 18px; text-align: center;
+                text-decoration: underline red solid 2px;
+                text-underline-offset: 2px;
+            }
+            text-align: justify; color: red;
+        }
+    }
+
+    #signup-redirect { margin-top: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        
+        #redirect-message { margin: 7px 5px;
+            text-align: center;
+        }
+
+        #redirect-button { //margin-left: 10px;            
+            border: 2px outset rgb(201, 201, 230);
+            background-color: lavender;
+            padding: 2px 12px;
+        }
+        #redirect-button:hover {
+            background-color: rgb(215, 240, 240);
+        }
+    }
+}
+
+
+@media screen and (max-width: 660px) {
+    #login-message { width: 415px; }
+}
+
+@media screen and (max-width: 505px) {
+    #signup-redirect {
+        #redirect-message { width: 235px; }
+        #redirect-button { margin: 0px 5px; }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #container {
+        #greeting, #login-message {
+            margin-bottom: 10px;
+        }
+
+        .login-prompt>h3 { margin-bottom: 10px; }
+
+        #login-section { 
+            #login-message { width: 385px;
+                text-align: center;
+            }
+
+            #login-form { padding: 25px;
+                #username-warning { width: 330px;
+                    div { font-size: 14px; }
+                }
+                mat-form-field { width: 330px;
+                    .alert { font-size: 12px;
+                        text-align: center;
+                    }
+                }
+            }
+
+            #login-error { margin-top: 15px; }
+        }
+
+        #signup-redirect { margin-top: 35px; 
+            flex-direction: column; 
+        }
+    }
+}
+
+@media screen and (max-width: 430px) {
+    #container {
+        font-size: 14px;
+        button { font-size: 14px; }
+
+        #login-section { 
+            #login-message { width: 305px; }
+
+            #login-form { padding: 20px;
+
+                #username-warning { width: 260px;
+                    div { padding: 8px;
+                        font-size: 12px; 
+                        letter-spacing: 0.04em;
+                    }
+                }
+            
+                mat-form-field { width: 260px;
+                    .form-input {
+                        margin-top: -6.6px;
+                        grid-template-rows: 22px;
+                        grid-template-columns: auto 22px;
+    
+                        mat-icon { font-size: 22px;
+                            width: 22px; height: 22px;
+                        }
+                    }
+                    .alert { font-size: 10px;
+                    }
+                }
+            }
+
+            #login-error>#underline-text { font-size: 16px;
+                text-underline-offset: 1.5px;
+            }
+        }
+        
+        #signup-redirect>#redirect-message {
+            width: 205px;
+        }
+    } 
+}
+
+@media screen and (max-width: 350px) {
+    #container {
+        font-size: 12px;
+        button { font-size: 12px; }
+        
+        #greeting, #login-message {
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .login-prompt { padding-bottom: 15px;
+            h3 { min-width: 0px; }
+            #login-form { margin-bottom: 5px; }
+        }
+
+        #login-section {
+            #login-message { width: 245px; text-align: justify; }
+
+            #login-form {
+                #username-warning { width: 230px;
+                    margin-bottom: 3px;
+
+                    div { padding: 7px;
+                        letter-spacing: 0.01em;
+                    }
+                }
+
+                mat-form-field { width: 230px;
+                    margin-bottom: 15px;
+
+                    .form-input { margin-top: -6.8px;
+                        grid-template-columns: auto 21px;
+                        grid-template-rows: 21px;
+                        
+                        mat-icon { font-size: 21px;
+                            width: 21px; height: 21px;
+                        }
+                    }
+
+                    .alert { text-align: justify; width: 200px; 
+                        margin-left: auto; margin-right: auto;
+                        letter-spacing: 0.01em;
+                    }
+                }
+
+                #login-button { line-height: 32px;
+                    min-width: fit-content;
+                    padding: 0px 12px;
+                }
+            }
    
-    #login-form {
-         mat-form-field {
-             margin-right: 10px;
-         }
- 
-         mat-form-field {
-             width: 250px;
- 
-             .alert {
-                 mat-error {
-                     margin-top: 10px
-                 }
-             }
-         }
-     }
- 
-     .warning {
-         margin-top: 20px;
-         color: red;
-     }
- 
- }
+            #login-error { margin-top: 10px;
+                #underline-text {
+                    font-size: 14px;
+                    text-decoration-thickness: 1.5px;
+                }   
+            }  
+            #login-error>strong { letter-spacing: 0.01em; }
+        }
+
+        #signup-redirect { margin-top: 25px; 
+            flex-direction: row;
+            #redirect-message { width: 176px; }
+            #redirect-button { padding: 0px 10px;
+                line-height: 33px;
+            }
+        }
+    } 
+}
+
+@media screen and (max-width: 310px) {
+    #container {
+        .login-prompt>h3 { width: 215px; }
+
+        #login-section { //#login-message { width: 100%; }
+            #login-form { 
+                padding: 15px;
+                #username-warning { width: 215px; 
+                    div {
+                        letter-spacing: 0.04em;
+                    }
+                }
+                mat-form-field { width: 215px;
+                    .alert { width: 195px;
+                        letter-spacing: normal;
+                    } 
+                }
+            }
+            #login-error { max-width: 238px; } //matches the form's width
+        } 
+    }
+}

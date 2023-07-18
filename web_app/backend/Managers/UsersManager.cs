@@ -1,8 +1,8 @@
 ﻿using backend.Repositories;
 using backend.Entities;
 using backend.Models;
-
 using Microsoft.AspNetCore.Identity;
+
 
 namespace backend.Managers
 {
@@ -27,69 +27,68 @@ namespace backend.Managers
         public async Task<UserModel?> GetUserByUsernameAsync(string username)
         {
             UserModel? userModel = null;
-            var userData = usersRepository.GetUsersIQueryable().FirstOrDefault(u => u.UserName == username);
-            if (userData is not null)
+
+            //User? user = usersRepository.GetUsersIQueryable().FirstOrDefault(u => u.UserName == username);
+            User? user = await userManager.FindByNameAsync(username);
+            if (user is not null)
             {
-                var user = GetUserById(userData.Id);
-                IList<string> userRoles = new List<string>();
-                if (user is not null)
-                  userRoles = await userManager.GetRolesAsync(user);
+                IList<string> userRoles = await userManager.GetRolesAsync(user);
 
                 userModel = new UserModel
                 {
-                    UserId = userData.Id,
-                    Username = userData.UserName,
-                    Email = userData.Email,
-                    HashedPassword = userData.PasswordHash,
+                    //UserId = user.Id,
+                    //Password = Aes256Encryption.DecryptData(user.EncryptedPassword),
+                    Username = user.UserName,
+                    Email = user.Email,
                     UserRoles = userRoles
-                    //Password = Aes256Encryption.DecryptData(userData.EncryptedPassword)
                 };
             }
             return userModel;
         }
 
 
-        private User? GetUserById(string id)
+        public async Task<(User?, bool)> UpdateUserAsync(string whatToUpdate, string newValue, string username)
         {
-            var user = usersRepository.GetUsersIQueryable().FirstOrDefault(u => u.Id == id);
-            return user;
+            bool updated = false;
+            User? user = await userManager.FindByNameAsync(username);
+            if (user is not null)
+            {
+                if (whatToUpdate == "Username")
+                    user.UserName = newValue;
+                else if (whatToUpdate == "Email")
+                    user.Email = newValue;
+                
+                var result = await userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                    updated = true;
+            }
+            return (user, updated);
         }
 
 
-        public User? Update(UserModel model)
+        private User? GetUserById(string id)
         {
-            //string hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
-            var user = GetUserById(model.UserId);
-            if (user is not null)
-            {
-                user.UserName = model.Username;
-                user.Email = model.Email;
-                //user.EncryptedPassword = Aes256Encryption.EncryptData(hashedPassword);
-                usersRepository.Update(user);
-            }
-            return user;
+            return usersRepository.GetUsersIQueryable().FirstOrDefault(u => u.Id == id);
         }
 
 
         public void Delete(string id)
         {
             var user = GetUserById(id);
-            if (user is not null)
-                usersRepository.Delete(user);
+            if (user is not null) 
+                userManager.DeleteAsync(user);
         }
 
 
         //public void Create(UserModel model)
         //{
-        //    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
-        //    //Console.WriteLine($"\nhashed password: {hashedPassword}\n");
-        //    //string cipherText = Aes256Encryption.EncryptData(hashedPassword);
+        //    //string hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
+        //    string cipherText = Aes256Encryption.EncryptData(model.Password);
         //    var newUser = new User
         //    {
         //        UserName = model.Username,
         //        Email = model.Email,
-        //        PasswordHash = hashedPassword
-        //        //EncryptedPassword = cipherText
+        //        EncryptedPassword = cipherText
         //    };
         //    usersRepository.Create(newUser);
         //}

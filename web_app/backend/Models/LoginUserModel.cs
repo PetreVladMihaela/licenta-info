@@ -4,10 +4,10 @@ namespace backend.Models
 {
     public class LoginUserModel
     {
-        [Required(ErrorMessage = "Username is required!")]
+        [Required(ErrorMessage = "A username is required!"), StringLength(30, MinimumLength = 2)]
         public string Username { get; set; } = null!;
 
-        [Required(ErrorMessage = "Password is required!")]
+        [Required(ErrorMessage = "A password is required!"), StringLength(25, MinimumLength = 6)]
         public string Password { get; set; } = null!;
     }
 }

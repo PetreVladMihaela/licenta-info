@@ -1,23 +1,199 @@
-<div class="container" *ngIf="loggedIn; else loggedOut">
+<div id="container" [style]="{ display: authorized ? 'block' : 'none' }">
   <mat-card id="user-info-card">
     <mat-card-header id="card-header">
       <div mat-card-avatar id="user-icon"></div>
       <mat-card-title id="card-title"> User Account Info </mat-card-title>
-      <mat-card-subtitle id="card-subtitle"> Roles: 
-        <span *ngFor="let role of currentUser?.userRoles"> {{role}}; </span> 
+      <mat-card-subtitle id="card-subtitle"> Roles:
+        <span *ngFor="let role of currentUser.userRoles?.slice(0, -1)"> {{ role }}, </span>
+        <span *ngFor="let role of currentUser.userRoles?.slice(-1)"> {{ role }} </span>
+        <!-- <span *ngFor="let role of currentUser.userRoles; last as isLast"> 
+          <span *ngIf="!isLast"> {{role}}, </span>
+          <span *ngIf="isLast"> {{role}} </span> 
+        </span> -->
       </mat-card-subtitle>
     </mat-card-header>
+
     <mat-card-content id="account-info">
-        <p class="details">
-          <strong>Username:</strong> {{currentUser?.username}} 
-        </p>
-        <p class="details">
-          <strong>Email:</strong> {{currentUser?.email}} 
-        </p>
+      <div class="details" *ngIf="!editUsername">
+        <span> <strong>Username:</strong> {{ currentUser.username }} </span>
+        <mat-icon class="edit-icon" (click)="editUsername = !editUsername"
+          matTooltip="Click here to change your username."
+          [matTooltipPosition]="tooltipPosition"
+          aria-label="Edit icon that displays a tooltip when hovered over."
+        >
+          edit
+        </mat-icon>
+      </div>
+
+
+      <!-- <form [formGroup]="editForm" id="edit-form" *ngIf="editUsername || editEmail"> -->
+      <form [formGroup]="editForm" id="edit-form"
+        [style]="{ display: editUsername || editEmail ? 'block' : 'none' }"
+      >
+        <div *ngIf="username.dirty" id="username-warning">
+          <div *ngIf="username.errors?.['hasForbiddenChar']">
+            The username can only contain
+            <strong>letters, numbers, hyphens and underscores.</strong>
+          </div>
+
+          <div *ngIf="username.errors?.['usernameAlreadyExists']">
+            <div *ngIf="username.errors?.['usernameAlreadyExists'].username">
+              This username already exists, please choose a different one.
+            </div>
+            <div *ngIf="username.errors?.['usernameAlreadyExists'].error">
+              Username validation failed.
+              {{username.errors?.['usernameAlreadyExists'].error.message}}
+            </div>
+          </div>
+        </div>
+
+        <div [style]="{ display: editUsername ? 'flex' : 'none' }" class="edit-field">
+          <mat-form-field appearance="outline" #formField="matFormField">
+            <mat-label>Username</mat-label>
+            <input matInput required type="text" maxlength="31" 
+              placeholder="Username" formControlName="username"
+            />
+            <mat-error *ngIf="username.touched" class="alert">
+              <div *ngIf="username.errors?.['required'] || username.errors?.['minlength']">
+                A username of at least 2 characters is required!
+              </div>
+              <div *ngIf="username.errors?.['maxlength']">
+                The username cannot have more than 30 characters.
+              </div>
+            </mat-error>
+          </mat-form-field>
+
+          <div class="buttons">
+            <button mat-stroked-button [disabled]="username.errors" (click)="saveUsername()" appWaitCursor>
+              Save
+            </button>
+            <button mat-stroked-button (click)="editUsername = !editUsername">
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="editUsername && editUsernameError" class="edit-error">
+          Edit Error: {{ editUsernameError }}
+        </div>
+
+        <div [style]="{ display: editEmail ? 'flex' : 'none' }" class="edit-field" id="email-field">
+          <mat-form-field appearance="outline" #formField="matFormField">
+            <mat-label>Email</mat-label>
+            <input matInput required type="email" placeholder="Email" formControlName="email" />
+            <mat-error *ngIf="email.touched" class="alert">
+              <div *ngIf="email.errors?.['required']">An email is required!</div>
+              <div *ngIf="email.errors?.['email']">Please provide a valid email address.</div>
+            </mat-error>
+          </mat-form-field>
+
+          <div class="buttons">
+            <button mat-stroked-button [disabled]="email.errors" (click)="saveEmail()" appWaitCursor>
+              Save
+            </button>
+            <button mat-stroked-button (click)="editEmail = !editEmail">
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="editEmailError && editEmail" class="edit-error">
+          Edit Error: {{ editEmailError }}
+        </div>
+      </form>
+
+
+      <div class="details" *ngIf="!editEmail">
+        <span> <strong>Email:</strong> {{ currentUser.email }} </span>
+        <mat-icon class="edit-icon" (click)="editEmail = !editEmail"
+          matTooltip="Click here to change your email address."
+          [matTooltipPosition]="tooltipPosition"
+          aria-label="Edit icon that displays a tooltip when hovered over."
+        >
+          edit
+        </mat-icon>
+      </div>
+
+      
+      <div id="change-password">
+        <button mat-raised-button *ngIf="!changePassword" (click)="changePassword = !changePassword">
+          Change Password
+        </button>
+
+        <form [formGroup]="passwordForm" id="password-form" *ngIf="changePassword">
+          <mat-form-field appearance="outline" #formField="matFormField">
+            <mat-label>Current Password</mat-label>
+            <div class="form-input">
+              <input matInput required [type]="showPassword?'text':'password'" maxlength="26"
+                placeholder="Current Password" formControlName="currentPassword" autocomplete="off"
+              />
+              <mat-icon class="eye-icon" (click)="showPassword=!showPassword">
+                {{ showPassword ? 'visibility' : 'visibility_off' }}
+              </mat-icon>
+            </div>
+            <mat-error *ngIf="currentPassword.errors?.['required']" class="alert">
+              You must enter your current password.
+            </mat-error>
+          </mat-form-field>
+
+          <div id="password-warning"
+            *ngIf="newPassword.errors?.['invalidPassword'] && !newPassword.errors?.['required']"
+          >
+            The new password must contain a <strong>lowercase</strong> and an
+            <strong>uppercase</strong> letter, a <strong>digit</strong> and a
+            <strong>non&#x2011;alphanumeric</strong> character.
+          </div>
+
+          <mat-form-field appearance="outline" #formField="matFormField">
+            <mat-label>New Password</mat-label>
+            <div class="form-input">
+              <input matInput required [type]="showNewPassword?'text':'password'" maxlength="26"
+                placeholder="New Password" formControlName="newPassword" autocomplete="off"
+              />
+              <mat-icon class="eye-icon" (click)="showNewPassword=!showNewPassword">
+                {{ showNewPassword ? 'visibility' : 'visibility_off' }}
+              </mat-icon>
+            </div>
+            <mat-error *ngIf="newPassword.errors" class="alert long-alert">
+              <div *ngIf="newPassword.errors?.['minlength'] || newPassword.errors?.['required']">
+                The new password must be at least 6 characters long.
+              </div>
+              <div *ngIf="newPassword.errors?.['maxlength']">
+                The new password cannot have more than 25 characters.
+              </div>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" #formField="matFormField">
+            <mat-label> Confirm Password </mat-label>
+            <div class="form-input">
+              <input matInput required [type]="showConfirmPassword?'text':'password'" maxlength="26"
+                placeholder="Confirm New Password" formControlName="confirmNewPassword" autocomplete="off"
+              />
+              <mat-icon class="eye-icon" (click)="showConfirmPassword=!showConfirmPassword">
+                {{ showConfirmPassword ? 'visibility' : 'visibility_off' }}
+              </mat-icon>
+            </div>
+            <mat-error *ngIf="confirmNewPassword.errors?.['mismatchedValues']" class="alert">
+              Passwords do not match.
+            </mat-error>
+          </mat-form-field>
+
+          <div id="password-form-buttons">
+            <button mat-stroked-button [disabled]="!passwordForm.valid" (click)="savePassword()" appWaitCursor>
+              Save
+            </button>
+            <button mat-stroked-button (click)="changePassword = !changePassword">Cancel</button>
+          </div>
+
+          <div id="response" [style]="{ display: response ? 'flex' : 'none' }">{{ response }}</div>
+        </form>
+      </div>
     </mat-card-content>
     <!-- <mat-card-actions>
         <button id="edit-button" mat-stroked-button color="accent" (click)="editAccountInfo()">Edit</button>
     </mat-card-actions> -->
   </mat-card>
 </div>
-<ng-template #loggedOut> You need to be logged in to see this page. </ng-template>
+
+<div id="error" *ngIf="!authorized">{{ errorMessage }}</div>

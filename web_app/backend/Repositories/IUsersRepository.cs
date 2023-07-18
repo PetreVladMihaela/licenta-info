@@ -7,7 +7,6 @@ namespace backend.Repositories
         IQueryable<User> GetUsersIQueryable();
 
         //void Create(User user);
-        void Update(User user);
-        void Delete(User user);
+        //void Delete(User user);
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Bn0TU11EaDa7HEnsAde3uTVJJ1MwpUMoB4hyIPN6dpT8MNFJvLpp44kYCoLfe6c7d+uSwxL7gv3qRH/PGoxF9Q==",
+  "dgSpecHash": "SH94AczPEBE2Ngk4MFIL6uyV6lysn1xPOnJVCYOM/6ySqytJD+vTzktcqVPa8Y6aE/ycKUtlekWH5ovCR+c7TQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\MIHAELAPETRE-VLAD\\Desktop\\licenta_info\\web_app\\backend\\backend.csproj",
+  "projectFilePath": "C:\\Users\\MIHAELAPETRE-VLAD\\Desktop\\licenta\\licenta_info\\web_app\\backend\\backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MIHAELAPETRE-VLAD\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\MIHAELAPETRE-VLAD\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

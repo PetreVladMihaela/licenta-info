@@ -9,7 +9,7 @@ namespace backend
         private static readonly string key = "hWmZq4t7w!z%C*F-JaNdRgUjXn2r5u8x";
         //private static readonly string key = "QfTjWnZr4u7x!A%C";
         private static readonly byte[] iv = new byte[16] { 12, 0xb7, 33, 40, 0xf0, 5, 76, 8, 0x35, 59, 0x51, 0xed, 2, 0x08, 0x48, 0x5d };
-        //static byte[] iv = new byte[16]; //toate el. sunt init. cu 0
+        //static byte[] iv = new byte[16]; //all elements are initialized to 0
 
         //public Aes256Encryption(string aesKey, byte[] aesIV)
         //{
