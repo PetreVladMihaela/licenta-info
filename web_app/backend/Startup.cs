@@ -23,8 +23,6 @@ namespace backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Package Manager Console -> Install-Package Microsoft.AspNetCore.Mvc.NewtonsoftJson
-            //services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddControllers();
 
 
@@ -180,6 +178,11 @@ namespace backend
             services.AddTransient<IUsersManager, UsersManager>();
             services.AddScoped<ITokensManager, TokensManager>();
             //services.AddSingleton<ITokensManager, TokensManager>(); -> doesn't work
+
+            services.AddTransient<IProfilesRepository, ProfilesRepository>();
+            services.AddTransient<IProfilesManager, ProfilesManager>();
+            services.AddTransient<IBandsRepository, BandsRepository>();
+            services.AddTransient<IBandsManager, BandsManager>();
         }
 
 

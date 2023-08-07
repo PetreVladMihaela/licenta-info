@@ -27,7 +27,7 @@ namespace backend.Controllers
 
 
         [Authorize(Roles = "Admin")]
-        [HttpGet("")]
+        [HttpGet]
         public IActionResult GetAllUsers()
         {
             List<User> users = manager.GetAllUsers();

@@ -42,6 +42,7 @@ export class AppComponent {
       if (value) { 
         this.userIsLoggedIn = value;
         this.username = currentUser;
+        if (currentUser) this.authService.emitUsername(currentUser);
       }
     });
   }

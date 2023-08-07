@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MIHAELAPETRE-VLAD\\Desktop\\licenta\\licenta_info\\web_app\\backend\\backend.csproj": {}
+    "C:\\Users\\MIHAELAPETRE-VLAD\\Desktop\\licenta_info\\web_app\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MIHAELAPETRE-VLAD\\Desktop\\licenta\\licenta_info\\web_app\\backend\\backend.csproj": {
+    "C:\\Users\\MIHAELAPETRE-VLAD\\Desktop\\licenta_info\\web_app\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MIHAELAPETRE-VLAD\\Desktop\\licenta\\licenta_info\\web_app\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Users\\MIHAELAPETRE-VLAD\\Desktop\\licenta_info\\web_app\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\MIHAELAPETRE-VLAD\\Desktop\\licenta\\licenta_info\\web_app\\backend\\backend.csproj",
+        "projectPath": "C:\\Users\\MIHAELAPETRE-VLAD\\Desktop\\licenta_info\\web_app\\backend\\backend.csproj",
         "packagesPath": "C:\\Users\\MIHAELAPETRE-VLAD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MIHAELAPETRE-VLAD\\Desktop\\licenta\\licenta_info\\web_app\\backend\\obj\\",
+        "outputPath": "C:\\Users\\MIHAELAPETRE-VLAD\\Desktop\\licenta_info\\web_app\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MIHAELAPETRE-VLAD\\AppData\\Roaming\\NuGet\\NuGet.Config",

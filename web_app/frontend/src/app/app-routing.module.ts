@@ -14,7 +14,18 @@ const routes: Routes = [
   {
     path: 'users',
     canActivate: [AuthGuard],
-    loadChildren: () => import('src/app/modules/users/users.module').then(m => m.UsersModule)
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/modules/users/users.module').then(m => m.UsersModule)
+      },
+      {
+        path: '',
+        loadChildren: () => import('src/app/modules/musical-bands/musical-bands.module').then(m => m.MusicalBandsModule)
+      }
+    ]
+    
+    
   }
 ];
 

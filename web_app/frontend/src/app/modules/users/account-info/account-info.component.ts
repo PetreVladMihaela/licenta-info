@@ -61,7 +61,7 @@ export class AccountInfoComponent implements OnInit, OnDestroy {
 
   public tooltipPosition: TooltipPosition = 'above';
   @HostListener('window:resize', []) changeTooltipPosition() {
-    if (window.innerWidth < 500) this.tooltipPosition = 'below';
+    if (window.innerWidth < 600) this.tooltipPosition = 'below';
     else this.tooltipPosition = 'right';
   }
 
@@ -202,7 +202,7 @@ export class AccountInfoComponent implements OnInit, OnDestroy {
             const userLink = document.getElementById('nav-user');
             if (userLink) userLink.textContent = 'User ' + newUsername;
             
-            this.router.navigate(['/users/info/' + newUsername]).then(() => {
+            this.router.navigate(['/users/account/' + newUsername]).then(() => {
               this.editUsername = false;
               document.body.style.cursor = 'auto';
               this.editUsernameError = '';
@@ -231,6 +231,8 @@ export class AccountInfoComponent implements OnInit, OnDestroy {
           next: () => {
             this.currentUser.email = newEmail;
             this.editEmail = false;
+            if (this.currentUser.profile)
+              this.currentUser.profile.email = newEmail;
             document.body.style.cursor = 'auto';
             this.editEmailError = '';
             this.saveEmailStarted = false;

@@ -1,0 +1,79 @@
+<div id="container">
+  <h1 id="title">{{ formTitle }}</h1>
+
+  <h2 class="subtitle">&#8544;. General Info</h2>
+  <form [formGroup]="bandForm" id="musical-band-form">
+    <div *ngIf="formTitle == 'Edit Band'" id="question">
+      <mat-label for="isComplete">Is your band complete?</mat-label>
+      <span id="radio-buttons">
+        <span>
+          <input type="radio" [value]="true" name="isComplete" formControlName="isComplete" />
+          <label for="true">Yes</label>
+        </span>
+        <span>
+          <input type="radio" [value]="false" name="isComplete" formControlName="isComplete" />
+          <label for="false">No</label>
+        </span>
+      </span>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Band Name</mat-label>
+      <input matInput required placeholder="Band Name" formControlName="name" maxlength="100"/>
+      <mat-error *ngIf="name.touched" class="alert">
+        <div *ngIf="name.errors?.['required']">A band name is required!</div>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Music Genre</mat-label>
+      <input matInput placeholder="Music Genre" formControlName="musicGenre" maxlength="100"/>
+    </mat-form-field>
+  </form>
+
+  <h2 class="subtitle" style="margin-top: 10px;"> &#8545;. Headquarters Info </h2>
+  <button mat-raised-button color="primary" id="hq-button" (click)="changeEditForm()">{{buttonText}}</button>
+  <div [style]="{ display : addHQ ? 'block' : 'none' }" id="band-hq-div">
+    <form [formGroup]="headquartersForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Country</mat-label>
+        <input matInput required placeholder="Country" formControlName="country" maxlength="100"/>
+        <mat-error *ngIf="country.touched" class="alert">
+          <div *ngIf="country.errors?.['required']">This field is required.</div>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input matInput required placeholder="City" formControlName="city" maxlength="100"/>
+        <mat-error *ngIf="city.touched" class="alert">
+          <div *ngIf="city.errors?.['required']">This field is required.</div>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Street</mat-label>
+        <input matInput placeholder="Street" formControlName="street" maxlength="100"/>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Size</mat-label>
+        <input matInput type="number" min="0" max="1001" placeholder="Size" 
+          formControlName="squareMeters"/> square meters
+        <mat-error class="alert" *ngIf="headquartersForm.controls['squareMeters'].hasError('min')">
+          Minimum allowed number is 0!
+        </mat-error>
+        <mat-error class="alert" *ngIf="headquartersForm.controls['squareMeters'].hasError('max')">
+          Maximum number (1000) excedeed!
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="actions">
+    <button mat-stroked-button color="primary" [disabled]="!bandForm.valid || (addHQ && !headquartersForm.valid)" 
+      (click)="saveFormData()"> Save
+    </button>
+    <button mat-stroked-button color="primary" (click)="closeDialog()">Cancel</button>
+  </div>
+</div>

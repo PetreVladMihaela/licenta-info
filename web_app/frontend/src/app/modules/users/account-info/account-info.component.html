@@ -1,4 +1,6 @@
-<div id="container" [style]="{ display: authorized ? 'block' : 'none' }">
+<div id="container" [style]="{ display: authorized ? 'flex' : 'none' }">
+  <app-user-profile [user]="currentUser"></app-user-profile>
+  
   <mat-card id="user-info-card">
     <mat-card-header id="card-header">
       <div mat-card-avatar id="user-icon"></div>
@@ -14,15 +16,16 @@
     </mat-card-header>
 
     <mat-card-content id="account-info">
-      <div class="details" *ngIf="!editUsername">
-        <span> <strong>Username:</strong> {{ currentUser.username }} </span>
-        <mat-icon class="edit-icon" (click)="editUsername = !editUsername"
-          matTooltip="Click here to change your username."
-          [matTooltipPosition]="tooltipPosition"
-          aria-label="Edit icon that displays a tooltip when hovered over."
-        >
-          edit
-        </mat-icon>
+      <div class="details" *ngIf="!editUsername"> <strong>Username: </strong> 
+        <span class="current-value"> {{ currentUser.username }}
+          <mat-icon class="edit-icon" (click)="editUsername = !editUsername"
+            matTooltip="Click here to change your username."
+            [matTooltipPosition]="tooltipPosition"
+            aria-label="Edit icon that displays a tooltip when hovered over."
+          >
+            edit
+          </mat-icon>
+        </span>
       </div>
 
 
@@ -102,18 +105,18 @@
         </div>
       </form>
 
-
-      <div class="details" *ngIf="!editEmail">
-        <span> <strong>Email:</strong> {{ currentUser.email }} </span>
-        <mat-icon class="edit-icon" (click)="editEmail = !editEmail"
-          matTooltip="Click here to change your email address."
-          [matTooltipPosition]="tooltipPosition"
-          aria-label="Edit icon that displays a tooltip when hovered over."
-        >
-          edit
-        </mat-icon>
+      <div class="details" *ngIf="!editEmail"> <strong>Email:</strong>
+        <span class="current-value"> {{ currentUser.email }} 
+          <mat-icon class="edit-icon" (click)="editEmail = !editEmail"
+            matTooltip="Click here to change your email address."
+            [matTooltipPosition]="tooltipPosition"
+            aria-label="Edit icon that displays a tooltip when hovered over."
+          >
+            edit
+          </mat-icon>
+        </span>
       </div>
-
+      
       
       <div id="change-password">
         <button mat-raised-button *ngIf="!changePassword" (click)="changePassword = !changePassword">

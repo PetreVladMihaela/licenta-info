@@ -5,6 +5,7 @@
     background-color: aliceblue;
     height: 100%;
     min-width: 280px;
+    overflow-y: auto;
 
     #navbar { flex-shrink: 0; //no shrinking
         background-color: powderblue;
@@ -31,14 +32,13 @@
             }
         }
 
-        .navbar-right {
-            float: right;
+        .navbar-right { float: right;
+
+            #nav-user { max-width: 300px; overflow: hidden; white-space: nowrap;}
         }
     }
 
-    #webpage { flex-grow: 1; //takes all available space
-        padding: 20px 20px 10px;
-    }
+    #webpage { padding: 20px 20px 10px; }
 
 
     @media screen and (max-width: 350px) {
@@ -49,5 +49,24 @@
         }
 
         #webpage { padding: 15px 15px 5px;}
+    }
+}
+
+
+@media screen and (max-width: 550px) {
+    #app>#navbar>.navbar-right {
+        #nav-user { max-width: 200px; }            
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #app>#navbar>.navbar-right {
+        #nav-user { max-width: 120px; }            
+    }
+}
+
+@media screen and (max-width: 300px) {
+    #app>#navbar>.navbar-right {
+        #nav-user { max-width: 100px; }            
     }
 }

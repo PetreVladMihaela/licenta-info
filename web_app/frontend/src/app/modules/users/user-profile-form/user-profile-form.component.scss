@@ -1,0 +1,62 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+  #title {
+    margin-top: 10px;
+    margin-bottom: 35px;
+    font-size: 24px;
+  }
+
+  #edit-profile-form, #address-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+
+    mat-form-field {
+      width: 100%;
+      margin: 5px;
+
+      .alert { color: red; }
+    }
+
+    #radio-buttons {
+      margin-bottom: 15px;
+      display: flex;
+
+      input {
+        margin: 0px 3px 0px 20px;
+      }
+    }
+  }
+
+  .actions > button {
+    margin: 10px;
+    font-size: 16px;
+    border-width: 2px;
+    border-color: rgb(191, 191, 192);
+  }
+}
+
+@media screen and (max-width: 525px) {
+  #container { //padding: 10px;
+    #edit-profile-form, #address-form {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #container {
+    padding: 0px;
+
+    #edit-profile-form > #radio-buttons {
+      input {
+        margin-left: 15px;
+      }
+    }
+  }
+}

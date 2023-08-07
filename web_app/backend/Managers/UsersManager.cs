@@ -10,11 +10,13 @@ namespace backend.Managers
     {
         private readonly IUsersRepository usersRepository;
         private readonly UserManager<User> userManager;
+        private readonly IProfilesManager profilesManager;
 
-        public UsersManager(UserManager<User> userManager, IUsersRepository usersRepository)
+        public UsersManager(UserManager<User> userManager, IUsersRepository usersRepository, IProfilesManager profilesManager)
         {
             this.usersRepository = usersRepository; 
             this.userManager = userManager;
+            this.profilesManager = profilesManager;
         }
 
 
@@ -42,6 +44,11 @@ namespace backend.Managers
                     Email = user.Email,
                     UserRoles = userRoles
                 };
+
+                UserProfileModel? profileModel = profilesManager.GetProfileByUsername(username);
+                if (profileModel is not null)
+                    profileModel.CanBeEdited = true;
+                userModel.Profile = profileModel;
             }
             return userModel;
         }
@@ -58,7 +65,7 @@ namespace backend.Managers
                 else if (whatToUpdate == "Email")
                     user.Email = newValue;
                 
-                var result = await userManager.UpdateAsync(user);
+                IdentityResult result = await userManager.UpdateAsync(user);
                 if (result.Succeeded)
                     updated = true;
             }

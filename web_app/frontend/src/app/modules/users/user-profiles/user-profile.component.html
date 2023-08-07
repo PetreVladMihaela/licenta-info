@@ -1,0 +1,55 @@
+<mat-card *ngIf="!user.profile" id="no-profile">
+  <mat-card-header>
+    <mat-card-title id="title">No Profile Created</mat-card-title>
+  </mat-card-header>
+  <mat-card-content id="create-profile">
+    <div>You don't have a user profile yet.</div>
+    <div style="margin-top: 5px;">Click here to create your profile:</div>
+    <button mat-raised-button color="primary" (click)="editUserProfile()">Create Profile</button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card id="profile-card" *ngIf="user.profile">
+  <mat-card-header id="profile-header">
+    <div mat-card-avatar id="profile-icon"></div>
+    <mat-card-title id="card-title">User Profile</mat-card-title>
+    <mat-card-subtitle id="card-subtitle">Username: <span>{{user.username}}</span></mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content id="profile-info">
+    <p class="details"><span class="bold">First Name:</span> {{ user.profile.firstName }}</p>
+    <p class="details"><span class="bold">Last Name:</span> {{ user.profile.lastName }}</p>
+    <p class="details"><span class="bold">Age:</span> {{ user.profile.age }}</p>
+    <p class="details"><span class="bold">Occupation:</span> {{ user.profile.occupation }}</p>
+    <div class="details list"> <p class="bold">Contact Info:</p>
+      <ul>
+        <li>Email: <div style="display: inline-block;">{{ user.email }}</div></li>
+        <li>Phone: {{ user.profile.phoneNumber }}</li>
+      </ul>
+    </div>
+    <p class="details"><span class="bold">Traits:</span> {{ user.profile.trait1 }}
+      <span *ngIf="user.profile.trait2">, {{ user.profile.trait2 }}</span>
+    </p>
+    <p *ngIf="user.profile.canSing" class="details"><span class="bold">Can Sing:</span> Yes</p>
+    <p *ngIf="!user.profile.canSing" class="details"><span class="bold">Can Sing:</span> No</p>
+    <p class="details"><span class="bold">Played Instrument:</span> {{user.profile.playedInstrument}}</p>
+    <p class="details"><span class="bold">Preferred Music Genre:</span> {{user.profile.preferredMusicGenre}}</p>
+    <div class="details list"> <p class="bold">Address:</p>
+      <ul>
+        <li>Country: {{ user.profile.address?.country }}</li>
+        <li>City: {{ user.profile.address?.city }}</li>
+        <li>Street: {{ user.profile.address?.street }}</li>
+      </ul>
+    </div>
+    <p *ngIf="user.profile.bandId" class="details bold">
+      Member in the band <a routerLink="/users/account/band/{{user.profile.bandId}}">{{user.profile.bandName}}</a>
+    </p>
+    <button mat-raised-button (click)="createBand()" *ngIf="!user.profile?.bandId && user.profile?.canBeEdited">
+      Create band
+    </button> 
+  </mat-card-content>
+  <mat-card-actions *ngIf="user.profile.canBeEdited" id="edit-profile">
+    <button mat-raised-button (click)="editUserProfile()">
+      <span style="display: flex; align-items: center;">Edit Profile <mat-icon>edit</mat-icon></span>  
+    </button>
+  </mat-card-actions>
+</mat-card>

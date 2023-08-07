@@ -30,7 +30,7 @@ namespace backend.Managers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),//JWT ID
             };
 
-            var userRoles = await userManager.GetRolesAsync(user);
+            IList<string> userRoles = await userManager.GetRolesAsync(user);
             foreach (var userRole in userRoles)
             {
                 authClaims.Add(new Claim(ClaimTypes.Role, userRole));
@@ -57,7 +57,7 @@ namespace backend.Managers
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:SecretKey"]));
             var authCredentials = new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256);//HmacSha256Signature
             
-            var parseResult = int.TryParse(configuration["JWT:AccessTokenValidityInMinutes"], out int validityInMinutes);
+            bool parseResult = int.TryParse(configuration["JWT:AccessTokenValidityInMinutes"], out int validityInMinutes);
             if (parseResult is false)
                 validityInMinutes = 15;
 

@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   });
   private formIsObserved = false;
 
-  ngOnInit(): void { localStorage.removeItem('User');
+  ngOnInit(): void { document.cookie = 'Token_Expiry_Date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     this.onUsernameChange();
     if (this.newUser) {
       document.getElementById('login-section')?.classList.add('login-prompt');
@@ -97,7 +97,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         next: () => {
           if (this.newUser) localStorage.removeItem('New User');
           localStorage.setItem('User', formData.username);
-          window.location.href = `/users/info/${formData.username}`;
+          window.location.href = `/users/account/${formData.username}`;
           //this.subscription!.unsubscribe();
         },
         error: (err) => {

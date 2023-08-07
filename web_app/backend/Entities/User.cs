@@ -1,26 +1,34 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-//using EntityFrameworkCore.EncryptColumn.Attribute;
+using System.Text.Json.Serialization;
 
 
 namespace backend.Entities
 {
-    [Index(nameof(Email), IsUnique = true)]
-    //[Index(nameof(Username), IsUnique = true)]
+    [Index(nameof(NormalizedEmail), IsUnique = true)]
+    //[Index(nameof(Email), IsUnique = true)]
+    //[Index(nameof(UserName), IsUnique = true)]
     public class User : IdentityUser
     {
         //[Required, Key]
         //public Guid UserId { get; set; }
 
-        [Required/*, StringLength(50, MinimumLength = 2)*/]
-        override public string UserName { get; set; } = null!; //must be unique
+        [JsonIgnore]
+        public virtual UserProfile? Profile { get; set; }
 
-        [Required, EmailAddress]
-        override public string Email { get; set; } = null!; //must be unique
+        [Required]
+        override public string UserName { get; set; } = null!;
+        [Required]
+        override public string NormalizedUserName { get; set; } = null!; // is unique by default
 
-        //[Required]
-        //override public string PasswordHash { get; set; } = null!;
+        [Required]
+        override public string Email { get; set; } = null!; 
+        [Required]
+        override public string NormalizedEmail { get; set; } = null!; // must be unique
+
+        [Required]
+        override public string PasswordHash { get; set; } = null!;
 
         //[Required, StringLength(250)]
         //public string EncryptedPassword { get; set; } = null!;

@@ -119,9 +119,12 @@ namespace backend.Controllers
             if (username is not null)
             {
                 var user = await userManager.FindByNameAsync(username);
-                user.RefreshToken = null;
-                user.RefreshTokenExpiryDate = null;
-                await userManager.UpdateAsync(user);
+                if (user is not null)
+                {
+                    user.RefreshToken = null;
+                    user.RefreshTokenExpiryDate = null;
+                    await userManager.UpdateAsync(user);
+                }
             }
                 
             Response.Cookies.Delete("User_Access_Token", new CookieOptions(){ SameSite = SameSiteMode.None, Secure = true });

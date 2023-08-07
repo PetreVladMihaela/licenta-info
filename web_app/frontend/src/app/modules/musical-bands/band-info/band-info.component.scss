@@ -1,0 +1,235 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  #error { color: red;
+    font-size: 18px;
+  }
+
+  #band-card { //padding: 10px;
+    max-width: 800px;
+    background-color: lightcyan;
+
+    #title { font-size: 24px; }
+    .subtitle { font-size: 18px;
+      color: rgb(104, 105, 105);
+    }
+
+    #band-info {
+      .details { //width: fit-content;
+        overflow-x: auto;
+
+        strong { font-size: 18px;
+          font-weight: 500;
+        }
+        font-size: 16px; // 18px
+
+        padding: 15px;
+        margin: 0px 16px 16px;
+        background-color: rgb(206, 248, 248);
+
+        border: 4px ridge paleturquoise;
+        border-radius: 3px;
+
+        #info-list { //padding-left: 50px;
+          margin-top: 10px;
+        }
+        #info-list > li { margin-top: 10px; }
+
+        #hq-info > li { margin-top: 5px; }
+        #location {
+          li {
+            margin-top: 5px;
+          }
+        }
+
+        #edit-info-button { // margin-top: 10px;
+          font-size: 16px; 
+          padding: 2px 12px 0px 14px;
+          border-width: 2px;
+          background-color: rgb(161, 219, 236);
+        }
+        #edit-info-button:hover {
+          background-color: rgb(183, 243, 243);
+        }
+
+        .member > span:first-child {
+          color: blue;
+          cursor: pointer;
+          margin-left: -5px;
+        }
+        .member {
+          margin-left: 30px; // 50px
+          margin-top: 10px;
+
+          .member-profile {
+            padding: 0px 12px;
+            margin: 3px 30px 25px 0px;
+            overflow-x: auto;
+
+            border: 2px solid rgb(102, 168, 223);
+            background-color: rgb(193, 227, 240);
+            border-radius: 3px;
+
+            .member-detail {
+              text-align: justify;
+              margin: 12px 0px;
+
+              .bold { font-weight: 550; }
+            }
+
+            .profile-list {
+              p, ul { margin: 0px; }
+              ul > li { margin-top: 5px; }
+            }
+          }
+        }
+      }
+    }
+
+    // #survey-button {
+    //     margin-left: 20px;
+    //     margin-top: 40px;
+    //     font-size: 16px;
+    // }
+  }
+}
+
+
+@media screen and (max-width: 850px) {
+  #container > #band-card {
+    max-width: 650px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #container > #band-card {
+    max-width: 500px;
+  }
+}
+
+
+@media screen and (max-width: 550px) {
+  #container {
+    #band-card {
+      max-width: 430px;
+      padding: 0px;
+
+      #title { font-size: 20px;
+        margin-top: 16px;
+      }
+      .subtitle { font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      #band-info > .details {
+        padding: 10px;
+
+        strong { font-size: 16px; }
+        font-size: 14px;
+
+        #info-list {
+          margin-top: 8px;
+          margin-bottom: 12px;
+        }
+        #info-list > li { margin-top: 8px; }
+
+        #hq-info > li {
+          margin-top: 3px;
+        }
+        #location {
+          li { margin-top: 3px; }
+        }
+
+        #edit-info-button { font-size: 14px;
+          mat-icon {
+            width: 22px;
+            height: 22px;
+            font-size: 22px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 450px) {
+  #container > #band-card {
+    background-color: aliceblue;
+    box-shadow: none;
+    max-width: 380px;
+
+    #title { margin-top: 10px; }
+
+    #band-info > .details {
+      margin: 0px;
+
+      #info-list, #hq-info, #location > ul {
+        padding-left: 30px;
+      }
+
+      .member {
+        margin-top: 8px;
+        margin-left: 20px;
+
+        .member-profile {
+          margin-bottom: 15px;
+          margin-right: 20px;
+
+          .profile-list > ul {
+            padding-left: 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  #container > #band-card {
+    max-width: 330px;
+
+    #title { margin-top: 0px; }
+
+    #band-info > .details {
+      #info-list { padding-left: 15px; }
+
+      .member { margin-left: 0px;
+        .member-profile { margin-right: 0px; }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 350px) {
+  #container > #band-card {
+    max-width: 284px;
+
+    #band-info > .details { padding: 6px;
+
+      #info-list, #hq-info, #location > ul {
+        padding-left: 16px;
+      }
+
+      .member > .member-profile { padding: 0px 6px;
+
+        .profile-list > ul { padding-left: 15px; }
+
+        .member-detail { margin: 12px 0px; }
+        .member-detail:first-child { margin-top: 6px; }
+        .member-detail:last-child { margin-bottom: 6px; }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 300px) {
+  #container > #band-card {
+    max-width: 263px;
+  }
+}

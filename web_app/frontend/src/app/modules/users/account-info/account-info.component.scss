@@ -1,12 +1,16 @@
 #error { color: red; font-size: 18px; }
 
 #container { padding: 30px 30px 5px;
+    flex-wrap: wrap-reverse;
+    justify-content: space-around;
 
-    #user-info-card { padding: 25px;
+    #user-info-card { padding: 25px; overflow-x: auto;
         background-color: azure;
-        max-width: fit-content;
-        min-width: fit-content;
-        
+        min-width: 385px;
+        // max-width: fit-content;
+        // min-width: fit-content;
+        margin: 5px;
+
         #card-header { 
             margin-bottom: 15px;
 
@@ -18,21 +22,26 @@
             #card-title { width: 193.03px;
                 font-size: 24px;
             }
-            #card-subtitle { font-size: 16px; }
+            #card-subtitle { font-size: 16px; color: rgb(100, 100, 100); }
         }
 
-        #account-info {
-            .details { display: flex;
-                align-items: center;
-                font-size: 18px;
+        #account-info { max-width: 500px;
 
-                .edit-icon { margin-left: 6px;
-                    cursor: pointer;
+            .details { font-size: 18px;
+                display: flex;
+                flex-wrap: wrap;
+
+                strong { margin-right: 5px; }
+
+                .current-value { display: flex;
+                    align-items: center;
+
+                    .edit-icon { margin-left: 5px;
+                        cursor: pointer;
+                    }
                 }
             }
-            .details:nth-child(n+2) {
-                margin-top: 30px;
-            }
+            .details:nth-child(n+2) { margin-top: 30px; }
 
             #edit-form {
                 #username-warning { margin-bottom: 5px;
@@ -99,7 +108,8 @@
 
         #change-password { margin-top: 35px;
 
-            button { background-color: rgb(235, 249, 252); }
+            button { background-color: rgb(222, 242, 245);
+            padding-left: 15px; padding-right: 15px; }
 
             #password-form { display: flex;
                 flex-direction: column;
@@ -155,6 +165,20 @@
     }
 }
 
+@media screen and (max-width: 1100px) {
+    #container>#user-info-card {
+        min-width: fit-content;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #container>#user-info-card {
+        #account-info {
+            max-width: 400px;
+        }
+    }
+}
+
 @media screen and (max-width: 550px) {
     #container>#user-info-card {
         #change-password>#password-form {
@@ -182,7 +206,7 @@
 }
 
 @media screen and (max-width: 505px) {
-    #container>#user-info-card>#account-info {
+    #container>#user-info-card>#account-info { max-width: 350px;
         #password-form { padding: 20px;
 
             #password-warning { width: 260px; }
@@ -208,6 +232,8 @@
 @media screen and (max-width: 450px) {
     #container {
         padding: 5px;
+
+        //#user-info-card>#account-info { max-width: 300px; }
     }
 }
 
@@ -221,7 +247,7 @@
                     height: 45px;
                 }
     
-                #card-title { width: 100%;
+                #card-title { width: 160.86px;
                     font-size: 20px;
                 }
                 #card-subtitle {
@@ -229,7 +255,7 @@
                 }
             }
 
-            #account-info { 
+            #account-info { max-width: 280px;
                 .details { font-size: 16px }
 
                 #edit-form {
@@ -289,22 +315,28 @@
     }
 }
 
-@media screen and (max-width: 370px) {
-    #container {
-        #user-info-card { padding: 15px; }
-    }
-}
-
 @media screen and (max-width: 360px) {
     #container {
-        #user-info-card { padding: 0px;
+        #user-info-card {
             background-color: aliceblue;
             box-shadow: none;
+            border: solid 2px lightblue;
+            border-radius: 5px;
+            margin: 0px 0px 25px 0px;
         }
     }
 }
 
-@media screen and (max-width: 325px) {
+@media screen and (max-width: 350px) {
+    #container {
+        #user-info-card { #account-info { max-width: 250px; }
+            padding: 10px; 
+            margin-bottom: 30px;
+        }
+    }
+}
+
+@media screen and (max-width: 330px) {
     #container>#user-info-card>#account-info {
         #edit-form>.edit-field {
             mat-form-field { width: 270px;
@@ -333,8 +365,11 @@
     }
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 306px) {
     #container {
-        margin-left: -10px;
+        #user-info-card { #account-info { max-width: 245px; }
+            padding: 5px;
+            margin-bottom: 40px;
+        }
     }
 }

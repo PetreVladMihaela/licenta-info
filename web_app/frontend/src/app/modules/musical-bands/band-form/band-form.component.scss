@@ -1,0 +1,86 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+  #title { font-size: 28px;
+    margin-top: 10px;
+  }
+  .subtitle { font-size: 22px; }
+
+  form { display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #musical-band-form, #band-hq-div { 
+    width: 80%;
+
+    mat-form-field { width: 100%;
+      margin-bottom: 10px;
+      .alert { color: red; }
+    }
+
+    #question { 
+      display: flex;
+      margin-top: 10px;
+      margin-bottom: 35px;
+      min-width: 215.78px;
+
+      #radio-buttons { display: flex;
+        span {
+          display: flex;
+          input { margin: 0px 3px 0px 30px; }
+        }
+      }
+    }
+  }
+
+  #hq-button { margin-bottom: 20px; }
+
+  .actions > button { font-size: 16px;
+    margin: 15px 15px 10px;
+    border-width: 2px;
+    border-color: rgb(191, 191, 192);
+  }
+}
+
+
+@media screen and (max-width: 570px) {
+  #container > #musical-band-form {
+    #question > #radio-buttons {
+      span > input {
+        margin: 0px 2px 0px 15px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 525px) {
+  #container { //padding: 10px;
+    #musical-band-form, #band-hq-div {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 445px) {
+  #container > #musical-band-form {
+    #question > #radio-buttons {
+      flex-direction: column;
+      span:first-child {
+        margin-bottom: 5px;
+      }
+      span > input {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #container {
+    padding: 0px;
+  }
+}

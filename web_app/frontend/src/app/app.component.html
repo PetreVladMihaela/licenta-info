@@ -27,7 +27,7 @@
     </ul>
     <ul class="navbar-right" *ngIf="userIsLoggedIn">
       <li class="nav-item">
-        <a id="nav-user" routerLink="/users/info/{{ username }}" class="nav-link"
+        <a id="nav-user" routerLink="/users/account/{{ username }}" class="nav-link"
           routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"
         >
           User {{ username }}

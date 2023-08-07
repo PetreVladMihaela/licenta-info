@@ -14,5 +14,7 @@ namespace backend.Models
         public string Email { get; set; } = null!;
 
         public IList<string> UserRoles { get; set; } = new List<string>();
+
+        public UserProfileModel? Profile { get; set; }
     }
 }

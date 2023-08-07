@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountInfoComponent } from './account-info/account-info.component';
+import { BandInfoComponent } from '../musical-bands/band-info/band-info.component';
 
 const routes: Routes = [
   {
@@ -10,12 +11,17 @@ const routes: Routes = [
   },
 
   {
-    path: 'info/:username',
+    path: 'account/:username',
     component: AccountInfoComponent
   },
 
   {
-    path: 'info',
+    path: 'account/band/:bandId',
+    component: BandInfoComponent
+  },
+
+  {
+    path: 'account',
     redirectTo: '/auth/login'
   }
 ];

@@ -1,0 +1,79 @@
+<div id="container">
+  <mat-card *ngIf="musicalBand" id="band-card">
+    <mat-card-header>
+      <mat-card-title id="title"> {{ musicalBand.name }} </mat-card-title>
+      <mat-card-subtitle class="subtitle" *ngIf="!musicalBand.isComplete">Incomplete Band</mat-card-subtitle>
+      <mat-card-subtitle class="subtitle" *ngIf="musicalBand.isComplete">Complete Band</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content id="band-info">
+      <div class="details"> <strong>Band Information</strong>
+        <ol id="info-list">
+          <li>Music Genre: {{ musicalBand.musicGenre }} <span *ngIf="!musicalBand.musicGenre">none</span></li>
+          <li>Date Formed: {{ musicalBand.dateFormed | date : 'longDate' }}</li>
+          <li *ngIf="musicalBand.hq"> Headquarters
+            <ul id="hq-info">
+              <li id="location"> Location:
+                <ul>
+                  <li>Country: {{ musicalBand.hq.country }}</li>
+                  <li>City: {{ musicalBand.hq.city }}</li>
+                  <li>Street: {{ musicalBand.hq.street }} <span *ngIf="!musicalBand.hq.street">-</span></li>
+                </ul>
+              </li>
+              <li *ngIf="musicalBand.hq.squareMeters">
+                Size: {{ musicalBand.hq.squareMeters }} m<sup>2</sup>
+              </li>
+              <li *ngIf="!musicalBand.hq.squareMeters">Size: unknown</li>
+            </ul>
+          </li>
+        </ol>
+        <button id="edit-info-button" mat-stroked-button *ngIf="canEdit" (click)="editBand()">
+          <span style="display: flex; align-items: center;">Edit Info <mat-icon>edit</mat-icon></span>  
+        </button>
+      </div>
+
+      <div class="details"> <strong>Members:</strong>
+        <ng-container *ngFor="let member of musicalBand.members">
+          <li class="member" *ngIf="member.firstName && member.lastName">
+            <span (click)="seeMemberProfile(member.username)">{{ member.firstName }} {{ member.lastName }}</span>
+            <span *ngIf="member.playedInstrument"> — playing {{ member.playedInstrument | lowercase }};</span>
+            <span *ngIf="member.canSing"><span *ngIf="!member.playedInstrument"> — </span> singer;</span>
+            <div class="member-profile" *ngIf="shownProfile && shownProfile.username == member.username">
+              <p class="member-detail"><span class="bold">Username:</span> {{ shownProfile.username }}</p>
+              <p class="member-detail"><span class="bold">Age: </span> 
+                <span *ngIf="shownProfile.age>0">{{ shownProfile.age }}</span>
+                <span *ngIf="shownProfile.age==0">unknown</span>
+              </p>
+              <p class="member-detail"><span class="bold">Occupation:</span> 
+                {{ shownProfile.occupation }} <span *ngIf="!shownProfile.occupation">none</span>
+              </p>
+              <div class="member-detail profile-list"> <p class="bold">Contact Info:</p>
+                <ul>
+                  <li>Email: <div style="display: inline-block;">{{ shownProfile.email }}</div></li>
+                  <li *ngIf="shownProfile.phoneNumber">Phone: {{ shownProfile.phoneNumber }}</li>
+                </ul>
+              </div>
+              <p class="member-detail"><span class="bold">Preferred Music Genre:</span> 
+                {{shownProfile.preferredMusicGenre}} <span *ngIf="!shownProfile.preferredMusicGenre">none</span>
+              </p>
+              <p class="member-detail"><span class="bold">Traits:</span> {{ shownProfile.trait1 }}
+                <span *ngIf="shownProfile.trait2">, {{ shownProfile.trait2 }}</span>
+              </p>
+              <div class="member-detail profile-list"> <p class="bold">Address:</p>
+                <ul>
+                  <li>Country: {{ shownProfile.address?.country }} </li>
+                  <li>City: {{ shownProfile.address?.city }} </li>
+                  <li>Street: {{ shownProfile.address?.street }} <span *ngIf="!shownProfile.address?.street">-</span></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ng-container>
+      </div>
+    </mat-card-content>
+
+    <!-- <mat-card-actions id="survey-button" *ngIf="canEdit">
+            <button mat-raised-button color="accent" (click)="takeSurvey()">New Band Members Survey</button>
+        </mat-card-actions> -->
+  </mat-card>
+  <div *ngIf="errorMessage" id="error">{{errorMessage}}</div>
+</div>

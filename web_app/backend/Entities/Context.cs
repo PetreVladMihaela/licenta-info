@@ -21,6 +21,10 @@ namespace backend.Entities
         IdentityUserRole<string>, IdentityUserLogin<string>, IdentityRoleClaim<string>, IdentityUserToken<string>>
     {
         //public DbSet<User> Users { get; set; };
+        public DbSet<UserProfile> UserProfiles { get; set; } = null!;
+        public DbSet<UserAddress> UserAddresses { get; set; } = null!;
+        public DbSet<MusicalBand> MusicalBands { get; set; } = null!;
+        public DbSet<BandHQ> BandHeadquarters { get; set; } = null!;
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
@@ -33,6 +37,32 @@ namespace backend.Entities
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            //One to One
+            builder.Entity<UserProfile>()
+                .HasOne(profile => profile.Owner)
+                .WithOne(user => user.Profile)
+                .HasForeignKey<UserProfile>() // PK-to-PK relationship
+                .IsRequired();
+
+            //One to One
+            builder.Entity<UserProfile>()
+                .HasOne(profile => profile.Address)
+                .WithOne(address => address.Profile)
+                .HasForeignKey<UserAddress>() // PK-to-PK relationship
+                .IsRequired();
+
+            //One to One
+            builder.Entity<MusicalBand>()
+                .HasOne(band => band.HQ)
+                .WithOne(hq => hq.Band)
+                .HasForeignKey<BandHQ>(); // PK-to-PK relationship
+
+            //One to Many
+            builder.Entity<MusicalBand>()
+                .HasMany(band => band.Members)
+                .WithOne(member => member.Band)
+                .HasForeignKey(member => member.BandId);
         }
     }
 }

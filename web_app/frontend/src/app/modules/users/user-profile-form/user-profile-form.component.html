@@ -1,0 +1,111 @@
+<div id="container">
+  <h1 id="title">{{formTitle}}</h1>
+
+  <form [formGroup]="userProfileForm" id="edit-profile-form">
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input required matInput placeholder="First Name" formControlName="firstName" maxlength="100"/>
+      <mat-error *ngIf="firstName.touched" class="alert">
+        <div *ngIf="firstName.errors?.['required']">First name is required!</div>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input required matInput placeholder="Last Name" formControlName="lastName" maxlength="100"/>
+      <mat-error *ngIf="lastName.touched" class="alert">
+        <div *ngIf="lastName.errors?.['required']">Last name is required!</div>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput placeholder="Phone" formControlName="phoneNumber" maxlength="21"/>
+      <div *ngIf="phoneNumber.dirty || phoneNumber.touched" class="alert">
+        <div *ngIf="phoneNumber.errors?.['minlength']">Enter at least 10 characters.</div>
+        <div *ngIf="phoneNumber.errors?.['maxlength']">Cannot enter more than 20 characters.</div>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Age</mat-label>
+      <input matInput type="number" min="0" max="100" placeholder="Age" formControlName="age"/>
+      <div class="alert" *ngIf="userProfileForm.controls['age'].hasError('min')">
+        Minimum required number is 0!
+      </div>
+      <div class="alert" *ngIf="userProfileForm.controls['age'].hasError('max')">
+        Maximum number excedeed!
+      </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Occupation</mat-label>
+      <input matInput placeholder="Occupation" formControlName="occupation" maxlength="100"/>
+    </mat-form-field>
+
+    <div id="radio-buttons">
+      <mat-label for="canSing">Can you sing?</mat-label>
+      <input type="radio" [value]="true" name="canSing" formControlName="canSing" />
+      <label for="true">Yes</label>
+      <input type="radio" [value]="false" name="canSing" formControlName="canSing" />
+      <label for="false">No</label>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Instrument Played</mat-label>
+      <input matInput placeholder="Instrument Played" formControlName="playedInstrument" maxlength="100"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Preferred Music Genre</mat-label>
+      <input matInput placeholder="Preferred Music Genre" formControlName="preferredMusicGenre" maxlength="100"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Trait 1</mat-label>
+      <mat-select formControlName="trait1">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let trait of traits" [value]="trait">{{ trait }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Trait 2</mat-label>
+      <mat-select formControlName="trait2">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let trait of traits" [value]="trait">{{ trait }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <form [formGroup]="addressForm" id="address-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Country</mat-label>
+      <input required matInput placeholder="Country" formControlName="country" maxlength="100"/>
+      <mat-error *ngIf="country.touched" class="alert">
+        <div *ngIf="country.errors?.['required']">This field cannot be empty!</div>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
+      <input required matInput placeholder="City" formControlName="city" maxlength="100"/>
+      <mat-error *ngIf="city.touched" class="alert">
+        <div *ngIf="city.errors?.['required']">This field cannot be empty!</div>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Street</mat-label>
+      <input matInput placeholder="Street" formControlName="street" maxlength="100"/>
+    </mat-form-field>
+  </form>
+
+  <div class="actions">
+    <button mat-stroked-button [disabled]="!userProfileForm.valid || !addressForm.valid" 
+      (click)="saveFormData()" color="primary"> Save
+    </button>
+
+    <button mat-stroked-button (click)="closeDialog()" color="primary">Cancel</button>
+  </div>
+</div>

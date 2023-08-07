@@ -2,7 +2,8 @@
     flex-direction: column;
     align-items: center; 
     justify-content: center;
-    height: 100%; min-height: 273px;
+    min-height: 273px;
+    margin-top: 15px;
 
     h2 {  margin: -20px 0px 35px;
         color: darkgreen; text-align: center;
@@ -312,7 +313,7 @@
 
 
 @media screen and (max-width: 577px) {
-    #success { width: 458px; margin: 0 auto;
+    #success { width: 458px; margin: 15px auto 0px;
         min-height: 295px;
     }
 }
@@ -363,6 +364,10 @@
         div:last-child { font-size: 14px; }
         //#loginRedirect, #registerRedirect { margin-top: 0px; }
     }
+}
+
+@media screen and (max-width: 350px) {
+    #success>h2 { margin-bottom: 30px; }
 }
 
 @media screen and (max-width: 341px) {

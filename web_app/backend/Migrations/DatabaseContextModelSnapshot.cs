@@ -22,6 +22,53 @@ namespace backend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("backend.Entities.BandHQ", b =>
+                {
+                    b.Property<string>("BandId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SquareMeters")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BandId");
+
+                    b.ToTable("BandHeadquarters");
+                });
+
+            modelBuilder.Entity("backend.Entities.MusicalBand", b =>
+                {
+                    b.Property<string>("BandId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("DateFormed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsComplete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MusicGenre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BandId");
+
+                    b.ToTable("MusicalBands");
+                });
+
             modelBuilder.Entity("backend.Entities.User", b =>
                 {
                     b.Property<string>("Id")
@@ -49,10 +96,12 @@ namespace backend.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -85,18 +134,80 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
                     b.HasIndex("NormalizedEmail")
+                        .IsUnique()
                         .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+                        .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("backend.Entities.UserAddress", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("UserAddresses");
+                });
+
+            modelBuilder.Entity("backend.Entities.UserProfile", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<byte>("Age")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("BandId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("CanSing")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Occupation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlayedInstrument")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PreferredMusicGenre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Trait1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Trait2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.HasIndex("BandId");
+
+                    b.ToTable("UserProfiles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -232,6 +343,45 @@ namespace backend.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("backend.Entities.BandHQ", b =>
+                {
+                    b.HasOne("backend.Entities.MusicalBand", "Band")
+                        .WithOne("HQ")
+                        .HasForeignKey("backend.Entities.BandHQ", "BandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Band");
+                });
+
+            modelBuilder.Entity("backend.Entities.UserAddress", b =>
+                {
+                    b.HasOne("backend.Entities.UserProfile", "Profile")
+                        .WithOne("Address")
+                        .HasForeignKey("backend.Entities.UserAddress", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("backend.Entities.UserProfile", b =>
+                {
+                    b.HasOne("backend.Entities.MusicalBand", "Band")
+                        .WithMany("Members")
+                        .HasForeignKey("BandId");
+
+                    b.HasOne("backend.Entities.User", "Owner")
+                        .WithOne("Profile")
+                        .HasForeignKey("backend.Entities.UserProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Band");
+
+                    b.Navigation("Owner");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -280,6 +430,24 @@ namespace backend.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("backend.Entities.MusicalBand", b =>
+                {
+                    b.Navigation("HQ");
+
+                    b.Navigation("Members");
+                });
+
+            modelBuilder.Entity("backend.Entities.User", b =>
+                {
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("backend.Entities.UserProfile", b =>
+                {
+                    b.Navigation("Address")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
