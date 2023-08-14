@@ -1,3 +1,22 @@
+<div id="notif-container">
+  <p class="invites-notification" *ngIf="invitesToJoinBand.length==1" (click)="displayInvitations()">
+    You are invited to join 1 band.
+  </p>
+  <p class="invites-notification" *ngIf="invitesToJoinBand.length>1" (click)="displayInvitations()">
+    You are invited to join {{invitesToJoinBand.length}} bands.
+  </p>
+  <ol id="invitations-list" *ngIf="showInvitations"> 
+    <li *ngFor="let invite of invitesToJoinBand">
+      <a routerLink="/users/account/band/{{invite.bandToJoinId}}">{{invite.bandToJoinName}}</a>
+      <button (click)="acceptInvitation(invite)" 
+        changeBorderOnClick defaultBorderStyle="outset" mousedownBorderStyle="inset">Join</button>
+      <button (click)="declineInvitation(invite)" 
+        changeBorderOnClick defaultBorderStyle="outset" mousedownBorderStyle="inset">Decline</button>
+    </li>
+  </ol>
+</div>
+
+
 <div id="container" [style]="{ display: authorized ? 'flex' : 'none' }">
   <app-user-profile [user]="currentUser"></app-user-profile>
   
@@ -193,9 +212,6 @@
         </form>
       </div>
     </mat-card-content>
-    <!-- <mat-card-actions>
-        <button id="edit-button" mat-stroked-button color="accent" (click)="editAccountInfo()">Edit</button>
-    </mat-card-actions> -->
   </mat-card>
 </div>
 

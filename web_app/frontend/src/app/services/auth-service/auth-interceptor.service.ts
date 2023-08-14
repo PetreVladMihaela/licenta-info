@@ -40,6 +40,7 @@ export class AuthInterceptorService implements HttpInterceptor {
           }
           else if (error.error.message) errorMessage = error.error.message;
           else if (typeof error.error === 'string') errorMessage = error.error;
+          else if (typeof error.error.title.includes('validation error')) errorMessage = 'Validation Error';
         }
       }
       let err = new Error(errorMessage);

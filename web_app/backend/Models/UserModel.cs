@@ -4,8 +4,7 @@ namespace backend.Models
 {
     public class UserModel
     {
-        //public string UserId { get; set; } = "";
-        //public string? Password { get; set; }
+        public string UserId { get; set; } = "";
 
         [Required, StringLength(30, MinimumLength = 2)]
         public string Username { get; set; } = null!;

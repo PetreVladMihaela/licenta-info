@@ -5,3 +5,4 @@
 4. Added edit account functionality;
 5. Added user profiles;
 6. Added musical bands creation;
+7. Added survey to find band members;

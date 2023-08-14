@@ -73,7 +73,7 @@ namespace backend.Managers
         }
 
 
-        public string CreateMusicalBand(MusicalBandModel bandModel, string username)
+        public string CreateMusicalBand(MusicalBandModel bandModel, string userId)
         {
             string bandId = Guid.NewGuid().ToString();
 
@@ -98,7 +98,8 @@ namespace backend.Managers
                 };
 
             bandsRepository.CreateBand(newBand, newBandHQ);
-            profilesRepository.UpdateBandId(username, bandId);
+            profilesRepository.UpdateBandId(userId, bandId);
+            profilesRepository.UpdateUserInvitations(userId, null);
 
             return bandId;
         }
@@ -152,11 +153,90 @@ namespace backend.Managers
 
             if (band is not null)
             {
-                foreach (UserProfile member in band.Members.ToList())
-                    profilesRepository.UpdateBandId(member.Owner.UserName, null);
+                foreach (UserProfile memberProfile in band.Members.ToList())
+                    profilesRepository.UpdateBandId(memberProfile.Owner.Id, null);
 
                 bandsRepository.DeleteBand(band);
             }
+        }
+
+
+
+        public void SaveBandUserMatches(BandUserMatchModel[] models)
+        {
+            List<BandUserMatch> newMatches = new();
+            foreach (BandUserMatchModel model in models)
+            {
+                var newMatch = new BandUserMatch
+                {
+                    BandId = model.BandId,
+                    UserId = model.UserId,
+                    MatchType = model.MatchType
+                };
+                newMatches.Add(newMatch);
+            }
+            bandsRepository.AddBandUserMatches(newMatches);
+        }
+
+
+        public List<SurveyResultModel> GetBandMatches(string bandId)
+        {
+            List<SurveyResultModel> userProfiles = new();
+            List<BandUserMatch> matches = bandsRepository.GetBandMatchedProfiles(bandId).ToList();
+            foreach (var match in matches)
+            {
+                UserProfile profile = match.UserProfile;
+
+                UserAddressModel address = new()
+                {
+                    Country = profile.Address.Country,
+                    City = profile.Address.City,
+                    Street = profile.Address.Street
+                };
+
+                UserProfileModel profileModel = new()
+                {
+                    Username = profile.Owner.UserName,
+                    Email = profile.Owner.Email,
+                    PhoneNumber = profile.Owner.PhoneNumber,
+                    Address = address,
+                    FirstName = profile.FirstName,
+                    LastName = profile.LastName,
+                    Age = profile.Age,
+                    Occupation = profile.Occupation,
+                    Trait1 = profile.Trait1,
+                    Trait2 = profile.Trait2,
+                    CanSing = profile.CanSing,
+                    PlayedInstrument = profile.PlayedInstrument,
+                    PreferredMusicGenre = profile.PreferredMusicGenre,
+                };
+
+                SurveyResultModel matchedUser = new()
+                {
+                    MatchedUserId = profile.UserId,
+                    MatchedUserProfile = profileModel,
+                    MatchType = match.MatchType
+                };
+                userProfiles.Add(matchedUser);
+            }
+            return userProfiles;
+        }
+
+
+        public void UpdateBandUserMatch(BandUserMatchModel model)
+        {
+            BandUserMatch? match = bandsRepository.GetMatchToUpdate(model.BandId, model.UserId);
+            if (match is not null)
+            {
+                match.MatchType = model.MatchType;
+                bandsRepository.UpdateBandUserMatch(match);
+            }
+        }
+
+
+        public void DeleteBandMatches(string bandId)
+        {
+            bandsRepository.RemoveBandMatches(bandId);
         }
 
     }

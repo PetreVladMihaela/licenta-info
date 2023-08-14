@@ -1,4 +1,41 @@
+#notif-container {
+    width: fit-content;
+    margin: auto;
+    border: 4px double rgb(108, 242, 247);
+    background-color: azure;
+    padding: 10px;
+
+    .invites-notification { cursor: pointer;
+        font-size: 16px;
+        margin: 0px; 
+    }
+    .invites-notification:hover {
+        background-color: rgb(208, 248, 248);
+    }
+    
+    #invitations-list {
+        padding-left: 18px;
+        margin: 0px;
+    
+        li { margin-top: 15px;
+
+            button { cursor: pointer;
+                margin-left: 10px;
+                padding: 3px;
+                border: 2px outset rgb(200, 209, 226);
+                border-radius: 3px;
+                background-color: rgb(239, 243, 247);
+            }
+            button:hover {
+                background-color: rgb(244, 246, 248);
+            }
+        }
+    }
+}
+
+
 #error { color: red; font-size: 18px; }
+
 
 #container { padding: 30px 30px 5px;
     flex-wrap: wrap-reverse;
@@ -232,8 +269,11 @@
 @media screen and (max-width: 450px) {
     #container {
         padding: 5px;
-
         //#user-info-card>#account-info { max-width: 300px; }
+    }
+
+    #notif-container {
+        margin-bottom: 25px;
     }
 }
 
@@ -333,6 +373,9 @@
             padding: 10px; 
             margin-bottom: 30px;
         }
+    }
+    #notif-container {
+        margin-bottom: 30px;
     }
 }
 

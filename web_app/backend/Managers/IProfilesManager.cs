@@ -11,5 +11,9 @@ namespace backend.Managers
         void CreateUserProfile(UserProfileModel model, string userId);
         void UpdateUserProfile(UserProfileModel model);
         void DeleteUserProfile(string username);
+
+        List<SurveyResultModel> GetSurveyResults(BandMembersSurveyModel surveyModel);
+        List<InvitationModel> GetInvitationsToJoinBands(string userId);
+        void AcceptInvitationToJoinBand(BandUserMatchModel invitation);
     }
 }

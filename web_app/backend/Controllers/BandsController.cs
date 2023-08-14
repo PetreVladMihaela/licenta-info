@@ -51,7 +51,7 @@ namespace backend.Controllers
 
                 if (action == "Create Band")
                 {
-                    string newBandId = manager.CreateMusicalBand(model, username);
+                    string newBandId = manager.CreateMusicalBand(model, user.Id);
                     return Ok(new { newBandId });
                 }
                 else
@@ -86,6 +86,50 @@ namespace backend.Controllers
         public IActionResult DeleteBand([FromRoute] string id)
         {
             manager.DeleteMusicalBand(id);
+            return Ok();
+        }
+
+
+
+        [Authorize]
+        [HttpPost("{username}/createBandMatches")]
+        public IActionResult CreateMatches([FromBody] BandUserMatchModel[] models, [FromRoute] string username)
+        {
+            if (username != User.Identity?.Name)
+                return StatusCode(StatusCodes.Status403Forbidden);
+
+            manager.SaveBandUserMatches(models);
+            return Ok();
+        }
+
+
+        [HttpGet("{bandId}/getMatchedUsers")]
+        public IActionResult GetMatchedUsers([FromRoute] string bandId)
+        {
+            return Ok(manager.GetBandMatches(bandId));
+        }
+
+
+        [Authorize]
+        [HttpPut("{username}/updateBandUserMatch")]
+        public IActionResult UpdateMatch([FromBody] BandUserMatchModel model, [FromRoute] string username)
+        {
+            if (username != User.Identity?.Name)
+                return StatusCode(StatusCodes.Status403Forbidden);
+
+            manager.UpdateBandUserMatch(model);
+            return Ok();
+        }
+
+
+        [Authorize]
+        [HttpDelete("{bandId}/deleteBandMatches/{username}")]
+        public IActionResult DeleteAllBandMaches([FromRoute] string bandId, [FromRoute] string username)
+        {
+            if (username != User.Identity?.Name)
+                return StatusCode(StatusCodes.Status403Forbidden);
+
+            manager.DeleteBandMatches(bandId);
             return Ok();
         }
 

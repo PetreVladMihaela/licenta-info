@@ -14,6 +14,8 @@ namespace backend.Entities
         [JsonIgnore]
         public virtual MusicalBand? Band { get; set; }
 
+        public virtual ICollection<BandUserMatch>? Matches { get; set; }
+
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public byte Age { get; set; }

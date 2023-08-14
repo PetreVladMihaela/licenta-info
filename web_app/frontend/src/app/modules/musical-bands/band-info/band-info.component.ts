@@ -8,6 +8,7 @@ import { BandFormComponent } from '../../musical-bands/band-form/band-form.compo
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { UserProfile } from 'src/app/interfaces/user-profile';
 import { UserProfilesService } from 'src/app/services/users-service/user-profiles.service';
+import { BandMembersSurveyComponent } from '../band-members-survey/band-members-survey.component';
 
 @Component({
   selector: 'app-band-info',
@@ -95,6 +96,23 @@ export class BandInfoComponent implements OnInit, OnDestroy {
           this.shownProfile = profile;
         })
     }
+  }
+
+
+  public takeSurvey(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '85%';
+    dialogConfig.minWidth = '280px';
+    dialogConfig.maxWidth = '550px';
+    dialogConfig.maxHeight = '600px';
+
+    const surveyFormData = {
+      bandId: this.musicalBand!.bandId,
+      username: this.username
+    };
+    dialogConfig.data = surveyFormData;
+    dialogConfig.disableClose = true;
+    const dialogRef = this.dialog.open(BandMembersSurveyComponent, dialogConfig);
   }
   
 }

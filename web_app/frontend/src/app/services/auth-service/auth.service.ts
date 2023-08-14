@@ -64,13 +64,13 @@ export class AuthService {
       .find((cookie) => cookie.startsWith('Token_Expiry_Date='))?.split('=')[1];
 
     if (dateFromCookie == undefined) return false
-    try {                                                               //medium format is MMM d, y, h:mm:ss a
-      const expiryDate = formatDate(dateFromCookie.replace(/%3A/g, ':'), 'medium', 'en');
+    try {
+      const expiryDateUtc = new Date(dateFromCookie.replace(/%3A/g, ':'));
       const dateAndTimeNow = new Date(); //needs to be converted to UTC
-      const utc = new Date(dateAndTimeNow.getTime() + dateAndTimeNow.getTimezoneOffset() * 60000); 
-      const currentDate = formatDate(new Date(utc), 'medium', 'en'); 
-      //console.log(currentDate, "-", expiryDate)
-      return currentDate < expiryDate;
+      const currentDateUtc = new Date(dateAndTimeNow.getTime() + dateAndTimeNow.getTimezoneOffset() * 60000); 
+      // console.log(currentDateUtc)
+      // console.log(expiryDateUtc)
+      return currentDateUtc < expiryDateUtc;
     } catch (_) { return false; }
   }
   

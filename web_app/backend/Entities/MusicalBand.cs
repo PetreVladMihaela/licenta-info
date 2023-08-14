@@ -13,8 +13,9 @@ namespace backend.Entities
         public string? MusicGenre { get; set; }
         public DateTime DateFormed { get; set; }
         public bool IsComplete { get; set; }
-        
-        public virtual ICollection<UserProfile> Members { get; set; } = new Collection<UserProfile>();
+
         //public string CreatorId { get; set; }
+        public virtual ICollection<UserProfile> Members { get; set; } = new Collection<UserProfile>();
+        public virtual ICollection<BandUserMatch>? Matches { get; set; }
     }
 }

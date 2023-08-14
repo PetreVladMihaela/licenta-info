@@ -68,12 +68,11 @@
             </div>
           </li>
         </ng-container>
+        <button id="survey-button" *ngIf="canEdit" mat-raised-button color="primary" (click)="takeSurvey()">
+          New Band Members Survey
+        </button>
       </div>
     </mat-card-content>
-
-    <!-- <mat-card-actions id="survey-button" *ngIf="canEdit">
-            <button mat-raised-button color="accent" (click)="takeSurvey()">New Band Members Survey</button>
-        </mat-card-actions> -->
   </mat-card>
   <div *ngIf="errorMessage" id="error">{{errorMessage}}</div>
 </div>

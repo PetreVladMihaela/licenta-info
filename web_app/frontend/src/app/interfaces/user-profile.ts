@@ -1,7 +1,8 @@
+import { BandUserMatch } from "./band-user-match"
 import { UserAddress } from "./user-address"
 
 export interface UserProfile {
-    //userId: number
+    //userId: string
     username: string
     email: string
     phoneNumber?: string

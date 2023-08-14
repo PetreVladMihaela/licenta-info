@@ -110,6 +110,9 @@ export class UserProfileFormComponent {
 
   public saveFormData(): void {
     let userProfile: UserProfile = this.userProfileForm.value;
+    userProfile.canBeEdited = true;
+    userProfile.bandId = this.userData.profile?.bandId;
+    userProfile.bandName = this.userData.profile?.bandName;
     userProfile.address = this.addressForm.value;
     if (this.formTitle=='Edit Profile') {
       this.profilesService.editUserProfile(userProfile).subscribe(() => {

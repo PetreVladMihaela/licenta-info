@@ -46,6 +46,25 @@ namespace backend.Migrations
                     b.ToTable("BandHeadquarters");
                 });
 
+            modelBuilder.Entity("backend.Entities.BandUserMatch", b =>
+                {
+                    b.Property<string>("BandId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MatchType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BandId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BandUserMatches");
+                });
+
             modelBuilder.Entity("backend.Entities.MusicalBand", b =>
                 {
                     b.Property<string>("BandId")
@@ -354,6 +373,25 @@ namespace backend.Migrations
                     b.Navigation("Band");
                 });
 
+            modelBuilder.Entity("backend.Entities.BandUserMatch", b =>
+                {
+                    b.HasOne("backend.Entities.MusicalBand", "MusicalBand")
+                        .WithMany("Matches")
+                        .HasForeignKey("BandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Entities.UserProfile", "UserProfile")
+                        .WithMany("Matches")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MusicalBand");
+
+                    b.Navigation("UserProfile");
+                });
+
             modelBuilder.Entity("backend.Entities.UserAddress", b =>
                 {
                     b.HasOne("backend.Entities.UserProfile", "Profile")
@@ -437,6 +475,8 @@ namespace backend.Migrations
                 {
                     b.Navigation("HQ");
 
+                    b.Navigation("Matches");
+
                     b.Navigation("Members");
                 });
 
@@ -449,6 +489,8 @@ namespace backend.Migrations
                 {
                     b.Navigation("Address")
                         .IsRequired();
+
+                    b.Navigation("Matches");
                 });
 #pragma warning restore 612, 618
         }

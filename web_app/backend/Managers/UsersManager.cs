@@ -38,8 +38,7 @@ namespace backend.Managers
 
                 userModel = new UserModel
                 {
-                    //UserId = user.Id,
-                    //Password = Aes256Encryption.DecryptData(user.EncryptedPassword),
+                    UserId = user.Id,
                     Username = user.UserName,
                     Email = user.Email,
                     UserRoles = userRoles

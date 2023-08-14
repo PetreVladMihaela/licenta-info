@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { UserProfile } from 'src/app/interfaces/user-profile';
+import { BandMembersSurvey, SurveyResult } from 'src/app/interfaces/band-members-survey';
+import { Invitation } from 'src/app/interfaces/invitation';
+import { BandUserMatch } from 'src/app/interfaces/band-user-match';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +30,17 @@ export class UserProfilesService {
   // public getAllUserProfiles(): Observable<UserProfile[]> {
   //   return this.http.get<UserProfile[]>(this.url)
   // }
+
+  public getSurveyMatches(survey: BandMembersSurvey): Observable<SurveyResult[]> {
+    return this.http.post<SurveyResult[]>(this.url+'/surveyResults', survey)
+  }
+  
+  public getUserInvitations(userId: string): Observable<Invitation[]> {
+    return this.http.get<Invitation[]>(`${this.url}/${userId}/bandInvitations`);
+  }
+
+  public acceptInvitationToJoinBand(invitation: BandUserMatch, username: string){
+    return this.http.post(`${this.url}/${username}/acceptInvitation`, invitation);
+  }
 
 }

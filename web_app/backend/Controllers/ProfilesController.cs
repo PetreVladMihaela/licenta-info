@@ -100,5 +100,30 @@ namespace backend.Controllers
             return Ok();
         }
 
+
+        [HttpPost("surveyResults")]
+        public IActionResult GetSurveyResults([FromBody] BandMembersSurveyModel surveyModel)
+        {
+            return Ok(manager.GetSurveyResults(surveyModel));
+        }
+
+
+        [HttpGet("{userId}/bandInvitations")]
+        public IActionResult GetBandsInvitedToJoin([FromRoute] string userId)
+        {
+            return Ok(manager.GetInvitationsToJoinBands(userId));
+        }
+
+
+        [HttpPost("{username}/acceptInvitation")]
+        public IActionResult AcceptInvitation([FromRoute] string username, [FromBody] BandUserMatchModel invitation)
+        {
+            if (username != User.Identity?.Name)
+                return StatusCode(StatusCodes.Status403Forbidden);
+
+            manager.AcceptInvitationToJoinBand(invitation);
+            return Ok();
+        }
+
     }
 }

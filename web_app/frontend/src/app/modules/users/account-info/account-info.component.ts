@@ -19,6 +19,10 @@ import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { UsersService } from 'src/app/services/users-service/users.service';
 import { CustomValidators } from '../../auth/custom-validators';
+import { UserProfilesService } from 'src/app/services/users-service/user-profiles.service';
+import { BandUserMatch } from 'src/app/interfaces/band-user-match';
+import { MusicalBandsService } from 'src/app/services/bands-services/musical-bands.service';
+import { Invitation } from 'src/app/interfaces/invitation';
 
 @Component({
   selector: 'app-account-info',
@@ -30,12 +34,14 @@ export class AccountInfoComponent implements OnInit, OnDestroy {
     private usersService: UsersService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private profilesService: UserProfilesService,
+    private bandsService: MusicalBandsService
   ) {}
 
   private sub: Subscription = new Subscription();
   public currentUser: User = {
-    //userId: '',
+    userId: '',
     username: '',
     email: '',
     userRoles: []
@@ -44,6 +50,8 @@ export class AccountInfoComponent implements OnInit, OnDestroy {
   public authorized = false;
   public errorMessage = '';
   public response = '';
+  public invitesToJoinBand: Invitation[] = []
+  public showInvitations: boolean = false;
 
   public showPassword = false;
   public showNewPassword = false;
@@ -129,6 +137,11 @@ export class AccountInfoComponent implements OnInit, OnDestroy {
           this.editForm.setValue({
             username: user.username,
             email: user.email
+          });
+
+          this.profilesService.getUserInvitations(user.userId).subscribe((invites: Invitation[]) => {
+            this.invitesToJoinBand = invites;
+            //console.log(this.invitesToJoinBand)
           });
 
           document.getElementById('account-info')?.addEventListener('click', this.onCardClick);
@@ -282,6 +295,39 @@ export class AccountInfoComponent implements OnInit, OnDestroy {
       this.response = 'The new password must be different from the old one.';
       responseDiv.id = 'identic-passwords-response';
       //responseDiv.style.maxWidth = '340px';
+    }
+  }
+
+
+  public displayInvitations(): void {
+    this.showInvitations = !this.showInvitations;
+  }
+
+  public declineInvitation(invitation: Invitation): void {
+    if (window.confirm('Decline the invitation to join ' + invitation.bandToJoinName + '?')) {
+      const matchToUpdate: BandUserMatch = {
+        bandId: invitation.bandToJoinId,
+        userId: invitation.invitedUserId,
+        matchType: 'declined invitation'
+      };
+      this.bandsService.updateBandUserMatch(matchToUpdate, this.currentUser.username).subscribe(() => {
+        window.location.reload();
+      });
+    }
+  }
+
+  public acceptInvitation(invitation: Invitation): void {
+    if (window.confirm('Accept the invitation to join ' + invitation.bandToJoinName + '?')) {
+      const acceptedInvitation: BandUserMatch = {
+        bandId: invitation.bandToJoinId,
+        userId: invitation.invitedUserId,
+        matchType: 'accepted invitation'
+      };
+      this.profilesService
+        .acceptInvitationToJoinBand(acceptedInvitation, this.currentUser.username)
+        .subscribe(() => {
+          window.location.reload();
+        });
     }
   }
 

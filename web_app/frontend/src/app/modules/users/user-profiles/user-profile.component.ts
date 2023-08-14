@@ -12,6 +12,7 @@ import { BandFormComponent } from '../../musical-bands/band-form/band-form.compo
 })
 export class UserProfileComponent {
   @Input() user: User = {
+    userId: '',
     username: '',
     email: '',
     userRoles: []
@@ -47,12 +48,13 @@ export class UserProfileComponent {
     const dialogRef = this.dialog.open(BandFormComponent, dialogConfig);
     dialogRef.afterClosed().subscribe((response: [string, string] | undefined) => {
       if (response) {
-        const newBandId = response[0];
-        const newBandName = response[1];
-        if (this.user.profile) {
-          this.user.profile.bandId = newBandId;
-          this.user.profile.bandName = newBandName;
-        }
+        // const newBandId = response[0];
+        // const newBandName = response[1];
+        // if (this.user.profile) {
+        //   this.user.profile.bandId = newBandId;
+        //   this.user.profile.bandName = newBandName;
+        // }
+        window.location.reload(); // updates the invitations too
       }
     });
   }

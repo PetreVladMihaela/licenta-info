@@ -1,0 +1,141 @@
+<div id="form-container" *ngIf="!matchedUsers">
+  <h1 id="title">Find New Band Members</h1>
+
+  <form [formGroup]="surveyForm" id="survey-form">
+    <p>1. What address do you want the new band members to have?</p>
+    <mat-form-field appearance="outline">
+      <mat-label>Country</mat-label>
+      <input required matInput placeholder="Country" formControlName="country" maxlength="100"/>
+      <mat-error *ngIf="country.errors?.['required']">
+        This field cannot be empty!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
+      <input required matInput placeholder="City" formControlName="city" maxlength="100"/>
+      <mat-error *ngIf="city.errors?.['required']">
+        This field cannot be empty!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Street</mat-label>
+      <input matInput placeholder="Street" formControlName="street" maxlength="100"/>
+    </mat-form-field>
+
+    <div id="can-sing-question">
+      <mat-label for="canSing">2. Are you looking for a singer?</mat-label>
+      <span id="radio-buttons">
+        <span>
+          <input type="radio" [value]="true" name="canSing" formControlName="canSing" />
+          <mat-label for="true">Yes</mat-label>
+        </span>
+        <span>
+          <input type="radio" [value]="false" name="canSing" formControlName="canSing" />
+          <label for="false">No</label>
+        </span>
+      </span>
+    </div>
+
+    <p>3. Other information used to search for new members:</p>
+    <mat-form-field appearance="outline">
+      <mat-label>Instrument Played</mat-label>
+      <input matInput placeholder="Instrument Played" formControlName="playedInstrument" maxlength="100" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Preferred Music Genre</mat-label>
+      <input matInput placeholder="Preferred Music Genre" formControlName="preferredMusicGenre" maxlength="100" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Trait 1</mat-label>
+      <mat-select formControlName="trait1">
+        <mat-option [value]="null">None</mat-option>
+        <mat-option *ngFor="let trait of traits" [value]="trait">{{ trait }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Trait 2</mat-label>
+      <mat-select formControlName="trait2">
+        <mat-option [value]="null">None</mat-option>
+        <mat-option *ngFor="let trait of traits" [value]="trait">{{ trait }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Minimum Age</mat-label>
+      <input matInput type="number" min="0" max="100" placeholder="Minimum Age" formControlName="minAge" />
+      <div class="alert" *ngIf="surveyForm.controls['minAge'].hasError('min')">
+        Minimum allowed number is 0!
+      </div>
+      <div class="alert" *ngIf="surveyForm.controls['minAge'].hasError('max')">
+        Maximum allowed number is 100!
+      </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Maximum Age</mat-label>
+      <input matInput type="number" min="0" max="100" placeholder="Maximum Age" formControlName="maxAge" />
+      <div class="alert" *ngIf="surveyForm.controls['maxAge'].hasError('min')">
+        Minimum allowed number is 0!
+      </div>
+      <div class="alert" *ngIf="surveyForm.controls['maxAge'].hasError('max')">
+        Maximum allowed number is 100!
+      </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Occupation</mat-label>
+      <input matInput placeholder="Occupation" formControlName="occupation" maxlength="100" />
+    </mat-form-field>
+  </form>
+
+  <div class="actions">
+    <button [disabled]="!surveyForm.valid" mat-stroked-button (click)="completeSurvey()">
+      Complete Survey
+    </button>
+
+    <button mat-stroked-button (click)="closeDialog()">Cancel</button>
+  </div>
+</div>
+
+
+<div id="results-container" *ngIf="matchedUsers">
+  <h1>Survey Results</h1>
+  <div *ngIf="matchedUsers.length > 0">
+    <h2>Best Matches:</h2>
+    <div *ngFor="let surveyResult of matchedUsers" class="results"
+      [ngStyle]="['invalid invitation', 'declined invitation'].includes(surveyResult.matchType) ? {color:'tomato'} : {color:'black'}"  
+    >
+      <span class="name" (click)="seeUserProfile(surveyResult.matchedUserProfile)">
+        &#9655; {{ surveyResult.matchedUserProfile.firstName }} {{ surveyResult.matchedUserProfile.lastName }}
+      </span>
+      
+      <button (click)="sendInvitation(surveyResult)"
+        changeBorderOnClick defaultBorderStyle="outset" mousedownBorderStyle="inset" 
+        *ngIf="['invalid invitation', 'declined invitation'].includes(surveyResult.matchType) == false"
+        [disabled]="surveyResult.matchType == 'invitation'"
+      >
+        <span *ngIf="surveyResult.matchType == 'survey match'">Send invitation to join the band</span>
+        <span *ngIf="surveyResult.matchType == 'invitation'">Sent invitation</span>
+      </button>
+
+      <span class="declined" *ngIf="surveyResult.matchType == 'declined invitation'">declined the invitation</span>
+      <span class="declined" *ngIf="surveyResult.matchType == 'invalid invitation'">joined some other band</span>
+
+      <div class="profile" *ngIf="shownUsers[surveyResult.matchedUserProfile.username]">
+        <app-user-profile [user]="shownUsers[surveyResult.matchedUserProfile.username]"></app-user-profile>
+      </div>
+    </div>
+  </div>
+
+  <p id="noMatch" *ngIf="matchedUsers.length == 0">No match found</p>
+
+  <div class="actions">
+    <button mat-stroked-button (click)="retakeSurvey()">Retake Survey</button>
+    <button mat-stroked-button (click)="closeDialog()">Close</button>
+  </div>
+</div>

@@ -25,6 +25,7 @@ namespace backend.Entities
         public DbSet<UserAddress> UserAddresses { get; set; } = null!;
         public DbSet<MusicalBand> MusicalBands { get; set; } = null!;
         public DbSet<BandHQ> BandHeadquarters { get; set; } = null!;
+        public DbSet<BandUserMatch> BandUserMatches { get; set; } = null!;
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
@@ -63,6 +64,20 @@ namespace backend.Entities
                 .HasMany(band => band.Members)
                 .WithOne(member => member.Band)
                 .HasForeignKey(member => member.BandId);
+
+
+            //Many To Many
+            builder.Entity<BandUserMatch>().HasKey(match => new { match.BandId, match.UserId });
+
+            builder.Entity<BandUserMatch>()
+                .HasOne(match => match.MusicalBand)
+                .WithMany(band => band.Matches)
+                .HasForeignKey(match => match.BandId);
+
+            builder.Entity<BandUserMatch>()
+                .HasOne(match => match.UserProfile)
+                .WithMany(profile => profile.Matches)
+                .HasForeignKey(match => match.UserId);
         }
     }
 }
