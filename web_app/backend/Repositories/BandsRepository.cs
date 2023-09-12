@@ -14,7 +14,7 @@ namespace backend.Repositories
 
         public IQueryable<MusicalBand> GetMusicalBands()
         {
-            return db.MusicalBands.Include(band => band.HQ); 
+            return db.MusicalBands.Include(band => band.HQ).Include(band => band.Members).ThenInclude(profile => profile.Owner); 
         }
 
         public MusicalBand? GetBandById(string bandId)
@@ -24,8 +24,7 @@ namespace backend.Repositories
 
         public MusicalBand? GetBandWithMembers(string bandId)
         {
-            var bands = GetMusicalBands().Include(band => band.Members).ThenInclude(profile => profile.Owner);
-            return bands.FirstOrDefault(band => band.BandId == bandId);
+            return GetMusicalBands().FirstOrDefault(band => band.BandId == bandId);
         }
 
 

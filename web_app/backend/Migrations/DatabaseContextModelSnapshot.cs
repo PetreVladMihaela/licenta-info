@@ -216,6 +216,9 @@ namespace backend.Migrations
                     b.Property<string>("PreferredMusicGenre")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("ProfilePicture")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("Trait1")
                         .HasColumnType("nvarchar(max)");
 

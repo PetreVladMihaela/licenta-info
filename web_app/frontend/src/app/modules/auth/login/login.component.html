@@ -8,10 +8,11 @@
     <h3 *ngIf="newUser"> You must log in to continue to the website: </h3>
 
     <form [formGroup]="loginForm" id="login-form">
+      <div id="change-login"(click)="changeLoginMethod()">Click here to log in with your {{otherIdentifier}}.</div>
       <div id="username-warning" *ngIf="username.errors?.['hasForbiddenChar']">
         <div> The username can only contain <strong>letters, numbers, hyphens and underscores.</strong> </div>
       </div>
-      <mat-form-field appearance="outline" #formField="matFormField">
+      <mat-form-field appearance="outline" #formField="matFormField" [style]="{'display':userIdentifier=='username'?'block':'none'}">
         <mat-label> Username </mat-label>
         <div class="form-input">
           <input required matInput type="text" maxlength="31" placeholder="Username" formControlName="username">
@@ -26,6 +27,22 @@
           </div>
           <div *ngIf="username.errors?.['usernameNotFound'] && !errorMessage">
             This username does not exist.
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" #formField="matFormField" *ngIf="userIdentifier=='email'">
+        <mat-label> Email </mat-label>
+        <div class="form-input">
+          <input required matInput type="email" placeholder="Email" formControlName="email">
+          <mat-icon matSuffix> email </mat-icon>          
+        </div>
+        <mat-error *ngIf="email.touched" class="alert">
+          <div *ngIf="email.errors?.['required']">
+            An email is required!
+          </div>
+          <div *ngIf="email.errors?.['email']">
+            Please provide a valid email address.
           </div>
         </mat-error>
       </mat-form-field>
@@ -52,9 +69,15 @@
         </mat-error>
       </mat-form-field>
 
-      <button id="login-button" mat-raised-button [disabled]="!loginForm.valid" (click)="logIn()" appWaitCursor>
-        Log in 
-      </button>
+      <div>
+        <button *ngIf="userIdentifier=='username'" id="login-button" mat-raised-button appWaitCursor
+          [disabled]="password.errors || username.errors" (click)="logIn()">Log in 
+        </button>
+        <button id="login-button" *ngIf="userIdentifier=='email'" mat-raised-button appWaitCursor
+          [disabled]="password.errors || email.errors" (click)="logIn()">Log in
+        </button>
+        <span id="forgot-password" *ngIf="!newUser" (click)="openResetPasswordDialog()">Forgot password?</span>
+      </div>
     </form>
 
     <div id="login-error" *ngIf="errorMessage">

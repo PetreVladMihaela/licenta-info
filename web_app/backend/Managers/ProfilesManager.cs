@@ -1,7 +1,6 @@
 ﻿using backend.Repositories;
 using backend.Entities;
 using backend.Models;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 
 namespace backend.Managers
@@ -51,7 +50,8 @@ namespace backend.Managers
                 PlayedInstrument = profile.PlayedInstrument,
                 PreferredMusicGenre = profile.PreferredMusicGenre,
                 BandId = profile.BandId,
-                BandName = profile.Band?.Name
+                BandName = profile.Band?.Name,
+                ProfileImage = profile.ProfilePicture
             };
 
             return profileModel;
@@ -170,7 +170,7 @@ namespace backend.Managers
 
         public List<InvitationModel> GetInvitationsToJoinBands(string userId)
         {
-            List<InvitationModel> invitationModels = new List<InvitationModel>();
+            List<InvitationModel> invitationModels = new();
             List<BandUserMatch> invitations = profilesRepository.GetInvitationsToJoinBands(userId).ToList();
 
             foreach (BandUserMatch invitation in invitations)
@@ -193,5 +193,15 @@ namespace backend.Managers
             profilesRepository.UpdateUserInvitations(invitation.UserId, invitation.BandId);
         }
 
+
+        public void SaveProfileImage(string username, byte[] image)
+        {
+            profilesRepository.SaveProfileImage(username, image);
+        }
+
+        public void DeleteProfileImage(string username)
+        {
+            profilesRepository.DeleteProfileImage(username);
+        }
     }
 }

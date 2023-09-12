@@ -1,9 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/interfaces/user';
 import { UserProfileFormComponent } from '../user-profile-form/user-profile-form.component';
 import { UserProfile } from 'src/app/interfaces/user-profile';
 import { BandFormComponent } from '../../musical-bands/band-form/band-form.component';
+import { UserProfilesService } from 'src/app/services/users-service/user-profiles.service';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,7 +20,9 @@ export class UserProfileComponent {
     userRoles: []
   };
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private profilesService: UserProfilesService) { }
+
+  public progress: number = 0;
 
   public editUserProfile(): void {
     const dialogConfig = new MatDialogConfig();
@@ -56,6 +60,31 @@ export class UserProfileComponent {
         // }
         window.location.reload(); // updates the invitations too
       }
+    });
+  }
+
+
+  changeImage = (files: FileList | null) => {
+    if (files == null) return;
+
+    const fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    const username = this.user.username;
+    
+    this.profilesService.changeProfileImage(username, formData).subscribe({
+      next: (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          if (event.total)
+            this.progress = Math.round(100 * event.loaded / event.total);
+        }
+        else if (event.type === HttpEventType.Response) {
+          if (this.user.profile)
+            this.user.profile.profileImage = event.body.imageBytes;
+        }
+      },
+      error: (err) => alert(err)
     });
   }
 

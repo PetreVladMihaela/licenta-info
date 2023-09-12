@@ -19,7 +19,8 @@ export class AuthInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     req = req.clone({ withCredentials: true });
 
-    if (req.url.includes('/authentication/') == false) {
+    if (req.url.includes('/authentication/') == false && req.url.includes('/getAllBands') == false
+      && req.url.includes('/bandInfo') == false && req.url.includes('Profiles/getByUsername') == false) {
       const tokenExpiryDate = document.cookie.split('; ')
         .find((cookie) => cookie.startsWith('Token_Expiry_Date='))?.split('=')[1];
       if (tokenExpiryDate == undefined) return this.refreshAuthToken(req, next);
@@ -36,7 +37,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         else if (error.error) {
           if (error.error.lockoutEnd) {
             const lockoutEnd = formatDate(error.error.lockoutEnd, 'MMMM d, y, h:mm:ss a', 'en');
-            errorMessage = 'The account of ' + req.body.username + ' is locked until ' + lockoutEnd + '.';
+            errorMessage = 'The account of ' + req.body.userIdentifier + ' is locked until ' + lockoutEnd + '.';
           }
           else if (error.error.message) errorMessage = error.error.message;
           else if (typeof error.error === 'string') errorMessage = error.error;

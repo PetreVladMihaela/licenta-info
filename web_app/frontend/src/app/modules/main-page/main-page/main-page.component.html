@@ -1,1 +1,39 @@
-<p>to do: main page</p>
+<div id="home">
+  <h1>Newest musical bands added</h1>
+  <form [formGroup]="filterForm" id="filter-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Search Criterion</mat-label>
+      <mat-select formControlName="criterion">
+        <mat-option *ngFor="let criterion of criteria" [value]="criterion">{{criterion}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="filterForm.get('criterion')!.value == 'Band Name'">
+      <mat-label>Band Name</mat-label>
+      <input matInput placeholder="Band Name" formControlName="bandName" maxlength="100" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="filterForm.get('criterion')!.value == 'Music Genre'">
+      <mat-label>Music Genre</mat-label>
+      <input matInput placeholder="Band Genre" formControlName="bandGenre" maxlength="100" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="filterForm.get('criterion')!.value == 'Country'">
+      <mat-label>Country</mat-label>
+      <input matInput placeholder="Country" formControlName="country" maxlength="100" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="filterForm.get('criterion')!.value == 'City'">
+      <mat-label>City</mat-label>
+      <input matInput placeholder="City" formControlName="city" maxlength="100" />
+    </mat-form-field>
+
+    <button mat-stroked-button (click)="applyFilter()" id="search-button">Search</button>
+  </form>
+
+  <div *ngFor="let band of shownMusicalBands" class="band">
+    <app-band-info [musicalBand]="band" [alignBands]="true"></app-band-info>
+  </div>
+
+  <div *ngIf="shownMusicalBands?.length==0" id="no-bands"> No bands found. </div>
+</div>

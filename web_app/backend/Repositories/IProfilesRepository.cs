@@ -16,5 +16,8 @@ namespace backend.Repositories
         public IQueryable<UserProfile> GetFilteredProfiles(BandMembersSurveyModel survey);
         public IQueryable<BandUserMatch> GetInvitationsToJoinBands(string userId);
         void UpdateUserInvitations(string userId, string? bandId);
+
+        public void SaveProfileImage(string userName, byte[] profileImage);
+        public void DeleteProfileImage(string userName);
     }
 }

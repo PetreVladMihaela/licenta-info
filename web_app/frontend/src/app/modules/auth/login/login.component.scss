@@ -1,6 +1,6 @@
 #container {
     #greeting, #login-message { //margin: 15px;
-        margin-top: 20px;
+        margin-top: 19px;
         margin-bottom: 15px; 
     }
 
@@ -31,6 +31,12 @@
             border: 4px ridge lightblue;
             border-radius: 5px;
             padding: 30px;
+
+            #change-login { cursor: pointer;
+                color: royalblue;
+                margin-bottom: 15px;
+            }
+            #change-login:hover { color: blueviolet; }
 
             #username-warning { width: 370px;
                 margin-bottom: 5px;
@@ -72,6 +78,12 @@
                 background-color: lightgray;
                 cursor: not-allowed;
             }
+
+            #forgot-password { cursor: pointer;
+                color: royalblue;
+                margin-left: 50px;
+            }
+            #forgot-password:hover { color: blueviolet; }
         }
      
         #login-error { margin-top: 20px; padding: 5px;

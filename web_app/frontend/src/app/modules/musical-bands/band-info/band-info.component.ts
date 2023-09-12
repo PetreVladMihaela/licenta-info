@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { UserProfile } from 'src/app/interfaces/user-profile';
 import { UserProfilesService } from 'src/app/services/users-service/user-profiles.service';
 import { BandMembersSurveyComponent } from '../band-members-survey/band-members-survey.component';
+import { ConfirmationDialogComponent, ConfirmationDialogModel } from '../../material/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-band-info',
@@ -16,7 +17,10 @@ import { BandMembersSurveyComponent } from '../band-members-survey/band-members-
   styleUrls: ['./band-info.component.scss']
 })
 export class BandInfoComponent implements OnInit, OnDestroy {
-  public musicalBand?: MusicalBand;
+  @Input() musicalBand?: MusicalBand;
+  @Input() alignBands: boolean = false;
+  @Input() adminDeleteButton: boolean = false;
+
   public canEdit: boolean = false;
   public errorMessage: string = '';
   public shownProfile?: UserProfile;
@@ -37,7 +41,8 @@ export class BandInfoComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
     this.subscription = this.route.params.subscribe((params) => {
-      this.getMusicalBand(params['bandId']);
+      if (params['bandId'])
+        this.getMusicalBand(params['bandId']);
 
       this.nameSub = this.authService.nameSubscriber.subscribe((username) => {
         this.username = username;
@@ -112,7 +117,38 @@ export class BandInfoComponent implements OnInit, OnDestroy {
     };
     dialogConfig.data = surveyFormData;
     dialogConfig.disableClose = true;
-    const dialogRef = this.dialog.open(BandMembersSurveyComponent, dialogConfig);
+    this.dialog.open(BandMembersSurveyComponent, dialogConfig);
+  }
+
+
+  public delete() {
+    if (this.musicalBand?.bandId)
+      this.bandsService.deleteBand(this.musicalBand.bandId).subscribe(() => {
+        window.location.reload();
+    })
+  }
+
+
+  public leaveBand() {
+    const dialogData = new ConfirmationDialogModel('Warning',
+      'Are you sure you want to leave the band \''+this.musicalBand?.name+'\'?'
+    );
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      maxWidth: 'fit-content',
+      minWidth: '280px',
+      position: { top: '30px' },
+      disableClose: true,
+      data: dialogData
+    });
+      
+    return dialogRef.afterClosed().subscribe((response: boolean) => {
+      if (response) 
+        this.bandsService.leaveBand(this.username).subscribe({
+          next: () => this.router.navigate(['/users/account/' + this.username]),
+          error: (err) => alert(err)
+      })
+    });
   }
   
 }

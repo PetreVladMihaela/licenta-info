@@ -1,4 +1,4 @@
-<div id="notif-container">
+<div id="notif-container" *ngIf="invitesToJoinBand.length>0">
   <p class="invites-notification" *ngIf="invitesToJoinBand.length==1" (click)="displayInvitations()">
     You are invited to join 1 band.
   </p>

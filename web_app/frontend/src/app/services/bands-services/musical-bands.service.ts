@@ -14,12 +14,16 @@ export class MusicalBandsService {
 
   constructor(private http: HttpClient) { }
 
+  public getAllBands(): Observable<MusicalBand[]> {
+    return this.http.get<MusicalBand[]>(this.url+'/getAllBands');
+  }
+
   public createBand(band: MusicalBand, username: string): Observable<{newBandId: string}> {
     return this.http.post<{newBandId: string}>(`${this.url}/${username}`, band)
   }
 
   public getBandById(bandId: string): Observable<MusicalBand> {
-    return this.http.get<MusicalBand>(`${this.url}/${bandId}`);
+    return this.http.get<MusicalBand>(`${this.url}/${bandId}/bandInfo`);
   }
 
   public updateBand(band: MusicalBand, username: string): Observable<any> {
@@ -41,6 +45,18 @@ export class MusicalBandsService {
 
   public deleteBandMatches(bandId: string, username: string) {
     return this.http.delete(`${this.url}/${bandId}/deleteBandMatches/${username}`)
+  }
+
+  public leaveBand(username: string) {
+    return this.http.get(`${this.url}/${username}/leaveBand`)
+  }
+
+  public getBandsToDelete(): Observable<MusicalBand[]> {
+    return this.http.get<MusicalBand[]>(this.url+'/bandsToDelete');
+  }
+
+  public deleteBand(bandId: string) {
+    return this.http.delete(`${this.url}/${bandId}`)
   }
 
 }

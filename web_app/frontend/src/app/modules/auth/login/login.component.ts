@@ -4,6 +4,9 @@ import { MatFormField } from '@angular/material/form-field';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { CustomValidators } from '../custom-validators';
+import { LogInUser } from 'src/app/interfaces/log_in_user';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +18,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   public showPassword: boolean = false;
   public newUser: string | null = localStorage.getItem('New User');
 
+  public userIdentifier: string = 'username';
+  public otherIdentifier: string = 'email';
+
   private nonexistentUsernames: string[] = [];
   private subscription: Subscription | undefined;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private dialog: MatDialog) {}
 
   public loginForm: FormGroup = new FormGroup({
     username: new FormControl('', [
@@ -31,7 +37,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       Validators.required,
       Validators.minLength(6),
       Validators.maxLength(25)
-    ])
+    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
   });
 
   public get username(): AbstractControl {
@@ -39,6 +46,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   public get password(): AbstractControl {
     return this.loginForm.get('password')!;
+  }
+  public get email(): AbstractControl {
+    return this.loginForm.get('email')!;
   }
 
   @ViewChildren('formField') private formFields!: QueryList<MatFormField>;
@@ -93,11 +103,30 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     if (this.subscription == undefined || this.subscription.closed) {
       const formData = this.loginForm.value;
-      this.subscription = this.authService.logInUser(formData.username, formData.password).subscribe({
-        next: () => {
+
+      let userIdentifier = formData.username;
+      let emailLogin = false;
+      if (this.userIdentifier=='email') {
+        emailLogin = true;
+        userIdentifier = formData.email;
+      }
+        
+      const loginModel: LogInUser = {
+        userIdentifier: userIdentifier,
+        password: formData.password,
+        emailLogin: emailLogin
+      };
+
+      this.subscription = this.authService.logInUser(loginModel).subscribe({
+        next: (response) => {
           if (this.newUser) localStorage.removeItem('New User');
-          localStorage.setItem('User', formData.username);
-          window.location.href = `/users/account/${formData.username}`;
+          if (this.newUser) localStorage.removeItem('New User Email');
+
+          let loggedInUser = formData.username;
+          if (this.userIdentifier == 'email') loggedInUser = response.username;
+
+          localStorage.setItem('User', loggedInUser);
+          window.location.href = `/users/account/${loggedInUser}`;
           //this.subscription!.unsubscribe();
         },
         error: (err) => {
@@ -111,4 +140,26 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
   
+  public changeLoginMethod() {
+    if (this.userIdentifier=='username') {
+      this.userIdentifier = 'email';
+      this.otherIdentifier = 'username';
+    }
+    else {
+      this.userIdentifier = 'username';
+      this.otherIdentifier = 'email';
+    }
+  }
+
+
+  public openResetPasswordDialog(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '85%';
+    dialogConfig.minWidth = '280px';
+    dialogConfig.maxWidth = '551px';
+    dialogConfig.minHeight = '350px';
+    dialogConfig.disableClose = true;
+    dialogConfig.data = this.loginForm.value.email;
+    this.dialog.open(ResetPasswordComponent, dialogConfig);
+  }
 }

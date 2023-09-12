@@ -1,0 +1,15 @@
+<h2>Clean Up Bands</h2>
+
+<div *ngIf="musicalBands">
+  <p *ngIf="musicalBands.length > 0">
+    The following bands have no members and need to be deleted.
+  </p>
+  <div *ngFor="let band of musicalBands" class="band">
+    <app-band-info
+      [musicalBand]="band"
+      [alignBands]="true"
+      [adminDeleteButton]="true"
+    ></app-band-info>
+  </div>
+  <p *ngIf="musicalBands.length==0">There are no bands to delete.</p>
+</div>

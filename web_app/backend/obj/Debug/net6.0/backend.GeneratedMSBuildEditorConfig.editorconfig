@@ -14,3 +14,19 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = C:\Users\MIHAELAPETRE-VLAD\Desktop\licenta_info\web_app\backend
 build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/MIHAELAPETRE-VLAD/Desktop/licenta_info/web_app/backend/Views/ExpiredConfirmationLink.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwaXJlZENvbmZpcm1hdGlvbkxpbmsuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MIHAELAPETRE-VLAD/Desktop/licenta_info/web_app/backend/Views/ResetPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXRQYXNzd29yZENvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MIHAELAPETRE-VLAD/Desktop/licenta_info/web_app/backend/Views/ResetPasswordError.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXRQYXNzd29yZEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MIHAELAPETRE-VLAD/Desktop/licenta_info/web_app/backend/Views/ResetPasswordView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXRQYXNzd29yZFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

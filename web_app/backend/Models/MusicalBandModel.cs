@@ -17,4 +17,14 @@ namespace backend.Models
         public List<UserProfileModel> Members { get; set; } = new List<UserProfileModel>();
     }
 
+
+    public class BandHqModel
+    {
+        //public string BandId { get; set; } = null!;
+        public string Country { get; set; } = null!;
+        public string City { get; set; } = null!;
+        public string? Street { get; set; }
+        public int? SquareMeters { get; set; }
+    }
+
 }

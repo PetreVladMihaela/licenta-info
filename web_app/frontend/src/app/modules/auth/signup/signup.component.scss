@@ -1,4 +1,4 @@
-#success { display: flex;
+#success {
     flex-direction: column;
     align-items: center; 
     justify-content: center;
@@ -10,9 +10,9 @@
         max-width: 100%;
     }
 
-    div:first-of-type { text-align: justify;}
+    div:first-of-type, div:nth-of-type(2) { text-align: justify;}
     
-    div:nth-last-child(n+2) { // from first to penultimate div
+    div:nth-last-of-type(n+2) { // from first to penultimate div
         margin-bottom: 15px;
 
         span { font-size: 18px; 
@@ -30,10 +30,18 @@
 
     #loginRedirect>span, #registerRedirect>span { margin-right: 5px; }
 
-    div:last-child { color: darkgreen;
+    div:last-of-type { color: darkgreen;
         font-size: 18px; font-weight: bold;
         margin-top: 20px;
     }
+
+    form { margin-top: 50px;
+        mat-form-field { width: 250px;
+            margin-left: 10px;
+        }
+        button { padding: 6px; }
+    }
+    p { margin: 5px; }
 }
 
 
@@ -311,15 +319,17 @@
     }
 }
 
+//--------------------------------------------------------------------------------------------------
 
-@media screen and (max-width: 577px) {
+@media screen and (max-width: 592px) {
     #success { width: 458px; margin: 15px auto 0px;
         min-height: 295px;
+        div:first-of-type, div:nth-of-type(2) { max-width: 430px; }
     }
 }
 
 @media screen and (max-width: 514px) {
-    #success { width: 380px;
+    #success { width: 378.5px;
         min-height: 352px;
 
         #loginRedirect, #registerRedirect { margin-top: 5px;
@@ -329,39 +339,45 @@
             span { margin-right: 0px; }
             button { margin-top: 2px; }
         }
+
+        form { margin-top: 35px;
+            text-align: center;
+            mat-form-field { text-align: center; margin-left: 0px; }
+            button { margin-bottom: 8px; }
+        }
     }
 }
 
 @media screen and (max-width: 436px) {
-    #success { width: 338px;
+    #success { width: 336.4px;
         min-height: 324px;
 
         h2 { font-size: 1.4em; }
 
-        div:nth-last-child(n+2) { span { font-size: 16px; }
+        div:nth-last-of-type(n+2) { span { font-size: 16px; }
             button { font-size: 12px;
                 padding: 0px 12px;
                 min-width: fit-content; 
                 line-height: 30px;
             }
         }
-        div:last-child { font-size: 16px; }
+        div:last-of-type { font-size: 16px; }
     }
 }
 
 @media screen and (max-width: 394px) {
-    #success { width: 295px;
+    #success { width: 294.4px;
         min-height: 312px;
 
         h2 { font-size: 1.3em; }
 
-        div:nth-last-child(n+2) { span { font-size: 14px; }
+        div:nth-last-of-type(n+2) { span { font-size: 14px; }
             button {
                 padding: 0px 10px;
                 line-height: 28px; 
             }
         }
-        div:last-child { font-size: 14px; }
+        div:last-of-type { font-size: 14px; }
         //#loginRedirect, #registerRedirect { margin-top: 0px; }
     }
 }
@@ -376,6 +392,8 @@
 
         div:first-of-type { width: 246px; 
             text-align: center; }
+
+        div:nth-of-type(2) { width: 222px; }
 
         #loginRedirect, #registerRedirect { flex-direction: row;
             //flex-wrap: wrap;

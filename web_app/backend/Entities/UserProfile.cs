@@ -28,5 +28,7 @@ namespace backend.Entities
 
         public string? Trait1 { get; set; }
         public string? Trait2 { get; set; }
+
+        public byte[]? ProfilePicture { get; set; }
     }
 }

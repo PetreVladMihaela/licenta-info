@@ -21,7 +21,8 @@ export class SignupComponent implements OnInit, OnDestroy, CanDeactivateComponen
   public errorMessage: string = '';
   public showPassword: boolean = false;
   public showConfirmPassword: boolean = false;
-  public registeredUser: string | null = '';
+  public registeredUser: string = '';
+  public resendMessage: string = '';
 
   private formEdited: boolean = false;
   private signupStarted: boolean = false;
@@ -109,9 +110,14 @@ export class SignupComponent implements OnInit, OnDestroy, CanDeactivateComponen
     if (newUser)
       this.authService.checkIfUsernameExists(newUser).subscribe({
         next: (response) => {
-          if (response.usernameExists) this.registeredUser = newUser;
+          if (response.usernameExists) {
+            this.registeredUser = newUser;
+            const email = localStorage.getItem('New User Email');
+            if (email) this.registerForm.get("email")!.setValue(email);
+          }
           else {
             localStorage.removeItem('New User');
+            localStorage.removeItem('New User Email');
             this.showForm();
           }
         },
@@ -123,7 +129,6 @@ export class SignupComponent implements OnInit, OnDestroy, CanDeactivateComponen
   }
 
   private showForm(): void {
-    this.registeredUser = null;
     document.getElementById('register-form')?.addEventListener('mousedown', this.onFormMousedown);
     document.getElementById('password-field')?.addEventListener('focusout', this.passwordFocusout);
     document.getElementById('username-field')?.addEventListener('focusout', this.usernameFocusout);
@@ -197,12 +202,14 @@ export class SignupComponent implements OnInit, OnDestroy, CanDeactivateComponen
 
   private trackFormChanges(): void {
     this.registerForm.valueChanges.subscribe((formValues) => { //console.log(formValues);
-      this.formEdited = false;
-      for (const formField in formValues)
-        if (formValues[formField]) {
-          this.formEdited = true;
-          break;
-        }
+      if (this.registeredUser == "") {
+        this.formEdited = false;
+        for (const formField in formValues)
+          if (formValues[formField]) {
+            this.formEdited = true;
+            break;
+          }
+      }
     });
 
     this.registerForm.get('email')?.valueChanges.subscribe((emailValue) => {
@@ -254,6 +261,7 @@ export class SignupComponent implements OnInit, OnDestroy, CanDeactivateComponen
           this.formEdited = false;
           window.removeEventListener('beforeunload', this.onBeforeunload);
           localStorage.setItem('New User', newUser.username);
+          localStorage.setItem('New User Email', newUser.email);
           this.registeredUser = newUser.username;
           document.body.style.cursor = 'auto';
           // this.authService.logInUser(newUser.username, newUser.password).subscribe(() => {
@@ -275,6 +283,21 @@ export class SignupComponent implements OnInit, OnDestroy, CanDeactivateComponen
 
   public goBackToSignup(): void {
     localStorage.removeItem('New User');
+    localStorage.removeItem('New User Email');
     window.location.href = 'auth/signup';
+  }
+
+  public resendEmail(email: string) {
+    const messagePar = document.getElementById("resendResponse")!;
+    this.authService.resendConfirmEmail(email).subscribe({
+      next: (okMessage) => {
+        messagePar.style.color = 'teal';
+        this.resendMessage = okMessage;
+      },
+      error: (error) => {
+        messagePar.style.color = 'orangered';
+        this.resendMessage = error;
+      }
+    });
   }
 }

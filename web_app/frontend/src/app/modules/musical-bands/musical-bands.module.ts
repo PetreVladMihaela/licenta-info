@@ -10,6 +10,7 @@ import { ProfilesModule } from '../users/profiles.module';
 
 @NgModule({
   declarations: [ BandFormComponent, BandInfoComponent, BandMembersSurveyComponent ],
-  imports: [ CommonModule, MaterialModule, ReactiveFormsModule, ProfilesModule ]
+  imports: [ CommonModule, MaterialModule, ReactiveFormsModule, ProfilesModule ],
+  exports: [ BandInfoComponent ],
 })
 export class MusicalBandsModule { }

@@ -15,5 +15,8 @@ namespace backend.Managers
         List<SurveyResultModel> GetSurveyResults(BandMembersSurveyModel surveyModel);
         List<InvitationModel> GetInvitationsToJoinBands(string userId);
         void AcceptInvitationToJoinBand(BandUserMatchModel invitation);
+
+        void SaveProfileImage(string username, byte[] image);
+        void DeleteProfileImage(string username);
     }
 }

@@ -22,14 +22,22 @@ namespace backend.Controllers
             this.userManager = userManager;
         }
 
-        [HttpGet]
+        [HttpGet("getAllBands")]
         public IActionResult GetAllBands()
         {
             return Ok(manager.GetMusicalBands());
         }
 
 
-        [HttpGet("{bandId}")]
+        [Authorize(Roles = "Admin")]
+        [HttpGet("bandsToDelete")]
+        public IActionResult GetBandsToDelete()
+        {
+            return Ok(manager.GetBandsWithNoMembers());
+        }
+
+
+        [HttpGet("{bandId}/bandInfo")]
         public IActionResult GetBandInfo([FromRoute] string bandId)
         {
             MusicalBandModel? band = manager.GetCompleteBandById(bandId);
@@ -81,7 +89,7 @@ namespace backend.Controllers
         }
 
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult DeleteBand([FromRoute] string id)
         {
@@ -130,6 +138,22 @@ namespace backend.Controllers
                 return StatusCode(StatusCodes.Status403Forbidden);
 
             manager.DeleteBandMatches(bandId);
+            return Ok();
+        }
+
+
+        [HttpGet("{username}/leaveBand")]
+        public async Task<IActionResult> LeaveBand([FromRoute] string username)
+        {
+            if (username != User.Identity?.Name)
+                return StatusCode(StatusCodes.Status403Forbidden);
+
+            User? user = await userManager.FindByNameAsync(username);
+
+            if (user is null)
+                return NotFound(new { Status = 404, Title = "Not Found", Message = "The user " + username + " was not found." });
+
+            manager.LeaveBand(user.Id);
             return Ok();
         }
 

@@ -16,9 +16,84 @@ namespace backend.Managers
             this.profilesRepository = profilesRepository;
         }
 
-        public List<MusicalBand> GetMusicalBands()
+        private static MusicalBandModel CreateBandModel(MusicalBand band)
         {
-            return bandsRepository.GetMusicalBands().ToList();
+            List<UserProfileModel> members = new();
+            foreach (UserProfile member in band.Members)
+            {
+                UserProfileModel profileModel = new()
+                {
+                    Username = member.Owner.UserName,
+                    Email = member.Owner.Email,
+                    FirstName = member.FirstName,
+                    LastName = member.LastName,
+                    PlayedInstrument = member.PlayedInstrument,
+                    CanSing = member.CanSing
+                };
+                members.Add(profileModel);
+            }
+
+            BandHqModel? hqModel = null;
+            BandHQ? bandHQ = band.HQ;
+            if (bandHQ is not null)
+            {
+                hqModel = new()
+                {
+                    Country = bandHQ.Country,
+                    City = bandHQ.City,
+                    Street = bandHQ.Street,
+                    SquareMeters = bandHQ.SquareMeters
+                };
+            }
+
+            MusicalBandModel bandModel = new()
+            {
+                BandId = band.BandId,
+                Name = band.Name,
+                MusicGenre = band.MusicGenre,
+                DateFormed = band.DateFormed,
+                IsComplete = band.IsComplete,
+                HQ = hqModel,
+                Members = members
+            };
+
+            return bandModel;
+        }
+
+
+        public List<MusicalBandModel> GetMusicalBands()
+        {
+            List<MusicalBandModel> musicalBands = new();
+
+            var bands = bandsRepository.GetMusicalBands();
+            foreach (MusicalBand band in bands)
+            {
+                if (band.Members.Count > 0)
+                {
+                    MusicalBandModel bandModel = CreateBandModel(band);
+                    musicalBands.Add(bandModel);
+                }
+            }
+
+            return musicalBands;
+        }
+
+
+        public List<MusicalBandModel> GetBandsWithNoMembers()
+        {
+            List<MusicalBandModel> musicalBands = new();
+
+            var bands = bandsRepository.GetMusicalBands();
+            foreach (MusicalBand band in bands)
+            {
+                if (band.Members.Count == 0)
+                {
+                    MusicalBandModel bandModel = CreateBandModel(band);
+                    musicalBands.Add(bandModel);
+                }
+            }
+
+            return musicalBands;
         }
 
 
@@ -26,49 +101,7 @@ namespace backend.Managers
         {
             MusicalBand? band = bandsRepository.GetBandWithMembers(bandId);
 
-            if (band is not null)
-            {
-                List<UserProfileModel> members = new();
-                foreach (UserProfile member in band.Members)
-                {
-                    UserProfileModel profileModel = new()
-                    {
-                        Username = member.Owner.UserName,
-                        Email = member.Owner.Email,
-                        FirstName = member.FirstName,
-                        LastName = member.LastName,
-                        PlayedInstrument = member.PlayedInstrument,
-                        CanSing = member.CanSing
-                    };
-                    members.Add(profileModel);
-                }
-
-                BandHqModel? hqModel = null;
-                BandHQ? bandHQ = band.HQ;
-                if (bandHQ is not null)
-                {
-                    hqModel = new()
-                    {
-                        Country = bandHQ.Country,
-                        City = bandHQ.City,
-                        Street = bandHQ.Street,
-                        SquareMeters = bandHQ.SquareMeters
-                    };
-                }
-
-                MusicalBandModel bandModel = new()
-                {
-                    BandId = band.BandId,
-                    Name = band.Name,
-                    MusicGenre = band.MusicGenre,
-                    DateFormed = band.DateFormed,
-                    IsComplete = band.IsComplete,
-                    HQ = hqModel,
-                    Members = members
-                };
-
-                return bandModel;
-            }
+            if (band is not null) return CreateBandModel(band);
             else return null;
         }
 
@@ -237,6 +270,12 @@ namespace backend.Managers
         public void DeleteBandMatches(string bandId)
         {
             bandsRepository.RemoveBandMatches(bandId);
+        }
+
+
+        public void LeaveBand(string userId)
+        {
+            profilesRepository.UpdateBandId(userId, null);
         }
 
     }

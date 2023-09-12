@@ -1,5 +1,5 @@
 <div id="container">
-  <mat-card *ngIf="musicalBand" id="band-card">
+  <mat-card *ngIf="musicalBand" id="band-card" [ngClass]="{'align-band': alignBands}">
     <mat-card-header>
       <mat-card-title id="title"> {{ musicalBand.name }} </mat-card-title>
       <mat-card-subtitle class="subtitle" *ngIf="!musicalBand.isComplete">Incomplete Band</mat-card-subtitle>
@@ -31,7 +31,7 @@
         </button>
       </div>
 
-      <div class="details"> <strong>Members:</strong>
+      <div class="details" *ngIf="!adminDeleteButton"> <strong>Members:</strong>
         <ng-container *ngFor="let member of musicalBand.members">
           <li class="member" *ngIf="member.firstName && member.lastName">
             <span (click)="seeMemberProfile(member.username)">{{ member.firstName }} {{ member.lastName }}</span>
@@ -73,6 +73,8 @@
         </button>
       </div>
     </mat-card-content>
+    <button *ngIf="adminDeleteButton" mat-raised-button color="warn" style="float: right;" (click)="delete()">Delete</button>
   </mat-card>
-  <div *ngIf="errorMessage" id="error">{{errorMessage}}</div>
+  <div *ngIf="errorMessage" id="error" style="margin-top: 25px;">{{errorMessage}}</div>
+  <button mat-raised-button *ngIf="canEdit" color="warn" (click)="leaveBand()"  style="float: right;">Leave Band</button>
 </div>

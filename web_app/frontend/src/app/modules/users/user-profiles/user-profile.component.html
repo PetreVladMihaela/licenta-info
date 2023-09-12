@@ -11,19 +11,27 @@
 
 <mat-card id="profile-card" *ngIf="user.profile">
   <mat-card-header id="profile-header">
-    <div mat-card-avatar id="profile-icon"></div>
+    <div mat-card-avatar id="profile-icon">
+      <img *ngIf="user.profile.profileImage" [src]="'data:image/png;base64,'+user.profile.profileImage">
+    </div>
     <mat-card-title id="card-title">User Profile</mat-card-title>
-    <mat-card-subtitle id="card-subtitle">Username: <span>{{user.username}}</span></mat-card-subtitle>
+    <mat-card-subtitle id="card-subtitle">Username: <span>{{user.username}}</span>
+    </mat-card-subtitle>
   </mat-card-header>
+  <input type="file" style="display: none" #fileInput (change)="changeImage(fileInput.files)">
+  <button id="icon-button" (click)="fileInput.click()" changeBorderOnClick defaultBorderStyle="outset" mousedownBorderStyle="inset">Change image</button>
+  <span class="upload" *ngIf="progress > 0"> progress: {{progress}}% </span>
   <mat-card-content id="profile-info">
     <p class="details"><span class="bold">First Name:</span> {{ user.profile.firstName }}</p>
     <p class="details"><span class="bold">Last Name:</span> {{ user.profile.lastName }}</p>
     <p class="details"><span class="bold">Age:</span> {{ user.profile.age }}</p>
-    <p class="details"><span class="bold">Occupation:</span> {{ user.profile.occupation }}</p>
+    <p class="details"><span class="bold">Occupation:</span> {{ user.profile.occupation }}
+      <span *ngIf="!user.profile.occupation"> unknown </span>
+    </p>
     <div class="details list"> <p class="bold">Contact Info:</p>
       <ul>
         <li>Email: <div style="display: inline-block;">{{ user.email }}</div></li>
-        <li>Phone: {{ user.profile.phoneNumber }}</li>
+        <li *ngIf="user.profile.phoneNumber">Phone: {{ user.profile.phoneNumber }}</li>
       </ul>
     </div>
     <p class="details"><span class="bold">Traits:</span> {{ user.profile.trait1 }}
@@ -31,13 +39,15 @@
     </p>
     <p *ngIf="user.profile.canSing" class="details"><span class="bold">Can Sing:</span> Yes</p>
     <p *ngIf="!user.profile.canSing" class="details"><span class="bold">Can Sing:</span> No</p>
-    <p class="details"><span class="bold">Played Instrument:</span> {{user.profile.playedInstrument}}</p>
-    <p class="details"><span class="bold">Preferred Music Genre:</span> {{user.profile.preferredMusicGenre}}</p>
+    <p class="details"><span class="bold">Played Instrument:</span> {{user.profile.playedInstrument}}
+      <span *ngIf="!user.profile.playedInstrument"> none </span>
+    </p>
+    <p class="details" *ngIf="user.profile.preferredMusicGenre"><span class="bold">Preferred Music Genre:</span> {{user.profile.preferredMusicGenre}}</p>
     <div class="details list"> <p class="bold">Address:</p>
       <ul>
         <li>Country: {{ user.profile.address?.country }}</li>
         <li>City: {{ user.profile.address?.city }}</li>
-        <li>Street: {{ user.profile.address?.street }}</li>
+        <li *ngIf="user.profile.address?.street">Street: {{ user.profile.address?.street }}</li>
       </ul>
     </div>
     <p *ngIf="user.profile.bandId" class="details bold">

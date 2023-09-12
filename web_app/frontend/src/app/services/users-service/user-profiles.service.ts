@@ -43,4 +43,8 @@ export class UserProfilesService {
     return this.http.post(`${this.url}/${username}/acceptInvitation`, invitation);
   }
 
+  public changeProfileImage(username: string, formData: FormData) {
+    return this.http.post<{imageBytes: string}>(`${this.url}/${username}/uploadProfileImage`, formData, {reportProgress: true, observe: 'events'});
+  }
+  
 }

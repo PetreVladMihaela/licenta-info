@@ -143,5 +143,29 @@ namespace backend.Repositories
             db.SaveChanges();
         }
 
+
+        public void SaveProfileImage(string userName, byte[] profileImage)
+        {
+            UserProfile? profile = GetProfileByOwnerUsername(userName);
+            if (profile is not null)
+            {
+                profile.ProfilePicture = profileImage;
+                db.UserProfiles.Update(profile);
+                db.SaveChanges();
+            }
+        }
+
+
+        public void DeleteProfileImage(string userName)
+        {
+            UserProfile? profile = GetProfileByOwnerUsername(userName);
+            if (profile is not null)
+            {
+                profile.ProfilePicture = null;
+                db.UserProfiles.Update(profile);
+                db.SaveChanges();
+            }
+        }
+
     }
 }

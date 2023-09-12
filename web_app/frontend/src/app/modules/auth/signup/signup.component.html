@@ -1,6 +1,8 @@
-<div *ngIf="registeredUser" id="success"> 
+<div [style]="{ 'display': registeredUser!='' ? 'flex' : 'none' }" id="success"> 
   <h2> Hello {{registeredUser}}! </h2>
-  <div><span>Your account was created successfully. Thank you for signing up.</span></div> 
+  <div><span>Your account was created successfully. Thank you for signing up.</span></div>
+  <div><span>Please click the confirmation link sent to your email before signing in.</span>
+  </div>
   <div id="loginRedirect"> 
     <span>Click here to log in and begin using the website:</span> 
     <button mat-flat-button routerLink="/auth/login"
@@ -12,11 +14,22 @@
       (click)="goBackToSignup()"> Register 
     </button> 
   </div>
-  <div> Have a great day! </div> 
+  <div> Have a great day! </div>
+
+  <form [formGroup]="registerForm">
+    <button [disabled]="email.errors" (click)="resendEmail(email.value)">Resend confirmation email</button>
+    <mat-form-field #formField="matFormField">
+      <mat-label> Email </mat-label>
+      <input required matInput type="email" placeholder="Write Your Email Here" formControlName="email" [value]="this.registerForm.value.email">       
+      <mat-error *ngIf="email.errors?.['required']">An email is required!</mat-error>
+      <mat-error *ngIf="email.errors?.['email']">Please provide a valid email address.</mat-error>
+    </mat-form-field>
+  </form>
+  <p id="resendResponse" [style]="{ 'display': resendMessage!='' ? 'block' : 'none' }">{{resendMessage}}</p>
 </div>
 
 
-<div id="container" [style]="{ 'display': registeredUser==null ? 'block' : 'none' }">
+<div id="container" [style]="{ 'display': registeredUser=='' ? 'block' : 'none' }">
   <h1 id="greeting"> Welcome user! </h1>
   
   <div id="register-section">

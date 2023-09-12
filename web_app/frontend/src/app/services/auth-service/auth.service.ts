@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
+import { LogInUser } from 'src/app/interfaces/log_in_user';
 import { RegisterUser } from 'src/app/interfaces/register_user';
-import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class AuthService {
     return this.http.post(this.authUrl + '/registerUser', user);
   }
 
-  public logInUser(username: string, password: string) {
-    return this.http.post(this.authUrl + '/login', { username, password });
+  public logInUser(loginModel: LogInUser): Observable<{username:string}> {
+    return this.http.post<{username:string}>(this.authUrl + '/login', loginModel);
   }
 
   public logOutUser() {
@@ -74,4 +74,12 @@ export class AuthService {
     } catch (_) { return false; }
   }
   
+  
+  public resendConfirmEmail(email: string): Observable<string> {
+    return this.http.get(`${this.authUrl}/resendConfirmationLink/${email}`, { responseType: 'text' });
+  }
+
+  public sendResetPasswordEmail(email: string) {
+    return this.http.get(`${this.authUrl}/forgotPassword/${email}`);
+  }
 }

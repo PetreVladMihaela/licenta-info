@@ -5,6 +5,7 @@ import {
   ConfirmationDialogComponent,
   ConfirmationDialogModel
 } from './modules/material/confirmation-dialog/confirmation-dialog.component';
+import { UsersService } from './services/users-service/users.service';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,9 @@ import {
 export class AppComponent {
   username: string | null = null;
   userIsLoggedIn = false;
+  showAdminPageLink = false;
 
-  constructor(private authService: AuthService, private dialog: MatDialog) {}
+  constructor(private authService: AuthService, private dialog: MatDialog, private usersService: UsersService) {}
 
   private onUnload = () => {
     this.authService.nameSubscriber.subscribe(username => {
@@ -33,9 +35,9 @@ export class AppComponent {
 
       window.addEventListener('beforeunload', this.onUnload);
 
-      // this.usersService.getUserByName(currentUser).subscribe(user => {
-      //   this.showAdminBoard = user.userRoles.includes('Admin');
-      // });
+      this.usersService.getUserByName(currentUser).subscribe(user => {
+        this.showAdminPageLink = user.userRoles.includes('Admin');
+      });
     }
 
     this.authService.loggedIn.subscribe(value => {

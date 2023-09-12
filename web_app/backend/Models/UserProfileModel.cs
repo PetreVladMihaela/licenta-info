@@ -28,6 +28,7 @@ namespace backend.Models
         [Required]
         public string LastName { get; set; } = null!;
 
+        [Range(0, 100)]
         public byte Age { get; set; }
         public string? Occupation { get; set; }
 
@@ -37,5 +38,21 @@ namespace backend.Models
 
         public string? Trait1 { get; set; }
         public string? Trait2 { get; set; }
+
+        public byte[]? ProfileImage { get; set; }
+    }
+
+
+    public class UserAddressModel
+    {
+        //[Required]
+        //public string UserId { get; set; } = null!;
+
+        [Required]
+        public string Country { get; set; } = "-";
+        [Required]
+        public string City { get; set; } = "-";
+
+        public string? Street { get; set; }
     }
 }

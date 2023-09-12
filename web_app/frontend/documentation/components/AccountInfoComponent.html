@@ -1,0 +1,2962 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AccountInfoComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/users/account-info/account-info.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-account-info</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./account-info.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./account-info.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#authorized" >authorized</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#changePassword" >changePassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#currentUser" >currentUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#editEmail" >editEmail</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#editEmailError" >editEmailError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#editForm" >editForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#editUsername" >editUsername</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#editUsernameError" >editUsernameError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#errorMessage" >errorMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Private</span>
+                                <a href="#formFields" >formFields</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formObserved" >formObserved</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#invitesToJoinBand" >invitesToJoinBand</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#onCardClick" >onCardClick</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#onPasswordChange" >onPasswordChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#passwordForm" >passwordForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resizeObserver" >resizeObserver</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#response" >response</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#saveEmailStarted" >saveEmailStarted</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#saveUsernameStarted" >saveUsernameStarted</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#showConfirmPassword" >showConfirmPassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#showInvitations" >showInvitations</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#showNewPassword" >showNewPassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#showPassword" >showPassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#sub" >sub</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#tooltipPosition" >tooltipPosition</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#acceptInvitation" >acceptInvitation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#changeTooltipPosition" >changeTooltipPosition</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#declineInvitation" >declineInvitation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#displayInvitations" >displayInvitations</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#saveEmail" >saveEmail</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#savePassword" >savePassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#saveUsername" >saveUsername</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#uniqueUsernameValidator" >uniqueUsernameValidator</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#window:resize" >window:resize</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#username" >username</a>
+                                </li>
+                                <li>
+                                    <a href="#email" >email</a>
+                                </li>
+                                <li>
+                                    <a href="#currentPassword" >currentPassword</a>
+                                </li>
+                                <li>
+                                    <a href="#newPassword" >newPassword</a>
+                                </li>
+                                <li>
+                                    <a href="#confirmNewPassword" >confirmNewPassword</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>, route: ActivatedRoute, router: Router, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, profilesService: <a href="../injectables/UserProfilesService.html" target="_self">UserProfilesService</a>, bandsService: <a href="../injectables/MusicalBandsService.html" target="_self">MusicalBandsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>usersService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UsersService.html" target="_self" >UsersService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>profilesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserProfilesService.html" target="_self" >UserProfilesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>bandsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MusicalBandsService.html" target="_self" >MusicalBandsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section data-compodoc="block-methods">
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="window:resize"></a>
+                    <span class="name">
+                        <span ><b>window:resize</b></span>
+                        <a href="#window:resize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>window:resize()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:71</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="acceptInvitation"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>acceptInvitation</b></span>
+                        <a href="#acceptInvitation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>acceptInvitation(invitation: <a href="../interfaces/Invitation.html" target="_self">Invitation</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="319"
+                            class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:319</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>invitation</td>
+                                    <td>
+                                                <code><a href="../interfaces/Invitation.html" target="_self" >Invitation</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeTooltipPosition"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span ><b>changeTooltipPosition</b></span>
+                        <a href="#changeTooltipPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>changeTooltipPosition()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;window:resize&#x27;, undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:71</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="declineInvitation"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>declineInvitation</b></span>
+                        <a href="#declineInvitation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>declineInvitation(invitation: <a href="../interfaces/Invitation.html" target="_self">Invitation</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="306"
+                            class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:306</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>invitation</td>
+                                    <td>
+                                                <code><a href="../interfaces/Invitation.html" target="_self" >Invitation</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayInvitations"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>displayInvitations</b></span>
+                        <a href="#displayInvitations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>displayInvitations()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="302"
+                            class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:302</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:184</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:130</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveEmail"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>saveEmail</b></span>
+                        <a href="#saveEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>saveEmail()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="238"
+                            class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:238</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="savePassword"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>savePassword</b></span>
+                        <a href="#savePassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>savePassword()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:266</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveUsername"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>saveUsername</b></span>
+                        <a href="#saveUsername"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>saveUsername()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="204"
+                            class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:204</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="uniqueUsernameValidator"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>uniqueUsernameValidator</b></span>
+                        <a href="#uniqueUsernameValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>uniqueUsernameValidator(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="190"
+                            class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:190</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>authService</td>
+                                    <td>
+                                                <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>AsyncValidatorFn</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authorized"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>authorized</b></span>
+                        <a href="#authorized"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changePassword"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>changePassword</b></span>
+                        <a href="#changePassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUser"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>currentUser</b></span>
+                        <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/User.html" target="_self" >User</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    userId: &#x27;&#x27;,
+    username: &#x27;&#x27;,
+    email: &#x27;&#x27;,
+    userRoles: []
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editEmail"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>editEmail</b></span>
+                        <a href="#editEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editEmailError"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>editEmailError</b></span>
+                        <a href="#editEmailError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editForm"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>editForm</b></span>
+                        <a href="#editForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormGroup({
+    username: new FormControl(&#x27;&#x27;,
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(30),
+        CustomValidators.forbiddenCharacters(/[^-\w]/)
+      ],
+      [this.uniqueUsernameValidator(this.authService)]
+    ),
+    email: new FormControl(&#x27;&#x27;, [Validators.required, Validators.email])
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editUsername"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>editUsername</b></span>
+                        <a href="#editUsername"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editUsernameError"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>editUsernameError</b></span>
+                        <a href="#editUsernameError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessage"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>errorMessage</b></span>
+                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formFields"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Private</span>
+                        <span ><b>formFields</b></span>
+                        <a href="#formFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>QueryList&lt;MatFormField&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChildren(&#x27;formField&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formObserved"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>formObserved</b></span>
+                        <a href="#formObserved"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="invitesToJoinBand"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>invitesToJoinBand</b></span>
+                        <a href="#invitesToJoinBand"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Invitation.html" target="_self" >Invitation[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCardClick"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>onCardClick</b></span>
+                        <a href="#onCardClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:163</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPasswordChange"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>onPasswordChange</b></span>
+                        <a href="#onPasswordChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="passwordForm"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>passwordForm</b></span>
+                        <a href="#passwordForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormGroup(
+    {
+      currentPassword: new FormControl(&#x27;&#x27;, [Validators.required]),
+      newPassword: new FormControl(&#x27;&#x27;, [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(25),
+        CustomValidators.passwordValidator()
+      ]),
+      confirmNewPassword: new FormControl(&#x27;&#x27;)
+    },
+    CustomValidators.matchValidator(&#x27;newPassword&#x27;, &#x27;confirmNewPassword&#x27;)
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resizeObserver"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>resizeObserver</b></span>
+                        <a href="#resizeObserver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new ResizeObserver(() &#x3D;&gt; { //console.log(this.formFields)
+    this.formFields.forEach((formField) &#x3D;&gt; {
+      formField.updateOutlineGap();
+    });
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="response"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>response</b></span>
+                        <a href="#response"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveEmailStarted"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>saveEmailStarted</b></span>
+                        <a href="#saveEmailStarted"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveUsernameStarted"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>saveUsernameStarted</b></span>
+                        <a href="#saveUsernameStarted"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showConfirmPassword"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>showConfirmPassword</b></span>
+                        <a href="#showConfirmPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showInvitations"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>showInvitations</b></span>
+                        <a href="#showInvitations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showNewPassword"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>showNewPassword</b></span>
+                        <a href="#showNewPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showPassword"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>showPassword</b></span>
+                        <a href="#showPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sub"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>sub</b></span>
+                        <a href="#sub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subscription()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tooltipPosition"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>tooltipPosition</b></span>
+                        <a href="#tooltipPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TooltipPosition</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;above&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="username"></a>
+                        <span class="name"><b>username</b><a href="#username"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>username()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:90</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="email"></a>
+                        <span class="name"><b>email</b><a href="#email"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>email()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:93</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentPassword"></a>
+                        <span class="name"><b>currentPassword</b><a href="#currentPassword"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>currentPassword()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:112</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="newPassword"></a>
+                        <span class="name"><b>newPassword</b><a href="#newPassword"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>newPassword()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:115</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="confirmNewPassword"></a>
+                        <span class="name"><b>confirmNewPassword</b><a href="#confirmNewPassword"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>confirmNewPassword()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/modules/users/account-info/account-info.component.ts:118</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, HostListener, OnDestroy, OnInit, QueryList, ViewChildren } from &#x27;@angular/core&#x27;;
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators
+} from &#x27;@angular/forms&#x27;;
+import { MatFormField } from &#x27;@angular/material/form-field&#x27;;
+import { TooltipPosition } from &#x27;@angular/material/tooltip&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { Observable } from &#x27;rxjs/internal/Observable&#x27;;
+import { of } from &#x27;rxjs/internal/observable/of&#x27;;
+import { Subscription } from &#x27;rxjs/internal/Subscription&#x27;;
+import { catchError, map } from &#x27;rxjs/operators&#x27;;
+import { ChangePassword } from &#x27;src/app/interfaces/change_password&#x27;;
+import { User } from &#x27;src/app/interfaces/user&#x27;;
+import { AuthService } from &#x27;src/app/services/auth-service/auth.service&#x27;;
+import { UsersService } from &#x27;src/app/services/users-service/users.service&#x27;;
+import { CustomValidators } from &#x27;../../auth/custom-validators&#x27;;
+import { UserProfilesService } from &#x27;src/app/services/users-service/user-profiles.service&#x27;;
+import { BandUserMatch } from &#x27;src/app/interfaces/band-user-match&#x27;;
+import { MusicalBandsService } from &#x27;src/app/services/bands-services/musical-bands.service&#x27;;
+import { Invitation } from &#x27;src/app/interfaces/invitation&#x27;;
+
+@Component({
+  selector: &#x27;app-account-info&#x27;,
+  templateUrl: &#x27;./account-info.component.html&#x27;,
+  styleUrls: [&#x27;./account-info.component.scss&#x27;]
+})
+export class AccountInfoComponent implements OnInit, OnDestroy {
+  constructor(
+    private usersService: UsersService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService,
+    private profilesService: UserProfilesService,
+    private bandsService: MusicalBandsService
+  ) {}
+
+  private sub: Subscription &#x3D; new Subscription();
+  public currentUser: User &#x3D; {
+    userId: &#x27;&#x27;,
+    username: &#x27;&#x27;,
+    email: &#x27;&#x27;,
+    userRoles: []
+  };
+
+  public authorized &#x3D; false;
+  public errorMessage &#x3D; &#x27;&#x27;;
+  public response &#x3D; &#x27;&#x27;;
+  public invitesToJoinBand: Invitation[] &#x3D; []
+  public showInvitations: boolean &#x3D; false;
+
+  public showPassword &#x3D; false;
+  public showNewPassword &#x3D; false;
+  public showConfirmPassword &#x3D; false;
+  public changePassword &#x3D; false;
+
+  public editUsername &#x3D; false;
+  public editEmail &#x3D; false;
+  public editUsernameError &#x3D; &#x27;&#x27;;
+  public editEmailError &#x3D; &#x27;&#x27;;
+
+  private formObserved &#x3D; false;
+  private saveUsernameStarted &#x3D; false;
+  private saveEmailStarted &#x3D; false;
+
+  public tooltipPosition: TooltipPosition &#x3D; &#x27;above&#x27;;
+  @HostListener(&#x27;window:resize&#x27;, []) changeTooltipPosition() {
+    if (window.innerWidth &lt; 600) this.tooltipPosition &#x3D; &#x27;below&#x27;;
+    else this.tooltipPosition &#x3D; &#x27;right&#x27;;
+  }
+
+
+  public editForm: FormGroup &#x3D; new FormGroup({
+    username: new FormControl(&#x27;&#x27;,
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(30),
+        CustomValidators.forbiddenCharacters(/[^-\w]/)
+      ],
+      [this.uniqueUsernameValidator(this.authService)]
+    ),
+    email: new FormControl(&#x27;&#x27;, [Validators.required, Validators.email])
+  });
+
+  get username(): AbstractControl {
+    return this.editForm.get(&#x27;username&#x27;)!;
+  }
+  get email(): AbstractControl {
+    return this.editForm.get(&#x27;email&#x27;)!;
+  }
+
+
+  public passwordForm: FormGroup &#x3D; new FormGroup(
+    {
+      currentPassword: new FormControl(&#x27;&#x27;, [Validators.required]),
+      newPassword: new FormControl(&#x27;&#x27;, [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(25),
+        CustomValidators.passwordValidator()
+      ]),
+      confirmNewPassword: new FormControl(&#x27;&#x27;)
+    },
+    CustomValidators.matchValidator(&#x27;newPassword&#x27;, &#x27;confirmNewPassword&#x27;)
+  );
+
+  get currentPassword(): AbstractControl {
+    return this.passwordForm.get(&#x27;currentPassword&#x27;)!;
+  }
+  get newPassword(): AbstractControl {
+    return this.passwordForm.get(&#x27;newPassword&#x27;)!;
+  }
+  get confirmNewPassword(): AbstractControl {
+    return this.passwordForm.get(&#x27;confirmNewPassword&#x27;)!;
+  }
+
+
+  @ViewChildren(&#x27;formField&#x27;) private formFields!: QueryList&lt;MatFormField&gt;;
+  private resizeObserver &#x3D; new ResizeObserver(() &#x3D;&gt; { //console.log(this.formFields)
+    this.formFields.forEach((formField) &#x3D;&gt; {
+      formField.updateOutlineGap();
+    });
+  });
+
+  ngOnInit(): void {
+    this.sub &#x3D; this.route.params.subscribe((params) &#x3D;&gt; {
+      const username &#x3D; params[&#x27;username&#x27;];
+      this.usersService.getUserByName(username).subscribe({
+        next: (user) &#x3D;&gt; {
+          this.authorized &#x3D; true;
+          this.currentUser &#x3D; user;
+          this.editForm.setValue({
+            username: user.username,
+            email: user.email
+          });
+
+          this.profilesService.getUserInvitations(user.userId).subscribe((invites: Invitation[]) &#x3D;&gt; {
+            this.invitesToJoinBand &#x3D; invites;
+            //console.log(this.invitesToJoinBand)
+          });
+
+          document.getElementById(&#x27;account-info&#x27;)?.addEventListener(&#x27;click&#x27;, this.onCardClick);
+          document
+            .querySelector(&#x27;#change-password&gt;button&#x27;)
+            ?.addEventListener(&#x27;click&#x27;, this.onPasswordChange);
+        },
+        error: (err) &#x3D;&gt; {
+          if (err.name &#x3D;&#x3D; &#x27;HTTP Error with Code 403&#x27; || err.status &#x3D;&#x3D; 403)
+            this.errorMessage &#x3D; &quot;You don&#x27;t have permission to access this page.&quot;;
+          else if (err.name &#x3D;&#x3D; &#x27;HTTP Error with Code 401&#x27; || err.status &#x3D;&#x3D; 401)
+            this.errorMessage &#x3D; &#x27;You need to be logged in to see this page.&#x27;;
+          else this.errorMessage &#x3D; &#x27;Error: &#x27; + err.message;
+        }
+      });
+    });
+  }
+
+  private onCardClick &#x3D; (event: Event) &#x3D;&gt; {
+    const target &#x3D; event.target as HTMLElement;
+    if (target.classList.contains(&#x27;edit-icon&#x27;)) {
+      const formFields &#x3D; document.getElementsByTagName(&#x27;mat-form-field&#x27;);
+      Array.from(formFields).forEach((formField) &#x3D;&gt; {
+        this.resizeObserver.observe(formField);
+      });
+      this.formObserved &#x3D; true;
+      document.getElementById(&#x27;account-info&#x27;)?.removeEventListener(&#x27;click&#x27;, this.onCardClick);
+    }
+  };
+
+  private onPasswordChange &#x3D; () &#x3D;&gt; {
+    this.formObserved &#x3D; true;
+    const passwordForm &#x3D; document.getElementById(&#x27;password-form&#x27;)!;
+    this.resizeObserver.observe(passwordForm);
+    document
+      .getElementById(&#x27;#change-password&gt;button&#x27;)
+      ?.removeEventListener(&#x27;click&#x27;, this.onPasswordChange);
+  };
+
+  public ngOnDestroy(): void {
+    this.sub.unsubscribe();
+    if (this.formObserved) this.resizeObserver.disconnect();
+  }
+
+
+  private uniqueUsernameValidator(authService: AuthService): AsyncValidatorFn {
+    return (control: AbstractControl): Observable&lt;ValidationErrors | null&gt; &#x3D;&gt; {
+      if (control.value &#x3D;&#x3D; this.currentUser.username) return of(null);
+      return authService.checkIfUsernameExists(control.value).pipe(
+        map((response) &#x3D;&gt; {
+          return response.usernameExists
+            ? { usernameAlreadyExists: { username: control.value } }
+            : null;
+        }),
+        catchError((err) &#x3D;&gt; of({ usernameAlreadyExists: { error: err } }))
+      );
+    };
+  }
+
+  public saveUsername(): void {
+    const newUsername &#x3D; this.editForm.value.username;
+    if (newUsername !&#x3D;&#x3D; this.currentUser.username) {
+      if (this.saveUsernameStarted &#x3D;&#x3D; false) {
+        this.saveUsernameStarted &#x3D; true;
+        this.usersService.updateUsername(this.currentUser.username, newUsername).subscribe({
+          next: () &#x3D;&gt; {
+            localStorage.setItem(&#x27;User&#x27;, newUsername);
+            this.authService.emitUsername(newUsername);
+            this.currentUser.username &#x3D; newUsername;
+
+            const userLink &#x3D; document.getElementById(&#x27;nav-user&#x27;);
+            if (userLink) userLink.textContent &#x3D; &#x27;User &#x27; + newUsername;
+            
+            this.router.navigate([&#x27;/users/account/&#x27; + newUsername]).then(() &#x3D;&gt; {
+              this.editUsername &#x3D; false;
+              document.body.style.cursor &#x3D; &#x27;auto&#x27;;
+              this.editUsernameError &#x3D; &#x27;&#x27;;
+              this.saveUsernameStarted &#x3D; false;
+            });
+          },
+          error: (err) &#x3D;&gt; {
+            this.editUsernameError &#x3D; err.message;
+            this.saveUsernameStarted &#x3D; false;
+          }
+        });
+      }
+    } else {
+      this.editUsername &#x3D; !this.editUsername;
+      document.body.style.cursor &#x3D; &#x27;auto&#x27;;
+      this.editUsernameError &#x3D; &#x27;&#x27;;
+    }
+  }
+
+  public saveEmail(): void {
+    const newEmail &#x3D; this.editForm.value.email;
+    if (newEmail !&#x3D;&#x3D; this.currentUser.email) {
+      if (this.saveEmailStarted &#x3D;&#x3D; false) {
+        this.saveEmailStarted &#x3D; true;
+        this.usersService.updateEmail(this.currentUser.username, newEmail).subscribe({
+          next: () &#x3D;&gt; {
+            this.currentUser.email &#x3D; newEmail;
+            this.editEmail &#x3D; false;
+            if (this.currentUser.profile)
+              this.currentUser.profile.email &#x3D; newEmail;
+            document.body.style.cursor &#x3D; &#x27;auto&#x27;;
+            this.editEmailError &#x3D; &#x27;&#x27;;
+            this.saveEmailStarted &#x3D; false;
+          },
+          error: (err) &#x3D;&gt; {
+            this.editEmailError &#x3D; err.message;
+            this.saveEmailStarted &#x3D; false;
+          }
+        });
+      }
+    } else {
+      this.editEmail &#x3D; !this.editEmail;
+      document.body.style.cursor &#x3D; &#x27;auto&#x27;;
+      this.editEmailError &#x3D; &#x27;&#x27;;
+    }
+  }
+
+  public savePassword(): void {
+    const responseDiv &#x3D; document.getElementById(&#x27;response&#x27;)!;
+    const currentPassword &#x3D; this.passwordForm.value.currentPassword;
+    const newPassword &#x3D; this.passwordForm.value.newPassword;
+
+    if (currentPassword !&#x3D; newPassword) {
+      const model: ChangePassword &#x3D; {
+        username: this.currentUser.username,
+        oldPassword: currentPassword,
+        newPassword: newPassword
+      };
+
+      this.usersService.updatePassword(model).subscribe({
+        next: (OKresponse) &#x3D;&gt; {
+          const responseDiv &#x3D; document.getElementById(&#x27;response&#x27;)!;
+          responseDiv.style.color &#x3D; &#x27;green&#x27;;
+          this.response &#x3D; OKresponse;
+          document.body.style.cursor &#x3D; &#x27;auto&#x27;;
+        },
+        error: (err) &#x3D;&gt; {
+          responseDiv.style.color &#x3D; &#x27;red&#x27;;
+          if (err.message.includes(&#x27;PasswordMismatch&#x27;))
+            this.response &#x3D; &#x27;The current password is incorrect.&#x27;;
+          else this.response &#x3D; err.message;
+        }
+      });
+    } else {
+      document.body.style.cursor &#x3D; &#x27;auto&#x27;;
+      responseDiv.style.color &#x3D; &#x27;red&#x27;;
+      this.response &#x3D; &#x27;The new password must be different from the old one.&#x27;;
+      responseDiv.id &#x3D; &#x27;identic-passwords-response&#x27;;
+      //responseDiv.style.maxWidth &#x3D; &#x27;340px&#x27;;
+    }
+  }
+
+
+  public displayInvitations(): void {
+    this.showInvitations &#x3D; !this.showInvitations;
+  }
+
+  public declineInvitation(invitation: Invitation): void {
+    if (window.confirm(&#x27;Decline the invitation to join &#x27; + invitation.bandToJoinName + &#x27;?&#x27;)) {
+      const matchToUpdate: BandUserMatch &#x3D; {
+        bandId: invitation.bandToJoinId,
+        userId: invitation.invitedUserId,
+        matchType: &#x27;declined invitation&#x27;
+      };
+      this.bandsService.updateBandUserMatch(matchToUpdate, this.currentUser.username).subscribe(() &#x3D;&gt; {
+        window.location.reload();
+      });
+    }
+  }
+
+  public acceptInvitation(invitation: Invitation): void {
+    if (window.confirm(&#x27;Accept the invitation to join &#x27; + invitation.bandToJoinName + &#x27;?&#x27;)) {
+      const acceptedInvitation: BandUserMatch &#x3D; {
+        bandId: invitation.bandToJoinId,
+        userId: invitation.invitedUserId,
+        matchType: &#x27;accepted invitation&#x27;
+      };
+      this.profilesService
+        .acceptInvitationToJoinBand(acceptedInvitation, this.currentUser.username)
+        .subscribe(() &#x3D;&gt; {
+          window.location.reload();
+        });
+    }
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div id&#x3D;&quot;notif-container&quot;&gt;
+  &lt;p class&#x3D;&quot;invites-notification&quot; *ngIf&#x3D;&quot;invitesToJoinBand.length&#x3D;&#x3D;1&quot; (click)&#x3D;&quot;displayInvitations()&quot;&gt;
+    You are invited to join 1 band.
+  &lt;/p&gt;
+  &lt;p class&#x3D;&quot;invites-notification&quot; *ngIf&#x3D;&quot;invitesToJoinBand.length&gt;1&quot; (click)&#x3D;&quot;displayInvitations()&quot;&gt;
+    You are invited to join {{invitesToJoinBand.length}} bands.
+  &lt;/p&gt;
+  &lt;ol id&#x3D;&quot;invitations-list&quot; *ngIf&#x3D;&quot;showInvitations&quot;&gt; 
+    &lt;li *ngFor&#x3D;&quot;let invite of invitesToJoinBand&quot;&gt;
+      &lt;a routerLink&#x3D;&quot;/users/account/band/{{invite.bandToJoinId}}&quot;&gt;{{invite.bandToJoinName}}&lt;/a&gt;
+      &lt;button (click)&#x3D;&quot;acceptInvitation(invite)&quot; 
+        changeBorderOnClick defaultBorderStyle&#x3D;&quot;outset&quot; mousedownBorderStyle&#x3D;&quot;inset&quot;&gt;Join&lt;/button&gt;
+      &lt;button (click)&#x3D;&quot;declineInvitation(invite)&quot; 
+        changeBorderOnClick defaultBorderStyle&#x3D;&quot;outset&quot; mousedownBorderStyle&#x3D;&quot;inset&quot;&gt;Decline&lt;/button&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+
+
+&lt;div id&#x3D;&quot;container&quot; [style]&#x3D;&quot;{ display: authorized ? &#x27;flex&#x27; : &#x27;none&#x27; }&quot;&gt;
+  &lt;app-user-profile [user]&#x3D;&quot;currentUser&quot;&gt;&lt;/app-user-profile&gt;
+  
+  &lt;mat-card id&#x3D;&quot;user-info-card&quot;&gt;
+    &lt;mat-card-header id&#x3D;&quot;card-header&quot;&gt;
+      &lt;div mat-card-avatar id&#x3D;&quot;user-icon&quot;&gt;&lt;/div&gt;
+      &lt;mat-card-title id&#x3D;&quot;card-title&quot;&gt; User Account Info &lt;/mat-card-title&gt;
+      &lt;mat-card-subtitle id&#x3D;&quot;card-subtitle&quot;&gt; Roles:
+        &lt;span *ngFor&#x3D;&quot;let role of currentUser.userRoles?.slice(0, -1)&quot;&gt; {{ role }}, &lt;/span&gt;
+        &lt;span *ngFor&#x3D;&quot;let role of currentUser.userRoles?.slice(-1)&quot;&gt; {{ role }} &lt;/span&gt;
+        &lt;!-- &lt;span *ngFor&#x3D;&quot;let role of currentUser.userRoles; last as isLast&quot;&gt; 
+          &lt;span *ngIf&#x3D;&quot;!isLast&quot;&gt; {{role}}, &lt;/span&gt;
+          &lt;span *ngIf&#x3D;&quot;isLast&quot;&gt; {{role}} &lt;/span&gt; 
+        &lt;/span&gt; --&gt;
+      &lt;/mat-card-subtitle&gt;
+    &lt;/mat-card-header&gt;
+
+    &lt;mat-card-content id&#x3D;&quot;account-info&quot;&gt;
+      &lt;div class&#x3D;&quot;details&quot; *ngIf&#x3D;&quot;!editUsername&quot;&gt; &lt;strong&gt;Username: &lt;/strong&gt; 
+        &lt;span class&#x3D;&quot;current-value&quot;&gt; {{ currentUser.username }}
+          &lt;mat-icon class&#x3D;&quot;edit-icon&quot; (click)&#x3D;&quot;editUsername &#x3D; !editUsername&quot;
+            matTooltip&#x3D;&quot;Click here to change your username.&quot;
+            [matTooltipPosition]&#x3D;&quot;tooltipPosition&quot;
+            aria-label&#x3D;&quot;Edit icon that displays a tooltip when hovered over.&quot;
+          &gt;
+            edit
+          &lt;/mat-icon&gt;
+        &lt;/span&gt;
+      &lt;/div&gt;
+
+
+      &lt;!-- &lt;form [formGroup]&#x3D;&quot;editForm&quot; id&#x3D;&quot;edit-form&quot; *ngIf&#x3D;&quot;editUsername || editEmail&quot;&gt; --&gt;
+      &lt;form [formGroup]&#x3D;&quot;editForm&quot; id&#x3D;&quot;edit-form&quot;
+        [style]&#x3D;&quot;{ display: editUsername || editEmail ? &#x27;block&#x27; : &#x27;none&#x27; }&quot;
+      &gt;
+        &lt;div *ngIf&#x3D;&quot;username.dirty&quot; id&#x3D;&quot;username-warning&quot;&gt;
+          &lt;div *ngIf&#x3D;&quot;username.errors?.[&#x27;hasForbiddenChar&#x27;]&quot;&gt;
+            The username can only contain
+            &lt;strong&gt;letters, numbers, hyphens and underscores.&lt;/strong&gt;
+          &lt;/div&gt;
+
+          &lt;div *ngIf&#x3D;&quot;username.errors?.[&#x27;usernameAlreadyExists&#x27;]&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;username.errors?.[&#x27;usernameAlreadyExists&#x27;].username&quot;&gt;
+              This username already exists, please choose a different one.
+            &lt;/div&gt;
+            &lt;div *ngIf&#x3D;&quot;username.errors?.[&#x27;usernameAlreadyExists&#x27;].error&quot;&gt;
+              Username validation failed.
+              {{username.errors?.[&#x27;usernameAlreadyExists&#x27;].error.message}}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div [style]&#x3D;&quot;{ display: editUsername ? &#x27;flex&#x27; : &#x27;none&#x27; }&quot; class&#x3D;&quot;edit-field&quot;&gt;
+          &lt;mat-form-field appearance&#x3D;&quot;outline&quot; #formField&#x3D;&quot;matFormField&quot;&gt;
+            &lt;mat-label&gt;Username&lt;/mat-label&gt;
+            &lt;input matInput required type&#x3D;&quot;text&quot; maxlength&#x3D;&quot;31&quot; 
+              placeholder&#x3D;&quot;Username&quot; formControlName&#x3D;&quot;username&quot;
+            /&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;username.touched&quot; class&#x3D;&quot;alert&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;username.errors?.[&#x27;required&#x27;] || username.errors?.[&#x27;minlength&#x27;]&quot;&gt;
+                A username of at least 2 characters is required!
+              &lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;username.errors?.[&#x27;maxlength&#x27;]&quot;&gt;
+                The username cannot have more than 30 characters.
+              &lt;/div&gt;
+            &lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+
+          &lt;div class&#x3D;&quot;buttons&quot;&gt;
+            &lt;button mat-stroked-button [disabled]&#x3D;&quot;username.errors&quot; (click)&#x3D;&quot;saveUsername()&quot; appWaitCursor&gt;
+              Save
+            &lt;/button&gt;
+            &lt;button mat-stroked-button (click)&#x3D;&quot;editUsername &#x3D; !editUsername&quot;&gt;
+              Cancel
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;editUsername &amp;&amp; editUsernameError&quot; class&#x3D;&quot;edit-error&quot;&gt;
+          Edit Error: {{ editUsernameError }}
+        &lt;/div&gt;
+
+        &lt;div [style]&#x3D;&quot;{ display: editEmail ? &#x27;flex&#x27; : &#x27;none&#x27; }&quot; class&#x3D;&quot;edit-field&quot; id&#x3D;&quot;email-field&quot;&gt;
+          &lt;mat-form-field appearance&#x3D;&quot;outline&quot; #formField&#x3D;&quot;matFormField&quot;&gt;
+            &lt;mat-label&gt;Email&lt;/mat-label&gt;
+            &lt;input matInput required type&#x3D;&quot;email&quot; placeholder&#x3D;&quot;Email&quot; formControlName&#x3D;&quot;email&quot; /&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;email.touched&quot; class&#x3D;&quot;alert&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;email.errors?.[&#x27;required&#x27;]&quot;&gt;An email is required!&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;email.errors?.[&#x27;email&#x27;]&quot;&gt;Please provide a valid email address.&lt;/div&gt;
+            &lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+
+          &lt;div class&#x3D;&quot;buttons&quot;&gt;
+            &lt;button mat-stroked-button [disabled]&#x3D;&quot;email.errors&quot; (click)&#x3D;&quot;saveEmail()&quot; appWaitCursor&gt;
+              Save
+            &lt;/button&gt;
+            &lt;button mat-stroked-button (click)&#x3D;&quot;editEmail &#x3D; !editEmail&quot;&gt;
+              Cancel
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;editEmailError &amp;&amp; editEmail&quot; class&#x3D;&quot;edit-error&quot;&gt;
+          Edit Error: {{ editEmailError }}
+        &lt;/div&gt;
+      &lt;/form&gt;
+
+      &lt;div class&#x3D;&quot;details&quot; *ngIf&#x3D;&quot;!editEmail&quot;&gt; &lt;strong&gt;Email:&lt;/strong&gt;
+        &lt;span class&#x3D;&quot;current-value&quot;&gt; {{ currentUser.email }} 
+          &lt;mat-icon class&#x3D;&quot;edit-icon&quot; (click)&#x3D;&quot;editEmail &#x3D; !editEmail&quot;
+            matTooltip&#x3D;&quot;Click here to change your email address.&quot;
+            [matTooltipPosition]&#x3D;&quot;tooltipPosition&quot;
+            aria-label&#x3D;&quot;Edit icon that displays a tooltip when hovered over.&quot;
+          &gt;
+            edit
+          &lt;/mat-icon&gt;
+        &lt;/span&gt;
+      &lt;/div&gt;
+      
+      
+      &lt;div id&#x3D;&quot;change-password&quot;&gt;
+        &lt;button mat-raised-button *ngIf&#x3D;&quot;!changePassword&quot; (click)&#x3D;&quot;changePassword &#x3D; !changePassword&quot;&gt;
+          Change Password
+        &lt;/button&gt;
+
+        &lt;form [formGroup]&#x3D;&quot;passwordForm&quot; id&#x3D;&quot;password-form&quot; *ngIf&#x3D;&quot;changePassword&quot;&gt;
+          &lt;mat-form-field appearance&#x3D;&quot;outline&quot; #formField&#x3D;&quot;matFormField&quot;&gt;
+            &lt;mat-label&gt;Current Password&lt;/mat-label&gt;
+            &lt;div class&#x3D;&quot;form-input&quot;&gt;
+              &lt;input matInput required [type]&#x3D;&quot;showPassword?&#x27;text&#x27;:&#x27;password&#x27;&quot; maxlength&#x3D;&quot;26&quot;
+                placeholder&#x3D;&quot;Current Password&quot; formControlName&#x3D;&quot;currentPassword&quot; autocomplete&#x3D;&quot;off&quot;
+              /&gt;
+              &lt;mat-icon class&#x3D;&quot;eye-icon&quot; (click)&#x3D;&quot;showPassword&#x3D;!showPassword&quot;&gt;
+                {{ showPassword ? &#x27;visibility&#x27; : &#x27;visibility_off&#x27; }}
+              &lt;/mat-icon&gt;
+            &lt;/div&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;currentPassword.errors?.[&#x27;required&#x27;]&quot; class&#x3D;&quot;alert&quot;&gt;
+              You must enter your current password.
+            &lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+
+          &lt;div id&#x3D;&quot;password-warning&quot;
+            *ngIf&#x3D;&quot;newPassword.errors?.[&#x27;invalidPassword&#x27;] &amp;&amp; !newPassword.errors?.[&#x27;required&#x27;]&quot;
+          &gt;
+            The new password must contain a &lt;strong&gt;lowercase&lt;/strong&gt; and an
+            &lt;strong&gt;uppercase&lt;/strong&gt; letter, a &lt;strong&gt;digit&lt;/strong&gt; and a
+            &lt;strong&gt;non&amp;#x2011;alphanumeric&lt;/strong&gt; character.
+          &lt;/div&gt;
+
+          &lt;mat-form-field appearance&#x3D;&quot;outline&quot; #formField&#x3D;&quot;matFormField&quot;&gt;
+            &lt;mat-label&gt;New Password&lt;/mat-label&gt;
+            &lt;div class&#x3D;&quot;form-input&quot;&gt;
+              &lt;input matInput required [type]&#x3D;&quot;showNewPassword?&#x27;text&#x27;:&#x27;password&#x27;&quot; maxlength&#x3D;&quot;26&quot;
+                placeholder&#x3D;&quot;New Password&quot; formControlName&#x3D;&quot;newPassword&quot; autocomplete&#x3D;&quot;off&quot;
+              /&gt;
+              &lt;mat-icon class&#x3D;&quot;eye-icon&quot; (click)&#x3D;&quot;showNewPassword&#x3D;!showNewPassword&quot;&gt;
+                {{ showNewPassword ? &#x27;visibility&#x27; : &#x27;visibility_off&#x27; }}
+              &lt;/mat-icon&gt;
+            &lt;/div&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;newPassword.errors&quot; class&#x3D;&quot;alert long-alert&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;newPassword.errors?.[&#x27;minlength&#x27;] || newPassword.errors?.[&#x27;required&#x27;]&quot;&gt;
+                The new password must be at least 6 characters long.
+              &lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;newPassword.errors?.[&#x27;maxlength&#x27;]&quot;&gt;
+                The new password cannot have more than 25 characters.
+              &lt;/div&gt;
+            &lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+
+          &lt;mat-form-field appearance&#x3D;&quot;outline&quot; #formField&#x3D;&quot;matFormField&quot;&gt;
+            &lt;mat-label&gt; Confirm Password &lt;/mat-label&gt;
+            &lt;div class&#x3D;&quot;form-input&quot;&gt;
+              &lt;input matInput required [type]&#x3D;&quot;showConfirmPassword?&#x27;text&#x27;:&#x27;password&#x27;&quot; maxlength&#x3D;&quot;26&quot;
+                placeholder&#x3D;&quot;Confirm New Password&quot; formControlName&#x3D;&quot;confirmNewPassword&quot; autocomplete&#x3D;&quot;off&quot;
+              /&gt;
+              &lt;mat-icon class&#x3D;&quot;eye-icon&quot; (click)&#x3D;&quot;showConfirmPassword&#x3D;!showConfirmPassword&quot;&gt;
+                {{ showConfirmPassword ? &#x27;visibility&#x27; : &#x27;visibility_off&#x27; }}
+              &lt;/mat-icon&gt;
+            &lt;/div&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;confirmNewPassword.errors?.[&#x27;mismatchedValues&#x27;]&quot; class&#x3D;&quot;alert&quot;&gt;
+              Passwords do not match.
+            &lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+
+          &lt;div id&#x3D;&quot;password-form-buttons&quot;&gt;
+            &lt;button mat-stroked-button [disabled]&#x3D;&quot;!passwordForm.valid&quot; (click)&#x3D;&quot;savePassword()&quot; appWaitCursor&gt;
+              Save
+            &lt;/button&gt;
+            &lt;button mat-stroked-button (click)&#x3D;&quot;changePassword &#x3D; !changePassword&quot;&gt;Cancel&lt;/button&gt;
+          &lt;/div&gt;
+
+          &lt;div id&#x3D;&quot;response&quot; [style]&#x3D;&quot;{ display: response ? &#x27;flex&#x27; : &#x27;none&#x27; }&quot;&gt;{{ response }}&lt;/div&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/mat-card-content&gt;
+  &lt;/mat-card&gt;
+&lt;/div&gt;
+
+&lt;div id&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;!authorized&quot;&gt;{{ errorMessage }}&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./account-info.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">#notif-container {
+    width: fit-content;
+    margin: auto;
+    border: 4px double rgb(108, 242, 247);
+    background-color: azure;
+    padding: 10px;
+
+    .invites-notification { cursor: pointer;
+        font-size: 16px;
+        margin: 0px; 
+    }
+    .invites-notification:hover {
+        background-color: rgb(208, 248, 248);
+    }
+    
+    #invitations-list {
+        padding-left: 18px;
+        margin: 0px;
+    
+        li { margin-top: 15px;
+
+            button { cursor: pointer;
+                margin-left: 10px;
+                padding: 3px;
+                border: 2px outset rgb(200, 209, 226);
+                border-radius: 3px;
+                background-color: rgb(239, 243, 247);
+            }
+            button:hover {
+                background-color: rgb(244, 246, 248);
+            }
+        }
+    }
+}
+
+
+#error { color: red; font-size: 18px; }
+
+
+#container { padding: 30px 30px 5px;
+    flex-wrap: wrap-reverse;
+    justify-content: space-around;
+
+    #user-info-card { padding: 25px; overflow-x: auto;
+        background-color: azure;
+        min-width: 385px;
+        // max-width: fit-content;
+        // min-width: fit-content;
+        margin: 5px;
+
+        #card-header { 
+            margin-bottom: 15px;
+
+            #user-icon { width: 50px; height: 50px;
+                background-image: url(&quot;/assets/user-icon.png&quot;);
+                background-size: cover;
+            }
+
+            #card-title { width: 193.03px;
+                font-size: 24px;
+            }
+            #card-subtitle { font-size: 16px; color: rgb(100, 100, 100); }
+        }
+
+        #account-info { max-width: 500px;
+
+            .details { font-size: 18px;
+                display: flex;
+                flex-wrap: wrap;
+
+                strong { margin-right: 5px; }
+
+                .current-value { display: flex;
+                    align-items: center;
+
+                    .edit-icon { margin-left: 5px;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .details:nth-child(n+2) { margin-top: 30px; }
+
+            #edit-form {
+                #username-warning { margin-bottom: 5px;
+                    font-size: 16px;
+                    color: red;
+                }
+                
+                #email-field { margin-top: 20px; }
+
+                .edit-field { display: flex; //flex-wrap: wrap;
+
+                    mat-form-field { width: 305px;
+                        font-size: 16px;
+                        .alert { text-align: center; }
+                    }
+    
+                    .buttons { height: 68px;
+                        display: flex;
+                        align-items: center;
+    
+                        button { margin-left: 10px;
+                            background-color: rgb(217, 225, 228);
+                            border-width: 1.5px;
+                        }                        
+                    }
+                }
+
+                .edit-error { color: red;
+                    margin-top: 2px;
+                    margin-bottom: 30px;
+                }
+
+
+                @media screen and (max-width: 615px) {
+                    #email-field { 
+                        margin-top: 35px;
+                    }
+
+                    .edit-field { flex-direction: column;
+
+                        mat-form-field {
+                            .alert { text-align: left; 
+                                margin-left: -10px;
+                            }
+                        }
+
+                        .buttons { height: fit-content;
+                            margin-top: 3px;
+
+                            button {
+                                margin-left: 0px;
+                                margin-right: 15px;
+                            }  
+                        }
+                    }
+
+                    .edit-error { margin-top: 26px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+
+        #change-password { margin-top: 35px;
+
+            button { background-color: rgb(222, 242, 245);
+            padding-left: 15px; padding-right: 15px; }
+
+            #password-form { display: flex;
+                flex-direction: column;
+                background-color: rgb(235, 249, 252);
+                border: 2px solid rgb(165, 179, 182);
+                border-radius: 5px;
+                padding: 25px;
+                width: fit-content; 
+
+                #password-warning { width: 320px;
+                    margin: 0px auto 3px;
+                    text-align: justify;
+                    color: rgb(117, 12, 109);
+                }
+
+                mat-form-field { width: 330px;
+                    font-size: 16px;
+                    margin: 0px auto 4px;
+
+                    .form-input { display: grid;
+                        grid-template-columns: auto 24px;
+                        grid-template-rows: 24px;
+                        margin-top: -7px;
+    
+                        input { margin-top: auto; 
+                            margin-bottom: auto;
+                        }
+                    }
+              
+                    .eye-icon { cursor: pointer; }
+                    
+                    .alert { text-align: center; }
+                }
+
+                #password-form-buttons { display: flex;
+                    justify-content: space-evenly;
+                    margin-top: 4px;
+                }
+
+                #response { margin: 30px auto 0px;
+                    max-width: 330px;
+                    text-align: center;
+                }
+                #identic-passwords-response { margin-top: 30px;
+                    width: 337px;
+                    text-align: center;
+                }
+                #no-connection { margin: 30px auto 0px;
+                    //width: 302.5px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    #container&gt;#user-info-card {
+        min-width: fit-content;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #container&gt;#user-info-card {
+        #account-info {
+            max-width: 400px;
+        }
+    }
+}
+
+@media screen and (max-width: 550px) {
+    #container&gt;#user-info-card {
+        #change-password&gt;#password-form {
+            #password-warning { width: 285px;
+                margin: 0px 0px 3px;
+                text-align: center;
+            }
+            mat-form-field { width: 285px;
+                margin-bottom: 13px;
+                .long-alert{ text-align: justify; }
+            }
+            #response { margin-top: 25px; 
+                max-width: 285px;
+            }
+            #identic-passwords-response { margin-top: 25px;
+                width: 285px;
+                text-align: justify;
+            }
+            #no-connection { margin-top: 25px;
+                width: 258px;
+                text-align: justify;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 505px) {
+    #container&gt;#user-info-card&gt;#account-info { max-width: 350px;
+        #password-form { padding: 20px;
+
+            #password-warning { width: 260px; }
+
+            mat-form-field { width: 260px;
+                .alert{ width: 226px;
+                    margin: 0px auto;
+                }
+            }
+
+            #response { margin-top: 20px;
+                max-width: 260px;
+            }
+            #identic-passwords-response { margin: 20px auto 0px;
+                width: 228px;
+            }
+            #no-connection { margin-top: 20px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #container {
+        padding: 5px;
+        //#user-info-card&gt;#account-info { max-width: 300px; }
+    }
+
+    #notif-container {
+        margin-bottom: 25px;
+    }
+}
+
+@media screen and (max-width: 405px) {
+    #container { 
+        padding: 0px;
+        #user-info-card { padding: 20px;
+            
+            #card-header { //margin-bottom: 10px;
+                #user-icon { width: 45px; 
+                    height: 45px;
+                }
+    
+                #card-title { width: 160.86px;
+                    font-size: 20px;
+                }
+                #card-subtitle {
+                    font-size: 14px;
+                }
+            }
+
+            #account-info { max-width: 280px;
+                .details { font-size: 16px }
+
+                #edit-form {
+                    #username-warning { font-size: 14px; }
+
+                    .edit-field {
+                        mat-form-field { width: 292px;
+                            font-size: 14px;
+                            .alert { font-size: 12px; }
+                        }
+                        .buttons&gt;button { font-size: 13px;
+                            min-width: fit-content;
+                            line-height: 30px;
+                            padding: 0 13px;
+                        }
+                    }
+                    
+                    .edit-error { font-size: 14px;
+                        margin-top: 24px;
+                    }
+                }
+
+
+                #password-form {
+                    #password-warning { width: 248px; }
+
+                    mat-form-field { width: 248px;
+                        font-size: 14px;
+                        margin-bottom: 15px;
+
+                        .form-input { margin-top: -6.6px;
+                            grid-template-columns: auto 22px;
+                            grid-template-rows: 22px;
+                           
+                            mat-icon { font-size: 22px;
+                                width: 22px; height: 22px;
+                            }
+                        }
+                        
+                        .alert { font-size: 12px; }
+                    }
+    
+                    #password-form-buttons {
+                        button { font-size: 13px; 
+                            min-width: fit-content;
+                            line-height: 30px;
+                            padding: 0 13px;
+                        }
+                    }
+
+                    #response { max-width: 248px; }
+
+                    #no-connection { max-width: 235px; }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 360px) {
+    #container {
+        #user-info-card {
+            background-color: aliceblue;
+            box-shadow: none;
+            border: solid 2px lightblue;
+            border-radius: 5px;
+            margin: 0px 0px 25px 0px;
+        }
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #container {
+        #user-info-card { #account-info { max-width: 250px; }
+            padding: 10px; 
+            margin-bottom: 30px;
+        }
+    }
+    #notif-container {
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    #container&gt;#user-info-card&gt;#account-info {
+        #edit-form&gt;.edit-field {
+            mat-form-field { width: 270px;
+                .alert { font-size: 11px; }
+            }
+        }
+
+        #password-form { padding: 15px;
+            #password-warning { width: 236px; 
+                font-size: 13px; 
+            }
+            mat-form-field { width: 236px;
+                margin-bottom: 12px;
+                .alert{ width: 207px;
+                    font-size: 11px;
+                }
+            }
+            #response { margin-top: 15px; 
+                max-width: 236px;
+            }
+            #identic-passwords-response { margin-top: 15px;
+            }
+            #no-connection {  margin-top: 15px;}
+        }
+
+    }
+}
+
+@media screen and (max-width: 306px) {
+    #container {
+        #user-info-card { #account-info { max-width: 245px; }
+            padding: 5px;
+            margin-bottom: 40px;
+        }
+    }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div id="notif-container">  <p class="invites-notification" *ngIf="invitesToJoinBand.length==1" (click)="displayInvitations()">    You are invited to join 1 band.  </p>  <p class="invites-notification" *ngIf="invitesToJoinBand.length>1" (click)="displayInvitations()">    You are invited to join {{invitesToJoinBand.length}} bands.  </p>  <ol id="invitations-list" *ngIf="showInvitations">     <li *ngFor="let invite of invitesToJoinBand">      <a routerLink="/users/account/band/{{invite.bandToJoinId}}">{{invite.bandToJoinName}}</a>      <button (click)="acceptInvitation(invite)"         changeBorderOnClick defaultBorderStyle="outset" mousedownBorderStyle="inset">Join</button>      <button (click)="declineInvitation(invite)"         changeBorderOnClick defaultBorderStyle="outset" mousedownBorderStyle="inset">Decline</button>    </li>  </ol></div><div id="container" [style]="{ display: authorized ? \'flex\' : \'none\' }">  <app-user-profile [user]="currentUser"></app-user-profile>    <mat-card id="user-info-card">    <mat-card-header id="card-header">      <div mat-card-avatar id="user-icon"></div>      <mat-card-title id="card-title"> User Account Info </mat-card-title>      <mat-card-subtitle id="card-subtitle"> Roles:        <span *ngFor="let role of currentUser.userRoles?.slice(0, -1)"> {{ role }}, </span>        <span *ngFor="let role of currentUser.userRoles?.slice(-1)"> {{ role }} </span>        <!-- <span *ngFor="let role of currentUser.userRoles; last as isLast">           <span *ngIf="!isLast"> {{role}}, </span>          <span *ngIf="isLast"> {{role}} </span>         </span> -->      </mat-card-subtitle>    </mat-card-header>    <mat-card-content id="account-info">      <div class="details" *ngIf="!editUsername"> <strong>Username: </strong>         <span class="current-value"> {{ currentUser.username }}          <mat-icon class="edit-icon" (click)="editUsername = !editUsername"            matTooltip="Click here to change your username."            [matTooltipPosition]="tooltipPosition"            aria-label="Edit icon that displays a tooltip when hovered over."          >            edit          </mat-icon>        </span>      </div>      <!-- <form [formGroup]="editForm" id="edit-form" *ngIf="editUsername || editEmail"> -->      <form [formGroup]="editForm" id="edit-form"        [style]="{ display: editUsername || editEmail ? \'block\' : \'none\' }"      >        <div *ngIf="username.dirty" id="username-warning">          <div *ngIf="username.errors?.[\'hasForbiddenChar\']">            The username can only contain            <strong>letters, numbers, hyphens and underscores.</strong>          </div>          <div *ngIf="username.errors?.[\'usernameAlreadyExists\']">            <div *ngIf="username.errors?.[\'usernameAlreadyExists\'].username">              This username already exists, please choose a different one.            </div>            <div *ngIf="username.errors?.[\'usernameAlreadyExists\'].error">              Username validation failed.              {{username.errors?.[\'usernameAlreadyExists\'].error.message}}            </div>          </div>        </div>        <div [style]="{ display: editUsername ? \'flex\' : \'none\' }" class="edit-field">          <mat-form-field appearance="outline" #formField="matFormField">            <mat-label>Username</mat-label>            <input matInput required type="text" maxlength="31"               placeholder="Username" formControlName="username"            />            <mat-error *ngIf="username.touched" class="alert">              <div *ngIf="username.errors?.[\'required\'] || username.errors?.[\'minlength\']">                A username of at least 2 characters is required!              </div>              <div *ngIf="username.errors?.[\'maxlength\']">                The username cannot have more than 30 characters.              </div>            </mat-error>          </mat-form-field>          <div class="buttons">            <button mat-stroked-button [disabled]="username.errors" (click)="saveUsername()" appWaitCursor>              Save            </button>            <button mat-stroked-button (click)="editUsername = !editUsername">              Cancel            </button>          </div>        </div>        <div *ngIf="editUsername && editUsernameError" class="edit-error">          Edit Error: {{ editUsernameError }}        </div>        <div [style]="{ display: editEmail ? \'flex\' : \'none\' }" class="edit-field" id="email-field">          <mat-form-field appearance="outline" #formField="matFormField">            <mat-label>Email</mat-label>            <input matInput required type="email" placeholder="Email" formControlName="email" />            <mat-error *ngIf="email.touched" class="alert">              <div *ngIf="email.errors?.[\'required\']">An email is required!</div>              <div *ngIf="email.errors?.[\'email\']">Please provide a valid email address.</div>            </mat-error>          </mat-form-field>          <div class="buttons">            <button mat-stroked-button [disabled]="email.errors" (click)="saveEmail()" appWaitCursor>              Save            </button>            <button mat-stroked-button (click)="editEmail = !editEmail">              Cancel            </button>          </div>        </div>        <div *ngIf="editEmailError && editEmail" class="edit-error">          Edit Error: {{ editEmailError }}        </div>      </form>      <div class="details" *ngIf="!editEmail"> <strong>Email:</strong>        <span class="current-value"> {{ currentUser.email }}           <mat-icon class="edit-icon" (click)="editEmail = !editEmail"            matTooltip="Click here to change your email address."            [matTooltipPosition]="tooltipPosition"            aria-label="Edit icon that displays a tooltip when hovered over."          >            edit          </mat-icon>        </span>      </div>                  <div id="change-password">        <button mat-raised-button *ngIf="!changePassword" (click)="changePassword = !changePassword">          Change Password        </button>        <form [formGroup]="passwordForm" id="password-form" *ngIf="changePassword">          <mat-form-field appearance="outline" #formField="matFormField">            <mat-label>Current Password</mat-label>            <div class="form-input">              <input matInput required [type]="showPassword?\'text\':\'password\'" maxlength="26"                placeholder="Current Password" formControlName="currentPassword" autocomplete="off"              />              <mat-icon class="eye-icon" (click)="showPassword=!showPassword">                {{ showPassword ? \'visibility\' : \'visibility_off\' }}              </mat-icon>            </div>            <mat-error *ngIf="currentPassword.errors?.[\'required\']" class="alert">              You must enter your current password.            </mat-error>          </mat-form-field>          <div id="password-warning"            *ngIf="newPassword.errors?.[\'invalidPassword\'] && !newPassword.errors?.[\'required\']"          >            The new password must contain a <strong>lowercase</strong> and an            <strong>uppercase</strong> letter, a <strong>digit</strong> and a            <strong>non&#x2011;alphanumeric</strong> character.          </div>          <mat-form-field appearance="outline" #formField="matFormField">            <mat-label>New Password</mat-label>            <div class="form-input">              <input matInput required [type]="showNewPassword?\'text\':\'password\'" maxlength="26"                placeholder="New Password" formControlName="newPassword" autocomplete="off"              />              <mat-icon class="eye-icon" (click)="showNewPassword=!showNewPassword">                {{ showNewPassword ? \'visibility\' : \'visibility_off\' }}              </mat-icon>            </div>            <mat-error *ngIf="newPassword.errors" class="alert long-alert">              <div *ngIf="newPassword.errors?.[\'minlength\'] || newPassword.errors?.[\'required\']">                The new password must be at least 6 characters long.              </div>              <div *ngIf="newPassword.errors?.[\'maxlength\']">                The new password cannot have more than 25 characters.              </div>            </mat-error>          </mat-form-field>          <mat-form-field appearance="outline" #formField="matFormField">            <mat-label> Confirm Password </mat-label>            <div class="form-input">              <input matInput required [type]="showConfirmPassword?\'text\':\'password\'" maxlength="26"                placeholder="Confirm New Password" formControlName="confirmNewPassword" autocomplete="off"              />              <mat-icon class="eye-icon" (click)="showConfirmPassword=!showConfirmPassword">                {{ showConfirmPassword ? \'visibility\' : \'visibility_off\' }}              </mat-icon>            </div>            <mat-error *ngIf="confirmNewPassword.errors?.[\'mismatchedValues\']" class="alert">              Passwords do not match.            </mat-error>          </mat-form-field>          <div id="password-form-buttons">            <button mat-stroked-button [disabled]="!passwordForm.valid" (click)="savePassword()" appWaitCursor>              Save            </button>            <button mat-stroked-button (click)="changePassword = !changePassword">Cancel</button>          </div>          <div id="response" [style]="{ display: response ? \'flex\' : \'none\' }">{{ response }}</div>        </form>      </div>    </mat-card-content>  </mat-card></div><div id="error" *ngIf="!authorized">{{ errorMessage }}</div></div>'
+    var COMPONENTS = [{'name': 'AccountInfoComponent', 'selector': 'app-account-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BandFormComponent', 'selector': 'app-band-form'},{'name': 'BandInfoComponent', 'selector': 'app-band-info'},{'name': 'BandMembersSurveyComponent', 'selector': 'app-band-members-survey'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainPageComponent', 'selector': 'app-main-page'},{'name': 'SignupComponent', 'selector': 'app-register'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'UserProfileFormComponent', 'selector': 'app-user-profile-form'}];
+    var DIRECTIVES = [{'name': 'ChangeBorderOnClickDirective', 'selector': '[changeBorderOnClick]'},{'name': 'WaitCursorDirective', 'selector': '[appWaitCursor]'}];
+    var ACTUAL_COMPONENT = {'name': 'AccountInfoComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AccountInfoComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

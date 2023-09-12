@@ -66,7 +66,7 @@ namespace backend.Controllers
                 }
                 if (action == "Create Profile")
                     manager.CreateUserProfile(model, user.Id);
-                else 
+                else
                     manager.UpdateUserProfile(model);
                 return Ok();
             }
@@ -122,6 +122,48 @@ namespace backend.Controllers
                 return StatusCode(StatusCodes.Status403Forbidden);
 
             manager.AcceptInvitationToJoinBand(invitation);
+            return Ok();
+        }
+
+
+        [HttpPost("{username}/uploadProfileImage")]
+        public async Task<IActionResult> UploadProfileImage([FromRoute] string username) 
+        {
+            //IFormFile file = Request.Form.Files[0];
+            IFormCollection formCollection = await Request.ReadFormAsync();
+            IFormFile file = formCollection.Files[0];
+
+            if (file.Length > 0)
+            {
+                //string uploadsFolder = "ProfileImages";
+                //if (Directory.Exists(uploadsFolder) is false)
+                //    Directory.CreateDirectory(uploadsFolder);
+
+                //string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), uploadsFolder);
+                //string fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                //string filePath = Path.Combine(pathToSave, fileName);
+
+                //using (var fileStream = new FileStream(filePath, FileMode.Create))
+                //{
+                //    file.CopyTo(fileStream);
+                //}
+
+                using var fileStream = file.OpenReadStream();
+                byte[] imageBytes = new byte[file.Length];
+                fileStream.Read(imageBytes, 0, (int)file.Length);
+
+                manager.SaveProfileImage(username, imageBytes);
+
+                return Ok(new { imageBytes });
+            }
+            else return BadRequest();
+        }
+
+        [AllowAnonymous]
+        [HttpDelete("{username}/deleteProfileImage")]
+        public IActionResult DeleteProfileImage([FromRoute] string username)
+        {
+            manager.DeleteProfileImage(username);
             return Ok();
         }
 
